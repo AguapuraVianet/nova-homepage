@@ -44,7 +44,7 @@
 
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+    <a href="home.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
         <img src="img/logo1.png" height="69">
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -52,14 +52,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="home.html" class="nav-item nav-link">Home</a>
             <a href="presslogin.html" class="nav-item nav-link">Sobre</a>
-            <a href="courses.html" class="nav-item nav-link">Ranking</a>
+            <a href="cursos.html" class="nav-item nav-link">Ranking</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Índice</a>
                 <div class="dropdown-menu fade-down m-0">
                     <a href="team.html" class="dropdown-item active">Colaboradores</a>
-                    <a href="Galeria.html" class="dropdown-item">Galeria</a>
+                    <a href="galeria.html" class="dropdown-item">Galeria</a>
                     <a href="artigos.html" class="dropdown-item">Contato</a>
                     <a href="orientação.html" class="dropdown-item">Orientação</a>
                 </div>
@@ -75,7 +75,7 @@
 <!-- Header Start -->
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
     <div class="container py-5">
-        <div class="row justify-content-center">
+        <div class="row  justify-content-center">
             <div class="col-lg-10 text-center">
                 <h1 class="display-3 text-white animated slideInDown">Como participar</h1>
                 <nav aria-label="breadcrumb">
@@ -97,58 +97,58 @@
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="mb-5">Solicitar Pré-cadastro</h1>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-10 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-8 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <h5>Participe</h5>
                 <p class="mb-4">Gostaria de monitorar a sua residência ? Ter um cadastro no sistema VIANET ? Participar desta rede que trata da consciência no consumo de água/energia ?
                     Preencha este pré-cadastro que você receberá, assim que possível um login/senha para ter acesso ao sistema.</p>
             </div>
-            <div class="col-lg-10 col-md-10 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="col-lg-7 col-md-10 wow fadeInUp" data-wow-delay="0.5s">
                 <form>
                     <div class="row g-3">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                <input type="text" class="form-control" id="name" required placeholder="Your Name">
                                 <label for="name">Nome do responsável</label>
                             </div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                <input type="text" class="form-control" id="subject" required placeholder="Subject">
                                 <label for="subject">Nome da unidade</label>
                             </div>
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                <input type="email" class="form-control" id="email" required placeholder="Your Email">
                                 <label for="email">E-mail</label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-6">
                             <div class="form-floating">
                                 <input type="tel" class="form-control" id="telefone" required placeholder="subject">
                                 <label for="telefone">Telefone para contato</label>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="estado" placeholder="Subject">
+                                <input type="text" class="form-control" id="estado" required placeholder="Subject">
                                 <label for="estado">Estado</label>
                             </div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="cidade" placeholder="subject">
+                                <input type="text" class="form-control" id="cidade" required placeholder="subject">
                                 <label for="cidade">Cidade</label>
                             </div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                <textarea class="form-control" required placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
                                 <label for="message">Motivo da participação</label>
                             </div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">Enviar</button>
                         </div>
                     </div>
