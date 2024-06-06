@@ -8176,7 +8176,13 @@ h1, h2, h3, h4, h5,
   background-position: center center; }
 
 .login-wrap {
-  position: relative;
+  position: center;
+  width: 100%;
+  max-width: auto;
+  height: auto;
+  min-height: auto;
+  margin: auto;
+  padding: auto;
   background-image: url(C:\Users\Aguapura\Documents\login-form-18\images\logoAguapura.png); /* Substitua 'caminho/para/sua/imagem.jpg' pelo caminho real para sua imagem */
   border-radius: 10px;
   -webkit-box-shadow: 10px 10px 34px -15px rgba(0, 0, 0, 0.24);
@@ -8186,6 +8192,7 @@ h1, h2, h3, h4, h5,
     font-weight: 700;
     font-size: 20px;
     color: #2d437f;
+
   }
   .login-wrap .icon {
     width: 80px;
