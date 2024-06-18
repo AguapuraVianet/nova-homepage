@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widh=device-widht, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght0100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+  <body>
+    <div class="grid-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined"></span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications</span>
+                <span class="material-icons-outlined">email</span>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <a href="home.html" class="navbar-brand d-flex align-items-center px-2 px-lg-5" style="margin-left: -28px;">
+                    <img src="img/logo1.png" height="69" alt="logo">
+                </a>
+                <span class="material-icons-outlined" oneclick="closeSidebar()">close_small</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">home</span> Home
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">water_drop</span> Coletar dados de água
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">emoji_objects</span> Coletar dados de energia
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">payments</span> Finanças
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">home_work</span> Unidades
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">build</span> Equipamentos
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">home_repair_service</span> Serviços
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">groups</span> Usuários
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">text_snippet</span> Documentos
+                </li>
+            </ul>
+        </aside>
+        <!-- End Sidebar -->
+
+        <!-- Main -->
+        <main class="main-container">
+            <div class="main-title" style="color: #324b8d;">
+                <h2>Belas Artes/Galeria</h2> 
+            </div>
+
+            <div class="main-cards">
+
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Medições</h3>
+                        <span class="material-icons-outlined">inventory_3</span>
+                    </div>
+                    <h1>24</h1>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Volume Consumido</h3>
+                        <span class="material-icons-outlined">waves</span>
+                    </div>
+                    <h1>58.000 L</h1>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Valor gasto</h3>
+                        <span class="material-icons-outlined">attach_money</span>
+                    </div>
+                    <h1>17.690,58 R$</h1>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <h3>Taxa de aumento</h3>
+                        <span class="material-icons-outlined">query_stats</span>
+                    </div>
+                    <h1>15%</h1>
+                </div>
+
+            </div>
+
+            <div class="charts">
+
+                <div class="charts-card">
+                    <h2 class="chart-tittle">Medições x Mês</h2>
+                    <div id="bar-chart"></div>
+                </div>
+
+                <div class="charts-card">
+                    <h2 class="chart-tittle">Consumo de água (Ano atual / Ano anterior)</h2>
+                    <div id="area-chart"></div>
+                </div>
+
+            </div>
+        </main>
+        <!-- End Main -->
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
