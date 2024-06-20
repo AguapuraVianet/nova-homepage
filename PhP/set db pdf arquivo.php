@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salvar Documentos</title>
+    <style>
+        input {
+
+            padding: 10px;
+            font-size: 20px;
+
+        }
+    </style>
+
 </head>
 
 <body>
@@ -18,6 +27,34 @@
         </form>
     </div>
     <hr>
+
+    <?php
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        include('conexao.php');
+        $nome_usuario = $_PORT['nome_usuario'];
+        $conteudo_pdf = file_get_contents($_FILES['pdf_arquivo']['tmp_name']);
+
+
+        //inserir no banco de dados
+
+        $stmt = $conn->prepare("INSERT INTO documento(nome_usuario, pdf) VALUE(?, ?)");
+        $stmt->bind_param("ss", $nome_usuario, $conteudo_pdf);
+
+        if ($stmt->execute()) {
+            echo "Dados inseridos com Sucesso!";
+        } else {
+            echo "Erro ao inserir dados" . $stmt->erro;
+        }
+
+        //fechar minha conexao
+
+        $stmt->close();
+        $conn->close();
+    }
+
+    ?>
+
 </body>
 
 </html>
