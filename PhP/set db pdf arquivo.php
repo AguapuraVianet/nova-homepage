@@ -20,7 +20,7 @@
     <h2>Enviar Aquivo</h2>
     <hr>
     <div classe="form">
-        <form action="" method="Post" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <input type="text" name="nome_usuario" placeholder="Digite Seu Nome" required><br>
             <input type="file" name="pdf_arquivo" accept=".pdf" required><br>
             <input type="submit" value="Gravar PDF">
