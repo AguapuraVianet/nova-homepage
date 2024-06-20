@@ -29,31 +29,27 @@
     <hr>
 
     <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include('conexao.php'); // Verifique se esse arquivo contém a conexão $conn correta
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        include('conexao.php');
-        $nome_usuario = $_PORT['nome_usuario'];
-        $conteudo_pdf = file_get_contents($_FILES['pdf_arquivo']['tmp_name']);
+    $nome_usuario = $_POST['nome_usuario']; // Corrigido para $_POST
+    $conteudo_pdf = file_get_contents($_FILES['pdf_arquivo']['tmp_name']);
 
+    // Inserir no banco de dados
+    $stmt = $conn->prepare("INSERT INTO documento (nome_usuario, pdf) VALUES (?, ?)");
+    $stmt->bind_param("ss", $nome_usuario, $conteudo_pdf);
 
-        //inserir no banco de dados
-
-        $stmt = $conn->prepare("INSERT INTO documento(nome_usuario, pdf) VALUE(?, ?)");
-        $stmt->bind_param("ss", $nome_usuario, $conteudo_pdf);
-
-        if ($stmt->execute()) {
-            echo "Dados inseridos com Sucesso!";
-        } else {
-            echo "Erro ao inserir dados" . $stmt->erro;
-        }
-
-        //fechar minha conexao
-
-        $stmt->close();
-        $conn->close();
+    if ($stmt->execute()) {
+        echo "Dados inseridos com sucesso!";
+    } else {
+        echo "Erro ao inserir dados: " . $stmt->error;
     }
 
-    ?>
+    // Fechar conexão
+    $stmt->close();
+    $conn->close();
+}
+?>
 
 </body>
 
