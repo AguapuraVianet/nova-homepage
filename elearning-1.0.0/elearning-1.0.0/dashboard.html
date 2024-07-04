@@ -7,6 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght0100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
 
     <link rel="stylesheet" href="css/dashboard.css">
 
@@ -19,12 +20,10 @@
             <div class="menu-icon" onclick="openSidebar()">
                 <span class="material-icons-outlined">menu</span>
             </div>
-            <div class="header-left">
-                <span class="material-icons-outlined"></span>
+            <div class="header-left" onclick="closeSidebar()">
+                <span class="material-icons-outlined">close_small</span>
             </div>
             <div class="header-right">
-                <span class="material-icons-outlined">notifications</span>
-                <span class="material-icons-outlined">email</span>
                 <span class="material-icons-outlined">account_circle</span>
             </div>
         </header>
@@ -36,7 +35,6 @@
                 <a href="home.html" class="navbar-brand d-flex align-items-center px-2 px-lg-5" style="margin-left: -28px;">
                     <img src="img/logo1.png" height="69" alt="logo">
                 </a>
-                <span class="material-icons-outlined" oneclick="closeSidebar()">close_small</span>
             </div>
 
             <ul class="sidebar-list">

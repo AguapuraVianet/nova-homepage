@@ -167,7 +167,7 @@ body {
 /*------ Media queries ------ */
 
 /* Medium */
-@media screen and (max-widht: 992px) {
+@media screen and (max-width: 992px) {
     .grid-container {
         grid-template-columns: 1fr;
         grid-template-rows: 0.2fr 3fr;
@@ -190,7 +190,7 @@ body {
 }
 
 /* small */
-@media screen and (max-widht: 768px) {
+@media screen and (max-width: 768px) {
     .main-cards {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -203,7 +203,7 @@ body {
     }
 }
 /* extra small */
-@media screen and (max-widht: 576px) {
+@media screen and (max-width: 576px) {
     .header-left {
         display: none;
     }
