@@ -456,3 +456,28 @@
 }
 .box-foto:hover { background-color:#01133b; }
 
+
+.link-atualizacao {
+    color: #4d97c6; /* Defina a cor desejada para o link */
+    text-decoration: none; /* Remove o sublinhado padrão do link, se necessário */
+    font-weight: bold; /* Opcional: define o peso da fonte como negrito */
+}
+
+.link-atualizacao:hover {
+    text-decoration: underline; /* Adiciona sublinhado quando o link é hover */
+}
+
+.close-icon {
+    position: left;
+    top: 10px;
+    right: 10px;
+    color: #581616;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; /* Ocultar inicialmente */
+}
+
+.custom-search-box:focus {
+    border-color: #5A5F73 !important;
+    box-shadow: 0 0 0 0.2rem rgba(90, 95, 115, 0.25) !important;
+}
