@@ -34,10 +34,10 @@ var barChartOptions = {
         },
     },
     colors: [
-        "#2962ff",
-        "#d50000",
-        "#2e7d32",
-        "#ff6d00",
+        "#00999A",
+        "#FAA44B",
+        "#00CC00",
+        "#F7F701",
         "#583cb3",
     ],
   plotOptions: {
@@ -149,7 +149,7 @@ var areaChartOptions = {
         show: false,
     },
   },
-  colors: ["#00ab57", "#d50000"],
+  colors: ["#00001b", "#f0fbfc"],
   labels: ["Jan", "Feb", "Mar", "Abr", "May", "Jun", "Jul"],
   dataLabels: {
     enabled: false,

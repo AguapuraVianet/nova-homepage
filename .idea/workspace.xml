@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dab47ab-c43e-466c-9116-aa72da52747d" name="Changes" comment="Alterações">
-      <change beforePath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/img/taina.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/img/taina.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/elearning-1.0.0/elearning-1.0.0/js/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
