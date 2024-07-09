@@ -480,4 +480,11 @@
 .custom-search-box:focus {
     border-color: #5A5F73 !important;
     box-shadow: 0 0 0 0.2rem rgba(90, 95, 115, 0.25) !important;
+    border-radius:10px !important;
+}
+
+.custom-search-bot:focus {
+    border-color: #5A5F73 !important;
+    box-shadow: 0 0 0 0.2rem rgba(90, 95, 115, 0.25) !important;
+    border-radius:10px !important;
 }
