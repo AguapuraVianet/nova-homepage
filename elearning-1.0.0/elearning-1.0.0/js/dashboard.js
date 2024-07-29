@@ -3,18 +3,28 @@
 var sidebarOpen = false;
 var sidebar = document.getElementById("sidebar");
 
-function openSidebar() {
-    if(!sidebarOpen){
-        sidebar.classList.add("sidebar-responsive");
-        sidebarOpen = true;
+function toggleSidebar() {
+    if (sidebarOpen) {
+        closeSidebar();
+    } else {
+        openSidebar();
     }
 }
 
+function openSidebar() {
+  if (!sidebarOpen) {
+      sidebar.classList.add("sidebar-responsive");
+      sidebarOpen = true;
+  } else {
+      closeSidebar(); // Chama a função para fechar o sidebar se estiver aberto
+  }
+}
+
 function closeSidebar() {
-    if(!sidebarOpen){
-        sidebar.classList.remove("sidebar-responsive");
-        sidebarOpen = false;
-    }
+  if (sidebarOpen) {
+      sidebar.classList.remove("sidebar-responsive");
+      sidebarOpen = false;
+  }
 }
 
 // ---------- Charts ---------
