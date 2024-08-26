@@ -31,6 +31,10 @@ body {
   .text-orange {
     color: #f5b74f;
   }
+
+  .text-black {
+    color: #000000;
+  }
   
   .font-weight-bold {
     font-weight: 600;
@@ -62,6 +66,28 @@ body {
   
   .menu-icon {
     display: none;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .search-input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin-left: 8px;
+    font-size: 14px;
   }
   
   
@@ -293,3 +319,55 @@ body {
       display: none;
     }
   }
+
+/* Estilos para o contêiner de pesquisa e lista */
+.header-left {
+  position: relative; /* Permite que o contêiner de lista seja posicionado em relação a ele */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 25px; /* Arredonda os cantos do campo de pesquisa */
+  padding: 5px 10px;
+  border: 1px solid #ccc; /* Adiciona uma borda ao campo de pesquisa */
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+  flex: 1;
+}
+
+#data-list {
+  position: absolute; /* Faz com que a lista de resultados apareça sobre outros elementos */
+  top: 100%; /* Posiciona a lista diretamente abaixo do campo de pesquisa */
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Faz com que a lista de resultados tenha a mesma largura que o campo de pesquisa */
+  max-height: 300px; /* Ajusta a altura máxima da lista */
+  overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+  display: none; /* Inicialmente escondido */
+  z-index: 1000; /* Garante que a lista fique sobre outros elementos */
+}
+
+#data-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#data-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#data-list li:hover {
+  background-color: #f0f0f0;
+}
