@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/novodashboard.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <a href="login.html" class="material-icons-outlined">
+            <span class="material-icons-outlined"style="color: #2d437f; font-size: 36px;">account_circle</span>
+        </a>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <a href="home.html" class="navbar-brand d-flex align-items-center px-2 px-lg-5" style="margin-left: -12px;">
+                <img src="img/logo1.png" height="69" alt="logo">
+            </a>
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">home</span> Home
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">water_drop</span> Dados de água
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">emoji_objects</span> Dados de energia
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">payments</span> Finanças
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">home_work</span> Unidades
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">build</span> Equipamentos
+            </a>
+          </li>
+          <li class="sidebar-list-item font-weight-bold">
+            <a href="#" target="_blank">
+                <span class="material-icons-outlined">home_repair_service</span> Serviços
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">Home</p>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Medições</p>
+              <span class="material-icons-outlined text-green">inventory_3</span>
+            </div>
+            <span class="text-primary font-weight-bold">24</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Volume consumido</p>
+              <span class="material-icons-outlined text-blue">waves</span>
+            </div>
+            <span class="text-primary font-weight-bold">58.000 L</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Valor gasto</p>
+              <span class="material-icons-outlined text-orange">attach_money</span>
+            </div>
+            <span class="text-primary font-weight-bold">17.690,58 R$</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Taxa de aumento</p>
+              <span class="material-icons-outlined text-red">query_stats</span>
+            </div>
+            <span class="text-primary font-weight-bold">15%</span>
+          </div>
+
+        </div>
+
+        <div class="charts">
+
+          <div class="charts-card">
+            <p class="chart-title">Medições x Mês</p>
+            <div id="bar-chart"></div>
+          </div>
+
+          <div class="charts-card">
+            <p class="chart-title">Consumo de água (Ano atual/Ano anterior)</p>
+            <div id="area-chart"></div>
+          </div>
+
+        </div>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/novodashboard.js"></script>
+  </body>
+</html>
