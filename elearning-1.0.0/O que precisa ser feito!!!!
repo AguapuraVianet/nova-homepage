@@ -7,6 +7,11 @@ Dados - Ajeitar
 precisamos:
 - links do linkedin, instagram e lattes dos membros
 - Fotos de ex-membros e Autorização de imagem - Maria 
+- Altera a linguagem do banco de dados e a linguagem utilizada para fazer a leitura do db.
+
+Estudar:
+https://laravel.com/docs/11.x
+https://www.postgresql.org/download/
 
 
 
