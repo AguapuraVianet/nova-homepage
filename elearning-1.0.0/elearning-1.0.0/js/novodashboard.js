@@ -113,6 +113,7 @@ const areaChartOptions = {
   },
 };
 
+
 const areaChart = new ApexCharts(
   document.querySelector('#area-chart'),
   areaChartOptions
@@ -151,3 +152,52 @@ document.querySelectorAll('#data-list li').forEach(item => {
     document.getElementById('data-list').style.display = 'none'; // Ocultar lista
   });
 });
+
+// Configuração do novo gráfico
+const volumeChartOptions = {
+  series: [
+    {
+      name: 'M³',
+      data: [120, 150, 180, 220, 170, 200, 250, 300, 280, 320, 310, 290,220, 170, 200, 250, 300, 280, 320, 310, 290], // Exemplo de dados
+    },
+  ],
+  chart: {
+    type: 'bar',
+    height: 350,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#4f35a1'],
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: 'smooth',
+  },
+  xaxis: {
+    categories: [
+      '01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', 
+      '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan'
+    ],
+    title: {
+      text: 'Data de Coleta',
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'M³',
+    },
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+  },
+};
+
+// Renderizar o gráfico
+const volumeChart = new ApexCharts(
+  document.querySelector('#volume-chart'),
+  volumeChartOptions
+);
+volumeChart.render();

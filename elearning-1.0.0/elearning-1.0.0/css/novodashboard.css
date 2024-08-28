@@ -241,6 +241,19 @@ body {
     border-radius: 5px;
     box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
   }
+
+  .charts-carde {
+    background-color: #ffffff;
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+    padding: 25px;
+    justify-content: center;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border: 1px solid #d2d2d3;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  }
   
   .chart-title {
     display: flex;
@@ -370,4 +383,38 @@ body {
 
 #data-list li:hover {
   background-color: #f0f0f0;
+}
+
+#volume-chart {
+  grid-column: 1 / -1; /* Ocupa toda a largura disponível na linha da grade */
+  background-color: #ffffff;
+  padding: 25px;
+  box-sizing: border-box;
+  border: 1px solid #d2d2d3;
+  border-radius: 5px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.new-collection-btn {
+  display: flex;
+  align-items: center;
+  background-color: #3575DD; /* Cor de fundo do botão */
+  color: #ffffff; /* Cor do texto e ícone */
+  border: none;
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 8px 8px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-collection-btn:hover {
+  background-color: #1e5ab4; /* Cor de fundo ao passar o mouse */
+}
+
+.new-collection-btn .material-icons-outlined {
+  font-size: 24px; /* Tamanho do ícone */
+  margin-right: 8px; /* Espaço entre o ícone e o texto */
 }
