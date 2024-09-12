@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Aguapura Vianet - Dashboard Água</title>
+    <title>Aguapura Vianet - Dashboard Contas</title>
     <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
 
     <!-- Montserrat Font -->
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/novodashboard.css">
+    <link rel="stylesheet" href="css/finanças.css">
   </head>
   <body>
     <div class="grid-container">
@@ -161,10 +161,10 @@
       <!-- Main -->
       <main class="main-container">
         <div class="main-title">
-          <p class="font-weight-bold">Home</p>
+          <p class="font-weight-bold"></p>
           <button class="new-collection-btn">
             <span class="material-icons-outlined">add</span>
-            Nova coleta de água
+            CONTA
           </button>
         </div>
 
@@ -179,37 +179,6 @@
               <span class="text-black">24</span>
             </span>
           </div>
-
-          <div class="card">
-            <div class="card-inner font-weight-bold">
-              <p class="text-primary">Volume consumido</p>
-              <span class="material-icons-outlined text-blue">waves</span>
-            </div>
-            <span class="text-primary font-weight-bold">
-              <span class="text-black">58.000 L</span>
-            </span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner font-weight-bold">
-              <p class="text-primary">Valor gasto</p>
-              <span class="material-icons-outlined text-orange">attach_money</span>
-            </div>
-            <span class="text-primary font-weight-bold">
-              <span class="text-black">17.690,58 R$</span>
-            </span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner font-weight-bold">
-              <p class="text-primary">Taxa de aumento</p>
-              <span class="material-icons-outlined text-red">query_stats</span>
-            </div>
-            <span class="text-primary font-weight-bold">
-              <span class="text-black">15%</span>
-            </span>
-          </div>
-
         </div>
 
         <div class="charts">
@@ -224,7 +193,7 @@
             <div>
               <div class="select-container">
                 <!-- Seleção para o primeiro gráfico -->
-                <label for="year-select-1">Ano 1:</label>
+                <label for="year-select-1">Ano para Purchase Orders:</label>
                 <select id="year-select-1" class="year-select">
                   <option value="2005">2005</option>
                   <option value="2006">2006</option>
@@ -249,7 +218,7 @@
               </div>
               <div class="select-container">
                 <!-- Seleção para o segundo gráfico -->
-                <label for="year-select-2">Ano 2:</label>
+                <label for="year-select-2">Ano para Sales Orders:</label>
                 <select id="year-select-2" class="year-select">
                   <option value="2005">2005</option>
                   <option value="2006">2006</option>
@@ -275,6 +244,7 @@
             </div>
             <div id="area-chart"></div>
           </div>
+          
 
           <div class="charts-carde">
             <p class="chart-title"></p>
