@@ -135,7 +135,7 @@ const areaChartOptions = {
       show: false,
     },
   },
-  colors: ['#4f35a1', '#246dec'],
+  colors: ['#7f400b', '#ed921b'],
   dataLabels: {
     enabled: false,
   },
@@ -178,12 +178,11 @@ document.getElementById('year-select-1').addEventListener('change', updateChart)
 document.getElementById('year-select-2').addEventListener('change', updateChart);
 
 
-
-// Configuração do gráfico de volume
-const volumeChartOptions = {
+// Inicializar o gráfico de volume de energia
+const volumeenChartOptions = {
   series: [
     {
-      name: 'M³',
+      name: 'KW³',
       data: [120, 150, 180, 220, 170, 200, 250, 300, 280, 320, 310, 290, 220, 170, 200, 250, 300, 280, 320, 310, 290], // Exemplo de dados
     },
   ],
@@ -194,7 +193,7 @@ const volumeChartOptions = {
       show: false,
     },
   },
-  colors: ['#4f35a1'],
+  colors: ['#faa44b'],
   dataLabels: {
     enabled: false,
   },
@@ -204,7 +203,8 @@ const volumeChartOptions = {
   xaxis: {
     categories: [
       '01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', 
-      '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan'
+      '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan', '13 Jan', 
+      '14 Jan', '15 Jan', '16 Jan', '17 Jan', '18 Jan', '19 Jan', '20 Jan', '21 Jan'
     ],
     title: {
       text: 'Data de Coleta',
@@ -212,7 +212,7 @@ const volumeChartOptions = {
   },
   yaxis: {
     title: {
-      text: 'M³',
+      text: 'KW³',
     },
   },
   tooltip: {
@@ -222,43 +222,42 @@ const volumeChartOptions = {
 };
 
 // Renderizar o gráfico de volume
-const volumeChart = new ApexCharts(
-  document.querySelector('#volume-chart'),
-  volumeChartOptions
+const volumeenChart = new ApexCharts(
+  document.querySelector('#volumeen-chart'),
+  volumeenChartOptions
 );
-volumeChart.render();
-
+volumeenChart.render();
 
 // Função para filtrar os dados da lista
 function filterData() {
-  const query = document.querySelector('.search-input').value.toLowerCase();
-  const items = document.querySelectorAll('#data-list li');
+    const query = document.querySelector('.search-input').value.toLowerCase();
+    const items = document.querySelectorAll('#data-list li');
+    
+    items.forEach(item => {
+      if (item.textContent.toLowerCase().includes(query)) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    
+    // Mostrar a lista se houver resultados
+    document.getElementById('data-list').style.display = query ? 'block' : 'none';
+  }
   
-  items.forEach(item => {
-    if (item.textContent.toLowerCase().includes(query)) {
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
-  });
+  // Função para atualizar o título
+  function updateTitle(newTitle) {
+    document.querySelector('.main-title p').textContent = newTitle;
+  }
   
-  // Mostrar a lista se houver resultados
-  document.getElementById('data-list').style.display = query ? 'block' : 'none';
-}
-
-// Função para atualizar o título
-function updateTitle(newTitle) {
-  document.querySelector('.main-title p').textContent = newTitle;
-}
-
-// Adicionar eventos ao campo de pesquisa
-document.querySelector('.search-input').addEventListener('input', filterData);
-
-// Adicionar evento ao clique na lista de dados
-document.querySelectorAll('#data-list li').forEach(item => {
-  item.addEventListener('click', function() {
-    updateTitle(this.textContent);
-    document.querySelector('.search-input').value = ''; // Limpar campo de pesquisa
-    document.getElementById('data-list').style.display = 'none'; // Ocultar lista
+  // Adicionar eventos ao campo de pesquisa
+  document.querySelector('.search-input').addEventListener('input', filterData);
+  
+  // Adicionar evento ao clique na lista de dados
+  document.querySelectorAll('#data-list li').forEach(item => {
+    item.addEventListener('click', function() {
+      updateTitle(this.textContent);
+      document.querySelector('.search-input').value = ''; // Limpar campo de pesquisa
+      document.getElementById('data-list').style.display = 'none'; // Ocultar lista
+    });
   });
-});

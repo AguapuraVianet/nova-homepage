@@ -436,27 +436,30 @@ body {
 
 /* Contêiner para o botão de seleção */
 .select-container {
-  position: center;
+  position: relative;
   display: inline-block;
   overflow: hidden; /* Garante que o conteúdo extra não ultrapasse o contêiner */
-  height: 25px; /* Altura padrão */
+  height: 20px; /* Altura padrão */
   transition: height 0.3s ease; /* Transição suave para a altura */
-  margin-right: 220px; /* Adiciona espaçamento à direita do contêiner */
 }
 
 /* Estilos para o botão de seleção */
 .year-select {
   width: 75px; /* Ajuste a largura conforme necessário */
-  height: 100%; /* Ajusta a altura do botão para se adaptar ao contêiner */
-  font-size: 12px; /* Ajuste o tamanho da fonte conforme necessário */
+  height: 80%; /* Ajusta a altura do botão para se adaptar ao contêiner */
+  font-size: 14px; /* Ajuste o tamanho da fonte conforme necessário */
   padding: 5px; /* Adiciona um pouco de espaço interno */
   border: 1px solid #ccc; /* Borda leve */
   border-radius: 4px; /* Bordas arredondadas */
   background-color: #fff; /* Cor de fundo */
   text-align: center; /* Centraliza o texto */
-  line-height: 35px; /* Alinha o texto verticalmente no centro */
+  line-height: 30px; /* Alinha o texto verticalmente no centro */
 }
 
+/* Estilo para aumentar a altura do contêiner ao passar o cursor */
+.select-container:hover {
+  height: 50px; /* Altura aumentada quando o cursor está sobre o contêiner */
+}
 
 /* Garantir que o botão de seleção preencha o contêiner */
 .select-container:hover .year-select {
@@ -468,4 +471,3 @@ body {
   height: auto; /* Ajusta a altura para acomodar o texto selecionado */
   line-height: normal; /* Remove o alinhamento vertical */
 }
-
