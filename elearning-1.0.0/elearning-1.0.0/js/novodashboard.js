@@ -116,22 +116,37 @@ function updateChart() {
   const selectedYear1 = document.getElementById('year-select-1').value;
   const selectedYear2 = document.getElementById('year-select-2').value;
 
+  // Preparar os dados para o gráfico
   const seriesData = [
     {
-      name: 'Ano 1',
+      name: selectedYear1, // Atualiza o nome com o ano selecionado
       data: data[selectedYear1] || []
     },
     {
-      name: 'Ano 2',
+      name: selectedYear2, // Atualiza o nome com o ano selecionado
       data: data[selectedYear2] || []
     }
   ];
 
+  // Atualizar o gráfico de área
   areaChart.updateOptions({
     series: seriesData,
     xaxis: {
-      categories: meses
-    }
+      categories: meses // Usar a lista de meses fixa
+    },
+    yaxis: [
+      {
+        title: {
+          text: selectedYear1, // Atualiza o título do eixo Y para o ano 1
+        },
+      },
+      {
+        opposite: true,
+        title: {
+          text: selectedYear2, // Atualiza o título do eixo Y para o ano 2
+        },
+      },
+    ],
   });
 }
 
@@ -167,13 +182,13 @@ const areaChartOptions = {
   yaxis: [
     {
       title: {
-        text: 'Ano 1',
+        text: 'Ano 1', // Título padrão que será atualizado
       },
     },
     {
       opposite: true,
       title: {
-        text: 'Ano 2',
+        text: 'Ano 2', // Título padrão que será atualizado
       },
     },
   ],
