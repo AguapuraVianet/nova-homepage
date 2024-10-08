@@ -92,86 +92,86 @@
           <div class="left-container">
             <h2>Informações da Coleta</h2>
         
-            <div style="position: relative;"> <!-- Contêiner com posição relativa -->
-                <label for="unidade">Nome da Unidade:</label>
-                <input type="text" id="unidade" name="unidade" placeholder="Digite o nome da unidade" onkeyup="filterData()" />
-
-                <div id="data-list">
-                    <ul>
-                      <li>Belas Artes</li>
-                      <li>Administração</li>
-                      <li>Arquitetura</li>
-                      <li>APUB</li>
-                      <li>Belas Artes/Galeria Canizares</li>
-                      <li>Biblioteca Central</li>
-                      <li>Biologia</li>
-                      <li>CEAO 2 de Julho</li>
-                      <li>Ciência da Informação</li>
-                      <li>Ciências Econômicas</li>
-                      <li>Comunicação</li>
-                      <li>C P D - STI</li>
-                      <li>Creche</li>
-                      <li>DCA Pav. V</li>
-                      <li>Dança</li>
-                      <li>DCE</li>
-                      <li>Div. Material</li>
-                      <li>Direito</li>
-                      <li>Educação</li>
-                      <li>Educação/Setor de Esportes</li>
-                      <li>Enfermagem</li>
-                      <li>Farmácia</li>
-                      <li>Filosofia I</li>
-                      <li>Filosofia II</li>
-                      <li>Física</li>
-                      <li>Física/Laboratório</li>
-                      <li>Geociências</li>
-                      <li>Gráfica Universitária</li>
-                      <li>Hospital Veterinário</li>
-                      <li>Inst Saúde Coletiva - ISC</li>
-                      <li>ISP Pav. IV</li>
-                      <li>Letras</li>
-                      <li>Matemática / STI</li>
-                      <li>Medicina 2</li>
-                      <li>Medicina/Terreiro</li>
-                      <li>Medicina Veterinária</li>
-                      <li>Medicina Veterinária/Bioterio</li>
-                      <li>Museu de Arte Sacra</li>
-                      <li>Música</li>
-                      <li>Nutrição</li>
-                      <li>Odontologia</li>
-                      <li>PAF I</li>
-                      <li>PAF II</li>
-                      <li>PCU/ SUMAI</li>
-                      <li>PCU 1/ SUMAI</li>
-                      <li>PCU 2/ SUMAI</li>
-                      <li>PCU 3/ SUMAI</li>
-                      <li>PCU/ Almoxarifado</li>
-                      <li>PCU/ Horto Florestal </li>
-                      <li>Pesq.Pós Graduação 1</li>
-                      <li>Pesq.Pós Graduação 2</li>
-                      <li>Politécnica</li>
-                      <li>Pró Reitoria Extensão</li>
-                      <li>Química</li>
-                      <li>Reitoria</li>
-                      <li>Residência 1</li>
-                      <li>Residência 2</li>
-                      <li>Residência 3</li>
-                      <li>Residência 5</li>
-                      <li>SAD/CGA/Pav VI</li>
-                      <li>Serviço Médico /PAF VI</li>
-                      <li>Superintendencia Acadêmica/SELEÇÃO 1</li>
-                      <li>Superintendencia Acadêmica/SELEÇÃO 2</li>
-                      <li>Superintendencia Acadêmica/SELEÇÃO 3</li>
-                      <li>Sup. Estudantil</li>
-                      <li>SPE Pavilhão 7</li>
-                      <li>SPE Pavilhão 8</li>
-                      <li>Teatro</li>
-                      <li>Residência 3 (Hidrometro 2)</li>
-                      <li>FAPEX</li>
-                        <!-- Adicione mais itens conforme necessário -->
-                    </ul>
-                </div>
-            </div>
+              <div style="position: relative;"> <!-- Contêiner com posição relativa -->
+              <label for="unidade">Nome da Unidade:</label>
+              <input type="text" class="search-input" placeholder="Digite o nome da unidade" onkeyup="filterData()">
+          
+              <div id="data-list">
+                <ul>
+                  <li onclick="atualizarUnidade('Belas Artes')">Belas Artes</li>
+                  <li onclick="atualizarUnidade('Administração')">Administração</li>
+                  <li onclick="atualizarUnidade('Arquitetura')">Arquitetura</li>
+                  <li onclick="atualizarUnidade('APUB')">APUB</li>
+                  <li onclick="atualizarUnidade('Belas Artes/Galeria Canizares')">Belas Artes/Galeria Canizares</li>
+                  <li onclick="atualizarUnidade('Biblioteca Central')">Biblioteca Central</li>
+                  <li onclick="atualizarUnidade('Biologia')">Biologia</li>
+                  <li onclick="atualizarUnidade('CEAO 2 de Julho')">CEAO 2 de Julho</li>
+                  <li onclick="atualizarUnidade('Ciência da Informação')">Ciência da Informação</li>
+                  <li onclick="atualizarUnidade('Ciências Econômicas')">Ciências Econômicas</li>
+                  <li onclick="atualizarUnidade('Comunicação')">Comunicação</li>
+                  <li onclick="atualizarUnidade('C P D - STI')">C P D - STI</li>
+                  <li onclick="atualizarUnidade('Creche')">Creche</li>
+                  <li onclick="atualizarUnidade('DCA Pav. V')">DCA Pav. V</li>
+                  <li onclick="atualizarUnidade('Dança')">Dança</li>
+                  <li onclick="atualizarUnidade('DCE')">DCE</li>
+                  <li onclick="atualizarUnidade('Div. Material')">Div. Material</li>
+                  <li onclick="atualizarUnidade('Direito')">Direito</li>
+                  <li onclick="atualizarUnidade('Educação')">Educação</li>
+                  <li onclick="atualizarUnidade('Educação/Setor de Esportes')">Educação/Setor de Esportes</li>
+                  <li onclick="atualizarUnidade('Enfermagem')">Enfermagem</li>
+                  <li onclick="atualizarUnidade('Farmácia')">Farmácia</li>
+                  <li onclick="atualizarUnidade('Filosofia I')">Filosofia I</li>
+                  <li onclick="atualizarUnidade('Filosofia II')">Filosofia II</li>
+                  <li onclick="atualizarUnidade('Física')">Física</li>
+                  <li onclick="atualizarUnidade('Física/Laboratório')">Física/Laboratório</li>
+                  <li onclick="atualizarUnidade('Geociências')">Geociências</li>
+                  <li onclick="atualizarUnidade('Gráfica Universitária')">Gráfica Universitária</li>
+                  <li onclick="atualizarUnidade('Hospital Veterinário')">Hospital Veterinário</li>
+                  <li onclick="atualizarUnidade('Inst Saúde Coletiva - ISC')">Inst Saúde Coletiva - ISC</li>
+                  <li onclick="atualizarUnidade('ISP Pav. IV')">ISP Pav. IV</li>
+                  <li onclick="atualizarUnidade('Letras')">Letras</li>
+                  <li onclick="atualizarUnidade('Matemática / STI')">Matemática / STI</li>
+                  <li onclick="atualizarUnidade('Medicina 2')">Medicina 2</li>
+                  <li onclick="atualizarUnidade('Medicina/Terreiro')">Medicina/Terreiro</li>
+                  <li onclick="atualizarUnidade('Medicina Veterinária')">Medicina Veterinária</li>
+                  <li onclick="atualizarUnidade('Medicina Veterinária/Bioterio')">Medicina Veterinária/Bioterio</li>
+                  <li onclick="atualizarUnidade('Museu de Arte Sacra')">Museu de Arte Sacra</li>
+                  <li onclick="atualizarUnidade('Música')">Música</li>
+                  <li onclick="atualizarUnidade('Nutrição')">Nutrição</li>
+                  <li onclick="atualizarUnidade('Odontologia')">Odontologia</li>
+                  <li onclick="atualizarUnidade('PAF I')">PAF I</li>
+                  <li onclick="atualizarUnidade('PAF II')">PAF II</li>
+                  <li onclick="atualizarUnidade('PCU/ SUMAI')">PCU/ SUMAI</li>
+                  <li onclick="atualizarUnidade('PCU 1/ SUMAI')">PCU 1/ SUMAI</li>
+                  <li onclick="atualizarUnidade('PCU 2/ SUMAI')">PCU 2/ SUMAI</li>
+                  <li onclick="atualizarUnidade('PCU 3/ SUMAI')">PCU 3/ SUMAI</li>
+                  <li onclick="atualizarUnidade('PCU/ Almoxarifado')">PCU/ Almoxarifado</li>
+                  <li onclick="atualizarUnidade('PCU/ Horto Florestal')">PCU/ Horto Florestal</li>
+                  <li onclick="atualizarUnidade('Pesq.Pós Graduação 1')">Pesq.Pós Graduação 1</li>
+                  <li onclick="atualizarUnidade('Pesq.Pós Graduação 2')">Pesq.Pós Graduação 2</li>
+                  <li onclick="atualizarUnidade('Politécnica')">Politécnica</li>
+                  <li onclick="atualizarUnidade('Pró Reitoria Extensão')">Pró Reitoria Extensão</li>
+                  <li onclick="atualizarUnidade('Química')">Química</li>
+                  <li onclick="atualizarUnidade('Reitoria')">Reitoria</li>
+                  <li onclick="atualizarUnidade('Residência 1')">Residência 1</li>
+                  <li onclick="atualizarUnidade('Residência 2')">Residência 2</li>
+                  <li onclick="atualizarUnidade('Residência 3')">Residência 3</li>
+                  <li onclick="atualizarUnidade('Residência 5')">Residência 5</li>
+                  <li onclick="atualizarUnidade('SAD/CGA/Pav VI')">SAD/CGA/Pav VI</li>
+                  <li onclick="atualizarUnidade('Serviço Médico /PAF VI')">Serviço Médico /PAF VI</li>
+                  <li onclick="atualizarUnidade('Superintendencia Acadêmica/SELEÇÃO 1')">Superintendencia Acadêmica/SELEÇÃO 1</li>
+                  <li onclick="atualizarUnidade('Superintendencia Acadêmica/SELEÇÃO 2')">Superintendencia Acadêmica/SELEÇÃO 2</li>
+                  <li onclick="atualizarUnidade('Superintendencia Acadêmica/SELEÇÃO 3')">Superintendencia Acadêmica/SELEÇÃO 3</li>
+                  <li onclick="atualizarUnidade('Sup. Estudantil')">Sup. Estudantil</li>
+                  <li onclick="atualizarUnidade('SPE Pavilhão 7')">SPE Pavilhão 7</li>
+                  <li onclick="atualizarUnidade('SPE Pavilhão 8')">SPE Pavilhão 8</li>
+                  <li onclick="atualizarUnidade('Teatro')">Teatro</li>
+                  <li onclick="atualizarUnidade('Residência 3 (Hidrometro 2)')">Residência 3 (Hidrometro 2)</li>
+                  <li onclick="atualizarUnidade('FAPEX')">FAPEX</li>
+                  <!-- Adicione mais itens conforme necessário -->
+                </ul>
+              </div>
+          </div>
         
             <label for="medidor">Medidor:</label>
             <input type="text" id="medidor" name="medidor" placeholder="Digite o medidor">
