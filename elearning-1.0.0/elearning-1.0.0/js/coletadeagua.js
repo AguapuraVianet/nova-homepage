@@ -65,30 +65,27 @@ barChart.render();
 
 // Dados fictícios para os anos
 const data = {
-  '2005': [12, 24, 36, 48, 60, 72, 84, 36, 48, 60, 72, 84],
-  '2006': [15, 30, 45, 60, 75, 90, 100, 36, 48, 60, 72, 84],
-  '2007': [10, 20, 30, 40, 50, 60, 70, 36, 48, 60, 72, 84],
-  '2008': [20, 40, 60, 80, 100, 90, 70, 36, 48, 60, 72, 84],
-  '2009': [25, 35, 45, 55, 65, 75, 85, 36, 48, 60, 72, 84],
-  '2010': [5, 15, 25, 35, 45, 55, 65, 36, 48, 60, 72, 84],
-  '2011': [30, 40, 50, 60, 70, 80, 90, 36, 48, 60, 72, 84],
-  '2012': [12, 24, 18, 36, 48, 60, 72, 36, 48, 60, 72, 84],
-  '2013': [22, 33, 44, 55, 66, 77, 88, 36, 48, 60, 72, 84],
-  '2014': [50, 40, 30, 20, 10, 20, 30, 36, 48, 60, 72, 84],
-  '2015': [60, 70, 80, 90, 100, 90, 80, 36, 48, 60, 72, 84],
-  '2016': [40, 50, 60, 70, 80, 90, 100, 36, 48, 60, 72, 84],
-  '2017': [35, 45, 55, 65, 75, 85, 95, 36, 48, 60, 72, 84],
-  '2018': [20, 40, 30, 50, 40, 60, 70, 36, 48, 60, 72, 84],
-  '2019': [25, 50, 75, 50, 25, 50, 75, 36, 48, 60, 72, 84],
-  '2020': [10, 30, 50, 70, 90, 70, 50, 36, 48, 60, 72, 84],
-  '2021': [15, 35, 55, 75, 95, 80, 65, 36, 48, 60, 72, 84],
-  '2022': [70, 60, 50, 40, 30, 20, 10, 36, 48, 60, 72, 84],
-  '2023': [181, 218, 267, 284, 282, 247, 250, 385, 383, 351, 399, 220], 
-  '2024': [25, 40, 55, 70, 85, 100, 90, 36, 48, 60, 72, 84],
+  '2005': [12, 24, 36, 48, 60, 72, 84],
+  '2006': [15, 30, 45, 60, 75, 90, 100],
+  '2007': [10, 20, 30, 40, 50, 60, 70],
+  '2008': [20, 40, 60, 80, 100, 90, 70],
+  '2009': [25, 35, 45, 55, 65, 75, 85],
+  '2010': [5, 15, 25, 35, 45, 55, 65],
+  '2011': [30, 40, 50, 60, 70, 80, 90],
+  '2012': [12, 24, 18, 36, 48, 60, 72],
+  '2013': [22, 33, 44, 55, 66, 77, 88],
+  '2014': [50, 40, 30, 20, 10, 20, 30],
+  '2015': [60, 70, 80, 90, 100, 90, 80],
+  '2016': [40, 50, 60, 70, 80, 90, 100],
+  '2017': [35, 45, 55, 65, 75, 85, 95],
+  '2018': [20, 40, 30, 50, 40, 60, 70],
+  '2019': [25, 50, 75, 50, 25, 50, 75],
+  '2020': [10, 30, 50, 70, 90, 70, 50],
+  '2021': [15, 35, 55, 75, 95, 80, 65],
+  '2022': [70, 60, 50, 40, 30, 20, 10],
+  '2023': [80, 70, 60, 50, 40, 30, 20],
+  '2024': [25, 40, 55, 70, 85, 100, 90],
 };
-
-// Lista de meses
-const meses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
 
 // Função para atualizar o gráfico com base nos anos selecionados
 function updateChart() {
@@ -106,12 +103,15 @@ function updateChart() {
       data: data[selectedYear2] || []
     }
   ];
+  
+  // Definir labels baseados no primeiro ano selecionado, se disponível
+  const labels = data[selectedYear1] ? data[selectedYear1].map((_, index) => `Data ${index + 1}`) : [];
 
   // Atualizar o gráfico de área
   areaChart.updateOptions({
     series: seriesData,
     xaxis: {
-      categories: meses // Usar a lista de meses fixa
+      categories: labels
     }
   });
 }
@@ -143,7 +143,7 @@ const areaChartOptions = {
     curve: 'smooth',
   },
   xaxis: {
-    categories: meses,
+    categories: data['2023'] ? data['2024'].map((_, index) => `Data ${index + 1}`) : [],
   },
   yaxis: [
     {
@@ -230,21 +230,21 @@ const volumeChart = new ApexCharts(
 volumeChart.render();
 
 
-// Função para filtrar os dados da lista
+/// Função para filtrar os dados da lista
 function filterData() {
-  const query = document.querySelector('.search-input').value.toLowerCase();
-  const items = document.querySelectorAll('#data-list li');
-  
-  items.forEach(item => {
-    if (item.textContent.toLowerCase().includes(query)) {
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-  
-  // Mostrar a lista se houver resultados
-  document.getElementById('data-list').style.display = query ? 'block' : 'none';
+    const query = document.getElementById('unidade').value.toLowerCase();
+    const items = document.querySelectorAll('#data-list li');
+    
+    items.forEach(item => {
+        if (item.textContent.toLowerCase().includes(query)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    // Mostrar a lista se houver resultados
+    document.getElementById('data-list').style.display = query ? 'block' : 'none';
 }
 
 // Função para atualizar o título
@@ -263,4 +263,3 @@ document.querySelectorAll('#data-list li').forEach(item => {
     document.getElementById('data-list').style.display = 'none'; // Ocultar lista
   });
 });
-

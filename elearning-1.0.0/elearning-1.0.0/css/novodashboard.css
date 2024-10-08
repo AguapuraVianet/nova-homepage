@@ -116,7 +116,7 @@ body {
   }
   
   .sidebar-brand {
-    margin-top: 15px;
+    margin-top: 0px;
     font-size: 20px;
     font-weight: 700;
   }
@@ -138,8 +138,13 @@ body {
   
   .sidebar-list-item > a {
     text-decoration: none;
-    color: #2d437f;
+    color: #1E293B;
+    font-size: 14px;
   }
+
+  .sidebar-list-item > a .material-icons-outlined {
+    color: #2d4480; /* Mantém a cor original do ícone */
+}
   
   .sidebar-responsive {
     display: inline !important;
@@ -408,6 +413,7 @@ body {
   height: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none; /* Remove underline */
 }
 
 .new-collection-btne {
@@ -442,6 +448,7 @@ body {
   height: 25px; /* Altura padrão */
   transition: height 0.3s ease; /* Transição suave para a altura */
   margin-right: 220px; /* Adiciona espaçamento à direita do contêiner */
+  margin-left: 220px; /* Adiciona espaçamento à direita do contêiner */
 }
 
 /* Estilos para o botão de seleção */
@@ -455,6 +462,7 @@ body {
   background-color: #fff; /* Cor de fundo */
   text-align: center; /* Centraliza o texto */
   line-height: 35px; /* Alinha o texto verticalmente no centro */
+  margin-right: 20px; /* Adiciona espaço à direita do primeiro select */
 }
 
 
@@ -467,5 +475,28 @@ body {
 .year-select.selected {
   height: auto; /* Ajusta a altura para acomodar o texto selecionado */
   line-height: normal; /* Remove o alinhamento vertical */
+}
+
+.menu-section {
+  margin: 20px 20px 10px 20px; /* ajuste conforme necessário */
+}
+
+.menu-label {
+  font-size: 15px; /* Tamanho menor que os itens da lista */
+  color: #2d4480; /* Cor do texto */
+}
+
+.logo-divider {
+  border: none; /* Remove a borda padrão */
+  height: 1px; /* Espessura da linha */
+  background-color: #E2E8F0; /* Cor da linha */
+  margin: 0; /* Remove margens */
+}
+
+.sidebar-footer {
+  text-align: center; /* Centraliza o texto */
+  font-size: 10px; /* Define o tamanho da fonte como miúdo */
+  margin-top: 310px; /* Adiciona espaço acima, se necessário */
+  padding: 10px; /* Adiciona espaço interno */
 }
 
