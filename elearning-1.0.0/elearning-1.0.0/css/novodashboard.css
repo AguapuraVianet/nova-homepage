@@ -451,12 +451,13 @@ body {
 /* Contêiner para o botão de seleção */
 .select-container {
   position: center;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  justify-content: center; /* Centraliza os itens no contêiner */
+  margin: 0 20px;
   overflow: hidden; /* Garante que o conteúdo extra não ultrapasse o contêiner */
   height: 25px; /* Altura padrão */
   transition: height 0.3s ease; /* Transição suave para a altura */
-  margin-right: 220px; /* Adiciona espaçamento à direita do contêiner */
-  margin-left: 220px; /* Adiciona espaçamento à direita do contêiner */
 }
 
 /* Estilos para o botão de seleção */
@@ -473,10 +474,25 @@ body {
   margin-right: 20px; /* Adiciona espaço à direita do primeiro select */
 }
 
+/* Media Query para telas menores */
+@media (max-width: 600px) {
+  .year-select {
+    width: 60px; /* Ajustar ainda mais a largura se necessário */
+  }
+  
+  /* Ocultar rótulos em telas menores */
+  .select-container label {
+    display: none; /* Ocultar os rótulos se necessário */
+  }
+}
 
 /* Garantir que o botão de seleção preencha o contêiner */
 .select-container:hover .year-select {
   height: 100%; /* O botão de seleção se ajusta à altura do contêiner aumentado */
+}
+
+.select-container {
+  overflow-x: auto; /* Adiciona scroll horizontal se os itens não couberem */
 }
 
 /* Estilo para mostrar o item selecionado */

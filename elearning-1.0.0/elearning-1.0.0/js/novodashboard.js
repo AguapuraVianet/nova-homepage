@@ -90,12 +90,32 @@ const data = {
 // Lista de meses
 const meses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
 
+// Função para preencher os selects de ano
+function populateYearSelects() {
+  const yearSelect1 = document.getElementById('year-select-1');
+  const yearSelect2 = document.getElementById('year-select-2');
+  const currentYear = new Date().getFullYear();
+
+  for (let year = 2005; year <= currentYear; year++) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect1.appendChild(option);
+  }
+
+  for (let year = currentYear; year <= 2024; year++) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect2.appendChild(option);
+  }
+}
+
 // Função para atualizar o gráfico com base nos anos selecionados
 function updateChart() {
   const selectedYear1 = document.getElementById('year-select-1').value;
   const selectedYear2 = document.getElementById('year-select-2').value;
 
-  // Preparar os dados para o gráfico
   const seriesData = [
     {
       name: 'Ano 1',
@@ -107,11 +127,10 @@ function updateChart() {
     }
   ];
 
-  // Atualizar o gráfico de área
   areaChart.updateOptions({
     series: seriesData,
     xaxis: {
-      categories: meses // Usar a lista de meses fixa
+      categories: meses
     }
   });
 }
@@ -171,12 +190,12 @@ const areaChart = new ApexCharts(
 );
 areaChart.render();
 
-// Adicionar evento ao select para a primeira linha
+// Adicionar eventos ao select
 document.getElementById('year-select-1').addEventListener('change', updateChart);
-
-// Adicionar evento ao select para a segunda linha
 document.getElementById('year-select-2').addEventListener('change', updateChart);
 
+// Chamar a função para preencher os selects ao carregar a página
+populateYearSelects();
 
 
 // Configuração do gráfico de volume
