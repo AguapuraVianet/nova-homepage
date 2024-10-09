@@ -70,6 +70,7 @@ body {
   
   .menu-icon {
     display: none;
+    cursor: pointer
   }
 
   .header-left {
