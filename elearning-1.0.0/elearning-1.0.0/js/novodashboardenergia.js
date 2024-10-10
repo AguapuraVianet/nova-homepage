@@ -83,12 +83,33 @@ const data = {
   '2020': [10, 30, 50, 70, 90, 70, 50, 36, 48, 60, 72, 84],
   '2021': [15, 35, 55, 75, 95, 80, 65, 36, 48, 60, 72, 84],
   '2022': [70, 60, 50, 40, 30, 20, 10, 36, 48, 60, 72, 84],
-  '2023': [80, 70, 60, 50, 40, 30, 20, 36, 48, 60, 72, 84],
+  '2023': [181, 218, 267, 284, 282, 247, 250, 385, 383, 351, 399, 220], 
   '2024': [25, 40, 55, 70, 85, 100, 90, 36, 48, 60, 72, 84],
 };
 
 // Lista de meses
 const meses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+// Função para preencher os selects de ano
+function populateYearSelects() {
+  const yearSelect1 = document.getElementById('year-select-1');
+  const yearSelect2 = document.getElementById('year-select-2');
+  const currentYear = new Date().getFullYear();
+
+  for (let year = 2005; year <= currentYear; year++) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect1.appendChild(option);
+  }
+
+  for (let year = currentYear; year <= 2024; year++) {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearSelect2.appendChild(option);
+  }
+}
 
 // Função para atualizar o gráfico com base nos anos selecionados
 function updateChart() {
@@ -98,11 +119,11 @@ function updateChart() {
   // Preparar os dados para o gráfico
   const seriesData = [
     {
-      name: 'Ano 1',
+      name: selectedYear1, // Atualiza o nome com o ano selecionado
       data: data[selectedYear1] || []
     },
     {
-      name: 'Ano 2',
+      name: selectedYear2, // Atualiza o nome com o ano selecionado
       data: data[selectedYear2] || []
     }
   ];
@@ -112,7 +133,20 @@ function updateChart() {
     series: seriesData,
     xaxis: {
       categories: meses // Usar a lista de meses fixa
-    }
+    },
+    yaxis: [
+      {
+        title: {
+          text: selectedYear1, // Atualiza o título do eixo Y para o ano 1
+        },
+      },
+      {
+        opposite: true,
+        title: {
+          text: selectedYear2, // Atualiza o título do eixo Y para o ano 2
+        },
+      },
+    ],
   });
 }
 
@@ -143,18 +177,18 @@ const areaChartOptions = {
     curve: 'smooth',
   },
   xaxis: {
-    categories: meses, // Usar a lista de meses fixa
+    categories: meses,
   },
   yaxis: [
     {
       title: {
-        text: 'Ano 1',
+        text: 'Ano 1', // Título padrão que será atualizado
       },
     },
     {
       opposite: true,
       title: {
-        text: 'Ano 2',
+        text: 'Ano 2', // Título padrão que será atualizado
       },
     },
   ],
@@ -171,18 +205,19 @@ const areaChart = new ApexCharts(
 );
 areaChart.render();
 
-// Adicionar evento ao select para a primeira linha
+// Adicionar eventos ao select
 document.getElementById('year-select-1').addEventListener('change', updateChart);
-
-// Adicionar evento ao select para a segunda linha
 document.getElementById('year-select-2').addEventListener('change', updateChart);
 
+// Chamar a função para preencher os selects ao carregar a página
+populateYearSelects();
 
-// Inicializar o gráfico de volume de energia
-const volumeenChartOptions = {
+
+// Configuração do gráfico de volume
+const volumeChartOptions = {
   series: [
     {
-      name: 'KW³',
+      name: 'M³',
       data: [120, 150, 180, 220, 170, 200, 250, 300, 280, 320, 310, 290, 220, 170, 200, 250, 300, 280, 320, 310, 290], // Exemplo de dados
     },
   ],
@@ -212,7 +247,7 @@ const volumeenChartOptions = {
   },
   yaxis: {
     title: {
-      text: 'KW³',
+      text: 'M³',
     },
   },
   tooltip: {
@@ -222,44 +257,51 @@ const volumeenChartOptions = {
 };
 
 // Renderizar o gráfico de volume
-const volumeenChart = new ApexCharts(
-  document.querySelector('#volumeen-chart'),
-  volumeenChartOptions
+const volumeChart = new ApexCharts(
+  document.querySelector('#volume-chart'),
+  volumeChartOptions
 );
-volumeenChart.render();
+volumeChart.render();
+
 
 // Função para filtrar os dados da lista
 function filterData() {
-    const query = document.querySelector('.search-input').value.toLowerCase();
-    const items = document.querySelectorAll('#data-list li');
-    
-    items.forEach(item => {
-      if (item.textContent.toLowerCase().includes(query)) {
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-    
-    // Mostrar a lista se houver resultados
-    document.getElementById('data-list').style.display = query ? 'block' : 'none';
-  }
+  const query = document.querySelector('.search-input').value.toLowerCase();
+  const items = document.querySelectorAll('#data-list li');
   
-  // Função para atualizar o título
-  function updateTitle(newTitle) {
-    document.querySelector('.main-title p').textContent = newTitle;
-  }
-  
-  // Adicionar eventos ao campo de pesquisa
-  document.querySelector('.search-input').addEventListener('input', filterData);
-  
-  // Adicionar evento ao clique na lista de dados
-  document.querySelectorAll('#data-list li').forEach(item => {
-    item.addEventListener('click', function() {
-      updateTitle(this.textContent);
-      document.querySelector('.search-input').value = ''; // Limpar campo de pesquisa
-      document.getElementById('data-list').style.display = 'none'; // Ocultar lista
-    });
+  items.forEach(item => {
+    if (item.textContent.toLowerCase().includes(query)) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
   });
+  
+  // Mostrar a lista se houver resultados
+  document.getElementById('data-list').style.display = query ? 'block' : 'none';
+}
+
+// Função para atualizar o título
+function updateTitle(newTitle) {
+  document.querySelector('.main-title p').textContent = newTitle;
+}
+
+// Adicionar eventos ao campo de pesquisa
+document.querySelector('.search-input').addEventListener('input', filterData);
+
+// Adicionar evento ao clique na lista de dados
+document.querySelectorAll('#data-list li').forEach(item => {
+  item.addEventListener('click', function() {
+    updateTitle(this.textContent);
+    document.querySelector('.search-input').value = ''; // Limpar campo de pesquisa
+    document.getElementById('data-list').style.display = 'none'; // Ocultar lista
+  });
+});
+
+
 
   
+
+  
+
+    

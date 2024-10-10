@@ -70,6 +70,7 @@ body {
   
   .menu-icon {
     display: none;
+    cursor: pointer
   }
 
   .header-left {
@@ -286,16 +287,16 @@ body {
   
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px #a5aaad;
-    border-radius: 10px;
+    border-radius: 15px;
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #84b1ff50;
-    border-radius: 10px;
+    background-color: #a5aaad;
+    border-radius: 15px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #a5aaad;
+    background-color: #84b1ff50;
   }
   
   
@@ -450,28 +451,21 @@ body {
 
 /* Contêiner para o botão de seleção */
 .select-container {
-  position: center;
   display: flex;
   flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
   justify-content: center; /* Centraliza os itens no contêiner */
-  margin: 0 20px;
-  overflow: hidden; /* Garante que o conteúdo extra não ultrapasse o contêiner */
-  height: 25px; /* Altura padrão */
-  transition: height 0.3s ease; /* Transição suave para a altura */
+  margin: 0 20px; /* Ajuste conforme necessário */
 }
 
-/* Estilos para o botão de seleção */
 .year-select {
-  width: 75px; /* Ajuste a largura conforme necessário */
-  height: 100%; /* Ajusta a altura do botão para se adaptar ao contêiner */
-  font-size: 12px; /* Ajuste o tamanho da fonte conforme necessário */
-  padding: 5px; /* Adiciona um pouco de espaço interno */
-  border: 1px solid #ccc; /* Borda leve */
-  border-radius: 4px; /* Bordas arredondadas */
-  background-color: #fff; /* Cor de fundo */
-  text-align: center; /* Centraliza o texto */
-  line-height: 35px; /* Alinha o texto verticalmente no centro */
-  margin-right: 20px; /* Adiciona espaço à direita do primeiro select */
+  width: 80px; /* Ajustar a largura para caber melhor em telas pequenas */
+  margin: 6px; /* Adiciona um pouco de espaço entre os selects */
+}
+
+/* Adicionando espaço entre rótulos e selects */
+.select-container label {
+  margin-bottom: 8px; /* Espaço entre rótulo e select */
+  display: block; /* Faz com que o rótulo ocupe toda a largura disponível */
 }
 
 /* Media Query para telas menores */

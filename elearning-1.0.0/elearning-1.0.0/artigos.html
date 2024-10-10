@@ -92,21 +92,112 @@
         </div>
     </div>
     <!-- Header End -->
-
-
-    
     <div class="container-xl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control custom-search-box" placeholder="Pesquisar artigos..." style="flex: 7;">
-                        <select class="form-select custom-search-bot" style="flex: 1;">
-                            <option value="autor">Autor</option>
-                            <option value="data">Data</option>
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+        <div class="row">
+            <div class="col-lg-1" style="margin-top: 34px; margin-left: 100px;">
+                <h5>Período</h5>
+                <div class="date-filter-container" style="max-height: 300px; overflow-y: auto; font-size: 8px;">
+                    <div class="date-filter">
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2024.2')">2024.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2024.1')">2024.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2023.2')">2023.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2023.1')">2023.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2022.2')">2022.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2022.1')">2022.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2021.2')">2021.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2021.1')">2021.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2020.2')">2020.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2020.1')">2020.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2019.2')">2019.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2019.1')">2019.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2018.2')">2018.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2018.1')">2018.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2017.2')">2017.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2017.1')">2017.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2016.2')">2016.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2016.1')">2016.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2015.2')">2015.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2015.1')">2015.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2014.2')">2014.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2014.1')">2022.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2013.2')">2013.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2013.1')">2013.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2012.2')">2012.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2012.1')">2012.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2011.2')">2011.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2011.1')">2011.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2010.2')">2010.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2010.1')">2010.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2009.2')">2009.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2009.1')">2009.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2008.2')">2008.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2008.1')">2008.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2007.2')">2007.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2007.1')">2007.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2006.2')">2006.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2006.1')">2006.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2005.2')">2005.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2005.1')">2005.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2004.2')">2004.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2004.1')">2004.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2003.2')">2003.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2003.1')">2003.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2002.2')">2002.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2002.1')">2002.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2001.2')">2001.2</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2001.1')">2001.1</button>
+                        <!-- Continue até 2000 -->
                     </div>
+                </div>
+            </div>
+            <div class="col-lg-8 d-flex flex-column align-items-center" style="margin-top: -10px; margin-left: 20px;"> 
+                <div class="input-group mb-3" style="width: 100%;"> 
+                    <input type="text" id="searchInput" class="form-control custom-search-box" placeholder="Pesquisar artigos...">
+                    <button class="btn btn-outline-secondary" type="button" id="searchButton"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="article-list-container" id="articleListContainer">
+                    <div class="article-item">
+                        <h5>Artigo 1</h5>
+                        <p class="article-date">15 de Março de 2024</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 2</h5>
+                        <p class="article-date">22 de Julho de 2024</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 3</h5>
+                        <p class="article-date">05 de Novembro de 2023</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 4</h5>
+                        <p class="article-date">12 de Janeiro de 2023</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 5</h5>
+                        <p class="article-date">30 de Maio de 2022</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 6</h5>
+                        <p class="article-date">30 de Maio de 2003</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 7</h5>
+                        <p class="article-date">30 de Maio de 2007</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 8</h5>
+                        <p class="article-date">30 de Maio de 2016</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 9</h5>
+                        <p class="article-date">30 de Maio de 2020</p>
+                    </div>
+                    <div class="article-item">
+                        <h5>Artigo 10</h5>
+                        <p class="article-date">30 de Maio de 2021</p>
+                    </div>
+
+                    <!-- Adicione mais artigos conforme necessário -->
                 </div>
             </div>
         </div>
@@ -114,74 +205,74 @@
     
 
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Informações gerais</h4>
-                <a class="btn btn-link" href="">Quem somos</a>
-                <a class="btn btn-link" href="">Contato</a>
-                <a class="btn btn-link" href="">Política de Privacidade</a>
-                <a class="btn btn-link" href="">Termos de Uso</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Contato</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Escola Politécnica, UFBA</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>71 3283-9452</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>mariagon@ufba.br - Administrativo</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@programaaguapura291"><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/programa.aguapura?igsh=MTg1bmR0aHZvMnVpcA== "><i class="fab fa-instagram"></i></a>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Informações gerais</h4>
+                    <a class="btn btn-link" href="">Quem somos</a>
+                    <a class="btn btn-link" href="">Contato</a>
+                    <a class="btn btn-link" href="">Política de Privacidade</a>
+                    <a class="btn btn-link" href="">Termos de Uso</a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Galeria</h4>
-                <div class="row g-2 pt-2">
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-7.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-5.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-9.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-4.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-8.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-6.jpg" alt="">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contato</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Escola Politécnica, UFBA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>71 3283-9452</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>mariagon@ufba.br - Administrativo</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@programaaguapura291"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/programa.aguapura?igsh=MTg1bmR0aHZvMnVpcA== "><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Galeria</h4>
+                    <div class="row g-2 pt-2">
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-7.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-9.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-8.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-6.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Novidades</h4>
+                    <p>Leia sobre a mais nova <a href="#">Atualização </a> do Aguapura Vianet.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Seu e-mail">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">login</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Novidades</h4>
-                <p>Leia sobre a mais nova <a href="#">Atualização </a> do Aguapura Vianet.</p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Seu e-mail">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">login</button>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">2024 © Aguapura. Maintened by IntelBiT Soluções ltda</a>, All Right Reserved.
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By <a class="border-bottom">Ives Gabriel e Gerson Nascimento</a><br><br>
+                        Distributed By <a class="border-bottom" href="https://sites.google.com/site/engsanitariaeambiental/">UFBA, DEA</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">2024 © Aguapura. Maintened by IntelBiT Soluções ltda</a>, All Right Reserved.
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a class="border-bottom">Ives Gabriel e Gerson Nascimento</a><br><br>
-                    Distributed By <a class="border-bottom" href="https://sites.google.com/site/engsanitariaeambiental/">UFBA, DEA</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer End -->
+    <!-- Footer End -->
 
 
     <!-- Back to Top -->
@@ -210,8 +301,53 @@
         });
     </script>
 
+    <script>
+        const articles = [
+            { title: "Artigo 1", date: "15 de Março de 2024", semester: "2024.2" },
+            { title: "Artigo 2", date: "22 de Julho de 2024", semester: "2024.2" },
+            { title: "Artigo 3", date: "05 de Novembro de 2023", semester: "2023.2" },
+            { title: "Artigo 4", date: "12 de Janeiro de 2023", semester: "2023.1" },
+            { title: "Artigo 5", date: "30 de Maio de 2022", semester: "2022.1" },
+            { title: "Artigo 6", date: "15 de Março de 2003", semester: "2003.1" },
+            { title: "Artigo 7", date: "22 de Julho de 2007", semester: "2007.2" },
+            { title: "Artigo 8", date: "05 de Novembro de 2016", semester: "2016.2" },
+            { title: "Artigo 9", date: "12 de Janeiro de 2022", semester: "2022.1" },
+            { title: "Artigo 10", date: "30 de Maio de 2021", semester: "2021.1" },
+            // Adicione mais artigos conforme necessário
+        ];
+
+        function filterArticles(semester) {
+            const filteredArticles = articles.filter(article => article.semester === semester);
+            displayArticles(filteredArticles);
+        }
+
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const filteredArticles = articles.filter(article => 
+                article.title.toLowerCase().includes(searchTerm)
+            );
+            displayArticles(filteredArticles);
+        });
+
+        function displayArticles(articlesToDisplay) {
+            const articleListContainer = document.getElementById("articleListContainer");
+            articleListContainer.innerHTML = ""; // Limpa a lista atual
+            articlesToDisplay.forEach(article => {
+                const articleItem = document.createElement("div");
+                articleItem.classList.add("article-item");
+                articleItem.innerHTML = `<h5>${article.title}</h5><p class="article-date">${article.date}</p>`;
+                articleListContainer.appendChild(articleItem);
+            });
+        }
+
+        // Inicializar a lista de artigos ao carregar a página
+        displayArticles(articles);
+    </script>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
 
 </html>
+
+
