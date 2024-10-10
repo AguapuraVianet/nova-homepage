@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.login.css">    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
-
 </head>
 <body>
 <div class="wrapper fadeInDown">
@@ -25,10 +24,10 @@
                         <h3 class="text-center mb-4">Login</h3>
                         <form action="#" class="login-form">
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="E-mail" required>
+                                <input type="text" name="email" class="form-control rounded-left" placeholder="E-mail" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control rounded-left" id="password" placeholder="Senha" required>
+                                <input type="password" name="senha" class="form-control rounded-left" id="password" placeholder="Senha" required>
                                 <span id="togglePassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group d-md-flex">
@@ -63,6 +62,33 @@
                 } else {
                     passwordField.attr("type", "password");
                     $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+                }
+            });
+
+            // Script que captura e envia o formulário via fetch
+            $('form').on('submit', async function(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch('http://localhost:3004/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert('Login realizado com sucesso!');
+                        // Redirecionar para a página de dados de água
+                        window.location.href = 'http://127.0.0.1:5501/dadosagua.html';
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error('Erro ao realizar login:', error);
+                    alert('Erro ao realizar login.');
                 }
             });
         });
