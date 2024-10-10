@@ -94,7 +94,7 @@
         
               <div style="position: relative;"> <!-- Contêiner com posição relativa -->
               <label for="unidade">Nome da Unidade:</label>
-              <input type="text" class="search-input" placeholder="Digite o nome da unidade" onkeyup="filterData()">
+              <input type="text" class="search-input" placeholder="Digite o nome da unidade" onkeyup="filterData()" style="margin-left: -1px;">
           
               <div id="data-list">
                 <ul>
@@ -175,6 +175,9 @@
         
             <label for="medidor">Medidor:</label>
             <input type="text" id="medidor" name="medidor" placeholder="Digite o medidor">
+
+            <label for="medidor">Valor do Hidrometro</label>
+            <input type="text" id="Valor do Hidrometro" name="Valor do Hidrometro" placeholder="Digite o Valor do Hidrometro">
         
             <!-- Grupo de Data e Hora, lado a lado -->
             <div class="date-time-group">
@@ -188,7 +191,7 @@
               </div>
             </div>
           </div>
-        
+
           <!-- Segundo container com Resumo 1 e Resumo 2 -->
           <div class="right-container">
             
