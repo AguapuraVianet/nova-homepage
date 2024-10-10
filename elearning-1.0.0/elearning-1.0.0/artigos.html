@@ -158,10 +158,12 @@
                 <div class="article-list-container" id="articleListContainer">
                     <div class="article-item">
                         <h5>Artigo 1</h5>
+                        <p class="article-author">Nome do Autor</p>
                         <p class="article-date">15 de Março de 2024</p>
                     </div>
                     <div class="article-item">
                         <h5>Artigo 2</h5>
+                        <p class="article-author">Nome do Autor</p>
                         <p class="article-date">22 de Julho de 2024</p>
                     </div>
                     <div class="article-item">
@@ -303,16 +305,16 @@
 
     <script>
         const articles = [
-            { title: "Artigo 1", date: "15 de Março de 2024", semester: "2024.2" },
-            { title: "Artigo 2", date: "22 de Julho de 2024", semester: "2024.2" },
-            { title: "Artigo 3", date: "05 de Novembro de 2023", semester: "2023.2" },
-            { title: "Artigo 4", date: "12 de Janeiro de 2023", semester: "2023.1" },
-            { title: "Artigo 5", date: "30 de Maio de 2022", semester: "2022.1" },
-            { title: "Artigo 6", date: "15 de Março de 2003", semester: "2003.1" },
-            { title: "Artigo 7", date: "22 de Julho de 2007", semester: "2007.2" },
-            { title: "Artigo 8", date: "05 de Novembro de 2016", semester: "2016.2" },
-            { title: "Artigo 9", date: "12 de Janeiro de 2022", semester: "2022.1" },
-            { title: "Artigo 10", date: "30 de Maio de 2021", semester: "2021.1" },
+            { title: "Artigo 1", author: "fulano", date: "15 de Março de 2024", semester: "2024.2" },
+            { title: "Artigo 2", author: "Ciclano", date: "22 de Julho de 2024", semester: "2024.2" },
+            { title: "Artigo 3", author: "Beltrana", date: "05 de Novembro de 2023", semester: "2023.2" },
+            { title: "Artigo 4", author: "Beltrane", date: "12 de Janeiro de 2023", semester: "2023.1" },
+            { title: "Artigo 5", author: "Beltrani", date: "30 de Maio de 2022", semester: "2022.1" },
+            { title: "Artigo 6", author: "Beltrano", date: "15 de Março de 2003", semester: "2003.1" },
+            { title: "Artigo 7", author: "Beltranu", date: "22 de Julho de 2007", semester: "2007.2" },
+            { title: "Artigo 8", author: "Beltreno", date: "05 de Novembro de 2016", semester: "2016.2" },
+            { title: "Artigo 9", author: "Beltrão", date: "12 de Janeiro de 2022", semester: "2022.1" },
+            { title: "Artigo 10", author: "Betano", date: "30 de Maio de 2021", semester: "2021.1" },
             // Adicione mais artigos conforme necessário
         ];
 
@@ -323,9 +325,14 @@
 
         document.getElementById("searchButton").addEventListener("click", function () {
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            
+            // Filtrar os artigos por título ou autor
             const filteredArticles = articles.filter(article => 
-                article.title.toLowerCase().includes(searchTerm)
+                article.title.toLowerCase().includes(searchTerm) || 
+                article.author.toLowerCase().includes(searchTerm)
             );
+
+            // Exibir os artigos filtrados
             displayArticles(filteredArticles);
         });
 
@@ -335,7 +342,22 @@
             articlesToDisplay.forEach(article => {
                 const articleItem = document.createElement("div");
                 articleItem.classList.add("article-item");
-                articleItem.innerHTML = `<h5>${article.title}</h5><p class="article-date">${article.date}</p>`;
+
+                const articleTitle = document.createElement("h5");
+                articleTitle.textContent = article.title;
+
+                const articleAuthor = document.createElement("p");
+                articleAuthor.classList.add("article-author");
+                articleAuthor.textContent = article.author || "Autor Desconhecido"; // Autor adicionado aqui
+
+                const articleDate = document.createElement("p");
+                articleDate.classList.add("article-date");
+                articleDate.textContent = article.date;
+
+                articleItem.appendChild(articleTitle);
+                articleItem.appendChild(articleAuthor); // Adiciona o autor ao item
+                articleItem.appendChild(articleDate);
+
                 articleListContainer.appendChild(articleItem);
             });
         }
