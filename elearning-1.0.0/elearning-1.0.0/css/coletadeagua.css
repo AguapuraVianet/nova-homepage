@@ -371,13 +371,6 @@ padding: 10px; /* Adiciona espaço interno */
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Configurando a imagem de fundo no segundo container */
-.right-container {
-  background-image: url('cat-1.jpg'); /* Substitua 'sua-imagem.jpg' pelo caminho da sua imagem */
-  background-size: cover; /* Faz com que a imagem cubra todo o container */
-  background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Impede que a imagem se repita */
-}
 
 h2 {
   margin-bottom: 15px;
@@ -419,15 +412,49 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
   flex: 1;
 }
 
-/* Grupo de Resumo 1 e Resumo 2 lado a lado */
+.right-container {
+  position: relative; /* Permite posicionar os elementos de forma absoluta dentro do contêiner */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  height: 300px; /* Defina a altura que preferir */
+}
+
+.right-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem */
+}
+
 .resumo-group {
+  position: absolute; /* Sobrepõe os campos de resumo à imagem */
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  width: 30%; /* Ajuste conforme o tamanho desejado */
+  top: 38%; /* Ajusta para ficar no centro vertical da imagem */
+  transform: translateY(-50%); /* Garante que o grupo fique no meio vertical */
 }
 
 .resumo-group div {
   flex: 1;
+  margin: 0 5px; /* Espaçamento entre os campos de resumo */
+}
+
+textarea {
+  width: 100%;
+  padding: 10%;
+  font-size: 12px; /* Tamanho menor para os textos */
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none; /* Impede o redimensionamento manual */
+  height: 50%;
+}
+
+textarea:focus {
+  border-color: #246dec; /* Cor da borda ao focar */
+  outline: none;
 }
 
 @media (max-width: 768px) {
@@ -446,3 +473,37 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
   }
 }
 
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  gap: 10px;
+  background-color: #f1f5f9; /* Fundo para destacar a área dos botões */
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#save-btn {
+  background-color: #3575DD;
+  color: #ffffff;
+}
+
+#save-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#cancel-btn {
+  background-color: #FF5733;
+  color: #ffffff;
+}
+
+#cancel-btn:hover {
+  background-color: #ff6e50;
+}
