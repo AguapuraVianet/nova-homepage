@@ -221,10 +221,11 @@
                     <h4 class="text-white mb-3">Novidades</h4>
                     <p>Leia sobre a mais nova <a href="#" class="link-atualizacao">Atualização</a> do Aguapura Vianet.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Seu e-mail">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">login</button>
+                        <input id="emailInput" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Seu e-mail">
+                        <button id="submitBtn" type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Login</button>
                     </div>
                 </div>
+                
             </div>
         </div>
         <div class="container">
@@ -297,8 +298,35 @@
             });
         });
     </script>
-
-
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const email = document.getElementById('emailInput').value;
+    
+            if (email) {
+                // Envie o e-mail para o servidor (ajustar a URL do seu backend se necessário)
+                fetch('http://127.0.0.1:3006/send-contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar e-mail');
+                    }
+                    // Redirecionar para a página de login após o envio com sucesso
+                    window.location.href = 'http://127.0.0.1:5500/elearning-1.0.0/elearning-1.0.0/login.html';
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Falha ao enviar e-mail. Tente novamente.');
+                });
+            } else {
+                alert('Por favor, insira um e-mail válido.');
+            }
+        });
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
