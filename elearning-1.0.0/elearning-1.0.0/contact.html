@@ -300,31 +300,10 @@
     </script>
     <script>
         document.getElementById('submitBtn').addEventListener('click', function() {
-            const email = document.getElementById('emailInput').value;
+            const email = document.getElementById('emailInput').value; // Captura o valor do e-mail
     
-            if (email) {
-                // Envie o e-mail para o servidor (ajustar a URL do seu backend se necessário)
-                fetch('http://127.0.0.1:3006/send-contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email }),
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao enviar e-mail');
-                    }
-                    // Redirecionar para a página de login após o envio com sucesso
-                    window.location.href = 'http://127.0.0.1:5500/elearning-1.0.0/elearning-1.0.0/login.html';
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Falha ao enviar e-mail. Tente novamente.');
-                });
-            } else {
-                alert('Por favor, insira um e-mail válido.');
-            }
+            // Redireciona para a página de login com o e-mail como parâmetro de URL
+            window.location.href = `http://127.0.0.1:5501/login.html?email=${encodeURIComponent(email)}`;
         });
     </script>
     <!-- Template Javascript -->

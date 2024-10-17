@@ -93,6 +93,72 @@
             });
         });
     </script>
+    <script> // Script para o Lembre-se de mim funcione
+        $(document).ready(function() {
+            // Verifica se há e-mail armazenado e preenche o campo
+            const storedEmail = localStorage.getItem('email');
+            if (storedEmail) {
+                $('input[name="email"]').val(storedEmail);
+                $('input[type="checkbox"]').prop('checked', true); // Marca o checkbox
+            }
+    
+            $("#togglePassword").click(function() {
+                var passwordField = $("#password");
+                var passwordFieldType = passwordField.attr("type");
+                if (passwordFieldType === "password") {
+                    passwordField.attr("type", "text");
+                    $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+                } else {
+                    passwordField.attr("type", "password");
+                    $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+                }
+            });
+    
+            $('form').on('submit', async function(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+    
+                // Armazena ou remove o e-mail do localStorage
+                if ($('input[type="checkbox"]').is(':checked')) {
+                    localStorage.setItem('email', data.email); // Armazena o e-mail
+                } else {
+                    localStorage.removeItem('email'); // Remove o e-mail se não estiver marcado
+                }
+    
+                try {
+                    const response = await fetch('http://localhost:3004/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+    
+                    const result = await response.json();
+                    if (response.ok) {
+                        window.location.href = 'http://127.0.0.1:5501/dadosagua.html';
+                    } else {
+                        $('#feedback').text(result.message); // Mostra mensagem de erro
+                    }
+                } catch (error) {
+                    console.error('Erro ao realizar login:', error);
+                    $('#feedback').text('Erro ao realizar login.'); // Mensagem de erro genérica
+                }
+            });
+        });
+    </script>
+     <script>
+       
+       // Função para obter parâmetros da URL
+        function getEmailFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('email');
+        }
+
+        const email = getEmailFromURL();
+        if (email) {
+            $('input[name="email"]').val(email); // Preenche o campo de e-mail
+        }
+    </script>
     
 </div>
 </body>
