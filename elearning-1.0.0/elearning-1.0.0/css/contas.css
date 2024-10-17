@@ -97,18 +97,12 @@ body {
   }
   
   .sidebar-list-item > a .material-icons-outlined {
-    color: #2d4480; /* Mantém a cor original do ícone */
+    color: #2d4480; 
   }
   
   .sidebar-responsive {
     display: inline !important;
     position: absolute;
-    /*
-      the z-index of the ApexCharts is 11
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
     z-index: 12 !important;
   }
   
