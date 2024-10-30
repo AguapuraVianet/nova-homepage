@@ -166,11 +166,6 @@ body {
       gap: 10px;
       margin-bottom: 0;
     }
-  
-    .charts {
-      grid-template-columns: 1fr;
-      margin-top: 30px;
-    }
   }
   
   /* Extra Small <= 576px */
@@ -205,81 +200,69 @@ body {
   padding: 10px; /* Adiciona espaço interno */
   }
   
-  
-  
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 20px; /* Reduzir a distância entre containers no mobile */
-    }
-  
-    .left-container, .right-container {
-      width: 100%;
-    }
-  
-    .date-time-group, .resumo-group {
-      flex-direction: column;
-      gap: 10px;
-    }
+  .container-group {
+    display: flex;
+    justify-content: space-between; /* Espalha os containers horizontalmente */
+    margin-top: 20px; /* Espaço acima dos containers */
   }
   
-
-.main-container {
-    display: flex; /* Alinha os containers lado a lado */
-    gap: 30px; /* Espaçamento entre os containers */
+  .container-left, .container-right {
+    flex: 1; /* Cada container ocupa 50% do espaço */
     padding: 20px; /* Espaçamento interno */
-    flex: 1; /* Faz o main-container ocupar toda a largura disponível */
+    background-color: #ffffff; /* Cor de fundo branca */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    margin-right: 10px; /* Espaçamento entre os containers */
+  }
+  
+  .container-right {
+    margin-right: 0; /* Remove margem do último container */
+  }
+  
+  h2 {
+    margin-bottom: 15px; /* Espaço abaixo do título */
+  }
+  
+  label {
+    display: block; /* Faz os labels ocuparem a linha inteira */
+    margin-bottom: 5px; /* Espaçamento abaixo do label */
+  }
+  
+  input[type="text"], input[type="number"], select {
+    width: 100%; /* Faz os inputs ocuparem toda a largura */
+    padding: 10px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */
+  }
+  
+
+/* Main container adjustment */
+.main-container {
+  display: flex; /* Garante que os containers fiquem lado a lado */
+  justify-content: space-between; /* Espaçamento entre os containers */
+  margin-bottom: 20px; /* Espaçamento abaixo dos botões de ação */
 }
 
+/* Container adjustment */
 .container {
-    flex: 1; /* Faz cada container ocupar espaço igual */
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espaçamento entre os campos */
-    padding: 300px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #ffffff;
+  flex: 1; /* Faz com que os containers ocupem o mesmo espaço */
+  margin: 0 10px; /* Adiciona um pequeno espaço entre os containers */
+  padding: 20px; /* Espaçamento interno */
+  background-color: #fff; /* Cor de fundo dos containers */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para os containers */
 }
 
+/* Media query para telas menores */
 @media (max-width: 768px) {
-    .main-container {
-        flex-direction: column; /* Empilha os containers em telas menores */
-    }
-}
+  .main-container {
+      flex-direction: column; /* Empilha os containers em telas menores */
+      margin-left: 0; /* Remove margem esquerda em telas menores */
+      width: 100%; /* Ocupa 100% da largura em telas menores */
+  }
 
-.button-group {
-    display: flex;
-    justify-content: space-between;
+  .container {
+      width: 100%; /* Os containers ocuparão 100% da largura disponível */
+      margin: 10px 0; /* Margem entre containers em telas menores */
+  }
 }
-  
-  .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  /* Estilização adicional para inputs, labels e botões */
-  input[type="text"],
-  input[type="number"],
-  select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #2d4480;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #1e293b;
-  }

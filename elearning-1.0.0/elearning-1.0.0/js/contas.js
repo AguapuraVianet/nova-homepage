@@ -19,55 +19,38 @@ function closeSidebar() {
 function calcularValores() {
   const leituraAnterior = parseFloat(document.getElementById('leitura-anterior').value) || 0;
   const leituraAtual = parseFloat(document.getElementById('leitura-atual').value) || 0;
-  const valorConta = parseFloat(document.getElementById('valor-conta').value.replace('R$ ', '').replace(',', '.')) || 0;
-  const descontos = parseFloat(document.getElementById('descontos').value.replace('R$ ', '').replace(',', '.')) || 0;
-  const acrescimos = parseFloat(document.getElementById('acrescimos').value.replace('R$ ', '').replace(',', '.')) || 0;
+  const valorConta = parseFloat(document.getElementById('valor-conta').value.replace('R$', '').replace(',', '.')) || 0;
+  const descontos = parseFloat(document.getElementById('descontos').value.replace('R$', '').replace(',', '.')) || 0;
+  const acrescimos = parseFloat(document.getElementById('acrescimos').value.replace('R$', '').replace(',', '.')) || 0;
 
-  // Calcular diferença
+  // Calcular a diferença de leitura
   const diferenca = leituraAtual - leituraAnterior;
-  document.getElementById('diferenca').value = diferenca;
+  document.getElementById('diferenca').textContent = `${diferenca} m³`;
 
-  // Calcular valor do esgoto
+  // Calcular o valor de esgoto
   const valorEsgoto = valorConta * 0.8;
-  document.getElementById('valor-esgoto').value = formatarMoeda(valorEsgoto);
+  document.getElementById('valor-esgoto').textContent = `R$ ${valorEsgoto.toFixed(2).replace('.', ',')}`;
 
-  // Calcular valor total
+  // Calcular o valor total
   const valorTotal = valorConta + valorEsgoto + acrescimos - descontos;
-  document.getElementById('valor-total').value = formatarMoeda(valorTotal);
+  document.getElementById('valor-total').textContent = `R$ ${valorTotal.toFixed(2).replace('.', ',')}`;
 }
 
-function formatarMoeda(valor) {
-  return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
+// Adiciona eventos para recalcular quando os valores mudarem
+document.getElementById('leitura-anterior').addEventListener('input', calcularValores);
+document.getElementById('leitura-atual').addEventListener('input', calcularValores);
+document.getElementById('valor-conta').addEventListener('input', calcularValores);
+document.getElementById('descontos').addEventListener('input', calcularValores);
+document.getElementById('acrescimos').addEventListener('input', calcularValores);
 
+// Função para salvar o registro (lógica a ser implementada)
 function salvarRegistro() {
-  // Verificar se os campos obrigatórios estão preenchidos
-  const unidade = document.getElementById('unidade').value;
-  const mesAno = document.getElementById('mes-ano').value;
-
-  if (!unidade || !mesAno) {
-      alert('Por favor, preencha os campos obrigatórios.');
-      return;
-  }
-
-  // Aqui você pode implementar o envio dos dados para um servidor
+  // Lógica para salvar o registro
   alert('Registro salvo com sucesso!');
 }
 
+// Função para cancelar (lógica a ser implementada)
 function cancelarRegistro() {
-  if (confirm('Tem certeza que deseja cancelar o registro?')) {
-      // Limpa os campos
-      document.getElementById('unidade').value = '';
-      document.getElementById('mes-ano').value = '';
-      document.getElementById('intervalo-leitura').value = '';
-      document.getElementById('leitura-anterior').value = '';
-      document.getElementById('leitura-atual').value = '';
-      document.getElementById('diferenca').value = '';
-
-      document.getElementById('valor-conta').value = '';
-      document.getElementById('descontos').value = '';
-      document.getElementById('acrescimos').value = '';
-      document.getElementById('valor-esgoto').value = '';
-      document.getElementById('valor-total').value = '';
-  }
+  // Lógica para cancelar o registro
+  alert('Registro cancelado!');
 }

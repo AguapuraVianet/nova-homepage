@@ -364,10 +364,12 @@ padding: 10px; /* Adiciona espaço interno */
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.left-container .unidades {
-  width: 100px;
-  border-radius: 15px;
-  background-color: #f2f2f2; /* Cor de fundo opcional */
+.unidades select {
+  width: 100%; /* Faz o seletor ocupar toda a largura do container */
+  padding: 8px; /* Adiciona um padding */
+  box-sizing: border-box; /* Para que o padding não aumente a largura total */
+  border-radius: 5px;
+  border-color: #CCCCCC;
 }
 
 h2 {
@@ -428,17 +430,18 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 
 .resumo-group {
   position: absolute; /* Sobrepõe os campos de resumo à imagem */
-  display: flex;
-  justify-content: space-between;
-  width: 30%; /* Ajuste conforme o tamanho desejado */
-  top: 38%; /* Ajusta para ficar no centro vertical da imagem */
+  min-width: 120px; /* Mínimo desejado */
+  max-height: 17px; /* Máximo desejado */
+  top: 100px; /* Ajusta para ficar no centro vertical da imagem */
   transform: translateY(-50%); /* Garante que o grupo fique no meio vertical */
 }
 
-.resumo-group div {
-  flex: 1;
-  margin: 0 5px; /* Espaçamento entre os campos de resumo */
+#resumo1 {
+  width: 167px; /* Aumente a largura conforme necessário */
+  height: 42px; /* Reduza a altura conforme desejado */
+  overflow: hidden; /* Remove a barra de rolagem interna */
 }
+
 
 textarea {
   width: 100%;
