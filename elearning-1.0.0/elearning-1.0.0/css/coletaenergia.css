@@ -42,6 +42,7 @@ body {
   
   .menu-icon {
     display: none;
+    cursor: pointer
   }
   
   .header-left {
@@ -438,9 +439,13 @@ body {
   
   #resumo1 {
     width: 120px; /* Aumente a largura conforme necessário */
+    font-size: 20px;
     height: 30px; /* Reduza a altura conforme desejado */
     margin-right: 5px;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 7px;
   }
   
   
