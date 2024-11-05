@@ -166,7 +166,7 @@ body {
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #4f35a1;
+    background-color: #a5aaad;
     border-radius: 10px;
   }
   
@@ -447,11 +447,12 @@ body {
   textarea {
     width: 100%;
     padding: 10%;
-    font-size: 12px; /* Tamanho menor para os textos */
+    font-size: 25px; /* Tamanho menor para os textos */
     border-radius: 4px;
     box-sizing: border-box;
     resize: none; /* Impede o redimensionamento manual */
     height: 50%;
+    letter-spacing: 4px;
   }
   
   textarea:focus {
