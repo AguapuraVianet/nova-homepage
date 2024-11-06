@@ -1,0 +1,193 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>Aguapura Vianet - Dashboard Água</title>
+      <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
+
+      <!-- Montserrat Font -->
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+      <!-- Material Icons -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="css/novodashboard.css">
+    </head>
+    <body>
+      <div class="grid-container">
+
+        <!-- Header -->
+        <header class="header">
+          <div class="menu-icon" onclick="openSidebar()">
+            <span class="material-icons-outlined">menu</span>
+          </div>
+          <div class="header-left">
+          </div>
+          <div class="header-right">
+            <a href="login.html" class="material-icons-outlined">
+              <span class="material-icons-outlined"style="color: #2d437f; font-size: 36px;">account_circle</span>
+          </a>
+          </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+          <div class="sidebar-title">
+            <div class="sidebar-brand">
+              <a href="home.html" class="navbar-brand d-flex align-items-center px-2 px-lg-5" style="margin-left: -12px;">
+                  <img src="img/logo1.png" height="69" alt="logo">
+              </a>
+              <hr class="logo-divider">
+            </div>
+            <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+          </div>
+          <div class="menu-section font-weight-bold">
+            <span class="menu-label">Menu principal</span>
+          </div>
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="dadosagua.html" target="_blank">
+                  <span class="material-icons-outlined">water_drop</span> Dados de água
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="dadosenergia.html" target="_blank">
+                  <span class="material-icons-outlined">emoji_objects</span> Dados de energia
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="#" target="_blank">
+                  <span class="material-icons-outlined">payments</span> Finanças
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="#" target="_blank">
+                  <span class="material-icons-outlined">home_work</span> Unidades
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="#" target="_blank">
+                  <span class="material-icons-outlined">build</span> Equipamentos
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="#" target="_blank">
+                  <span class="material-icons-outlined">home_repair_service</span> Serviços
+              </a>
+            </li>
+            <li class="sidebar-list-item font-weight-bold">
+              <a href="#" target="_blank">
+                  <span class="material-icons-outlined">person</span> Cadastrar Usuário
+              </a>
+            </li>
+          </ul>
+          <div class="sidebar-footer">
+            <p>2024 © Aguapura. Maintened by Ives and Gerson, All Rights Reserved.</p>
+          </div>
+        </aside>
+        <!-- End Sidebar -->
+
+        <!-- Main -->
+            <main class="main-container">
+              <div class="main-title">
+                <p class="font-weight-bold">Cadastro de Usuário</p>
+              </div>
+              <div class="form-container" style="display: flex; flex-direction: column; align-items: center;">
+                <form action="http://localhost:3003/register" method="POST" class="user-form" style="display: flex; flex-direction: column; gap: 20px; max-width: 400px;">
+                  <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+      
+                  <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Digite seu email" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+      
+                  <div>
+                    <label for="unidade">Unidade:</label>
+                    <input type="text" id="unidade" name="unidade" required placeholder="Digite sua unidade" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+                
+                  <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required placeholder="Digite sua senha" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+      
+                  <div>
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" required placeholder="Digite seu estado" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+      
+                  <div>
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" required placeholder="Digite sua cidade" style="width: 100%; padding: 10px; margin-top: 5px;">
+                  </div>
+      
+                  <button type="submit" class="submit-btn" style="padding: 10px; background-color: #2d437f; color: white; font-weight: bold; border: none; cursor: pointer; width: 425px;">
+                    Cadastrar
+                  </button>
+                </form>
+              </div>  
+            </main>
+            <!-- End Main -->
+      
+      <!-- End Main -->
+        <!-- End Main -->
+
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+      <!-- Custom JS -->
+      <script src="js/novodashboard.js"></script>
+      <script>
+        // Função para enviar o formulário de cadastro
+        async function cadastrarUsuario() {
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const unidade = document.getElementById('unidade').value;
+            const senha = document.getElementById('senha').value;
+            const estado = document.getElementById('estado').value;
+            const cidade = document.getElementById('cidade').value;
+    
+            // Verifica se os campos obrigatórios foram preenchidos
+            if (!nome || !email || !unidade || !senha || !estado || !cidade) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+    
+            // Envia a solicitação POST para o servidor Express
+            try {
+                const response = await fetch('http://localhost:3003/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nome: nome,         // Usa os valores do formulário
+                        email: email,
+                        unidade: unidade,
+                        senha: senha,
+                        estado: estado,
+                        cidade: cidade,
+                    }),
+                });
+    
+                const data = await response.json();
+    
+                // Exibe a resposta do servidor
+                if (response.ok) {
+                    alert(data.message);
+                } else {
+                    alert('Erro ao registrar usuário: ' + data.message);
+                }
+            } catch (error) {
+                alert('Erro de conexão com o servidor: ' + error.message);
+            }
+        }
+    </script>
+    </body>
+  </html>
