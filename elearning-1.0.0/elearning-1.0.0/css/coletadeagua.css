@@ -202,20 +202,6 @@ body {
   }
 }
 
-/* Small <= 768px */
-@media screen and (max-width: 768px) {
-  .main-cards {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 0;
-  }
-
-  .charts {
-    grid-template-columns: 1fr;
-    margin-top: 30px;
-  }
-}
-
 /* Extra Small <= 576px */
 @media screen and (max-width: 576px) {
   .header-left {
@@ -472,6 +458,8 @@ textarea:focus {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    margin-left: -35px;
+    margin-right: 5px;
     gap: 20px; /* Reduzir a distância entre containers no mobile */
   }
 
@@ -480,8 +468,14 @@ textarea:focus {
   }
 
   .date-time-group, .resumo-group {
-    flex-direction: column;
     gap: 10px;
+  }
+
+  .resumo-group {
+    display: flex;
+    position: absolute; /* Sobrepõe os campos de resumo à imagem */
+    max-height: 17px; /* Máximo desejado */
+    transform: translateY(-50%); /* Garante que o grupo fique no meio vertical */
   }
 }
 
