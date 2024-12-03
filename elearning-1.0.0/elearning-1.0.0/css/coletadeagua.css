@@ -431,6 +431,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 
 .resumo-group {
   position: absolute; /* Sobrepõe os campos de resumo à imagem */
+  display: flex;
   min-width: 120px; /* Mínimo desejado */
   max-height: 17px; /* Máximo desejado */
   top: 100px; /* Ajusta para ficar no centro vertical da imagem */
@@ -438,7 +439,13 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 }
 
 #resumo1 {
-  width: 167px; /* Aumente a largura conforme necessário */
+  width: 106px; /* Aumente a largura conforme necessário */
+  height: 42px; /* Reduza a altura conforme desejado */
+  overflow: hidden; /* Remove a barra de rolagem interna */
+}
+
+#resumo2 {
+  width: 50px; /* Aumente a largura conforme necessário */
   height: 42px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
 }
@@ -447,7 +454,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 textarea {
   width: 100%;
   padding: 10%;
-  font-size: 12px; /* Tamanho menor para os textos */
+  font-size: 30px; /* Tamanho menor para os textos */
   border-radius: 4px;
   box-sizing: border-box;
   resize: none; /* Impede o redimensionamento manual */

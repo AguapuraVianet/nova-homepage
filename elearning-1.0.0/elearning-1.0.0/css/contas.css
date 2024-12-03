@@ -108,6 +108,119 @@ body {
   
   
   /* ---------- MAIN ---------- */
+
+  /* Main container styling */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: flex;
+  gap: 10px;
+}
+
+.action-buttons button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#salvar {
+  background-color: #2b3979;
+  color: white;
+}
+
+#cancelar {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Containers group styling */
+.container-group {
+  display: flex;
+  gap: 20px;
+  width: 1615px;
+  margin-bottom: -150px;
+}
+
+/* Left container styling */
+.container-left,
+.container-right {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container-left h2,
+.container-right h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  max-width: 480%;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Specific styling for container-left */
+.consumo-diferenca {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Specific styling for container-right */
+.container-right .valor-esgoto,
+.container-right .valor-total {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.container-right .valor-esgoto strong,
+.container-right .valor-total strong {
+  color: #333;
+}
+
+/* Colors for different result values */
+#diferenca {
+  color: red;
+}
+
+#valor-esgoto {
+  color: green;
+}
+
+#valor-total {
+  color: blue;
+}
+
   
 
   
@@ -139,39 +252,72 @@ body {
   /* Medium <= 992px */
   @media screen and (max-width: 992px) {
     .grid-container {
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.2fr 3fr;
+      grid-template-columns: 1fr; /* Coluna única para telas pequenas */
+      grid-template-rows: auto 1fr; /* Ajusta a altura das linhas */
       grid-template-areas:
         "header"
-        "main";
+        "main"; /* Muda a disposição, sem a sidebar */
     }
   
     #sidebar {
-      display: none;
+      display: none; /* Esconde a sidebar em telas menores */
     }
   
     .menu-icon {
-      display: inline;
+      display: inline-block; /* Exibe o ícone do menu para telas pequenas */
     }
   
     .sidebar-title > span {
-      display: inline;
+      display: inline-block; /* Exibe o título da sidebar quando necessário */
+    }
+  
+    /* Ajuste para os containers (left e right) em telas menores */
+    .container-group {
+      flex-direction: column; /* Coloca os containers um abaixo do outro */
+      gap: 20px; /* Espaço entre os containers */
+    }
+  
+    /* Ajustes específicos para o layout dos containers */
+    .container-left, .container-right {
+      width: 915px;
+      padding: 20px;
+      box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+    }
+    .container-right {
+      margin-bottom: 10px;
     }
   }
   
-  /* Small <= 768px */
+  /* Responsividade para telas menores ou igual a 768px */
   @media screen and (max-width: 768px) {
     .main-cards {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr; /* Ajusta o layout das cards para uma coluna */
       gap: 10px;
       margin-bottom: 0;
     }
+    .container-left, .container-right {
+      width: 700px;
+      padding: 20px;
+      box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+    }
+    .container-right {
+      margin-bottom: 10px;
+    }
   }
   
-  /* Extra Small <= 576px */
+  /* Responsividade para telas menores ou igual a 576px */
   @media screen and (max-width: 576px) {
     .header-left {
-      display: none;
+      display: none; /* Oculta a parte esquerda do header em telas muito pequenas */
+    }
+    .container-left, .container-right {
+      width: 450px;
+      padding: 20px;
+      box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+    }
+
+    .container-right {
+      margin-bottom: 10px;
     }
   }
   
@@ -200,69 +346,4 @@ body {
   padding: 10px; /* Adiciona espaço interno */
   }
   
-  .container-group {
-    display: flex;
-    justify-content: space-between; /* Espalha os containers horizontalmente */
-    margin-top: 20px; /* Espaço acima dos containers */
-  }
   
-  .container-left, .container-right {
-    flex: 1; /* Cada container ocupa 50% do espaço */
-    padding: 20px; /* Espaçamento interno */
-    background-color: #ffffff; /* Cor de fundo branca */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
-    margin-right: 10px; /* Espaçamento entre os containers */
-  }
-  
-  .container-right {
-    margin-right: 0; /* Remove margem do último container */
-  }
-  
-  h2 {
-    margin-bottom: 15px; /* Espaço abaixo do título */
-  }
-  
-  label {
-    display: block; /* Faz os labels ocuparem a linha inteira */
-    margin-bottom: 5px; /* Espaçamento abaixo do label */
-  }
-  
-  input[type="text"], input[type="number"], select {
-    width: 100%; /* Faz os inputs ocuparem toda a largura */
-    padding: 10px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda */
-    border-radius: 4px; /* Bordas arredondadas */
-    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */
-  }
-  
-
-/* Main container adjustment */
-.main-container {
-  display: flex; /* Garante que os containers fiquem lado a lado */
-  justify-content: space-between; /* Espaçamento entre os containers */
-  margin-bottom: 20px; /* Espaçamento abaixo dos botões de ação */
-}
-
-/* Container adjustment */
-.container {
-  flex: 1; /* Faz com que os containers ocupem o mesmo espaço */
-  margin: 0 10px; /* Adiciona um pequeno espaço entre os containers */
-  padding: 20px; /* Espaçamento interno */
-  background-color: #fff; /* Cor de fundo dos containers */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para os containers */
-}
-
-/* Media query para telas menores */
-@media (max-width: 768px) {
-  .main-container {
-      flex-direction: column; /* Empilha os containers em telas menores */
-      margin-left: 0; /* Remove margem esquerda em telas menores */
-      width: 100%; /* Ocupa 100% da largura em telas menores */
-  }
-
-  .container {
-      width: 100%; /* Os containers ocuparão 100% da largura disponível */
-      margin: 10px 0; /* Margem entre containers em telas menores */
-  }
-}
