@@ -167,7 +167,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #4f35a1;
+  background-color: #a5aaad;
   border-radius: 10px;
 }
 
@@ -430,6 +430,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 }
 
 .resumo-group {
+  display: flex;
   position: absolute; /* Sobrepõe os campos de resumo à imagem */
   display: flex;
   min-width: 120px; /* Mínimo desejado */
@@ -448,6 +449,14 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
   width: 50px; /* Aumente a largura conforme necessário */
   height: 42px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
+  border-color: #0C0204;
+}
+
+#resumo2 {
+  width: 66px; /* Aumente a largura conforme necessário */
+  height: 44px; /* Reduza a altura conforme desejado */
+  overflow: hidden; /* Remove a barra de rolagem interna */
+  border-color: #F70000;
 }
 
 
@@ -459,6 +468,7 @@ textarea {
   box-sizing: border-box;
   resize: none; /* Impede o redimensionamento manual */
   height: 50%;
+  letter-spacing: 5px;
 }
 
 textarea:focus {
