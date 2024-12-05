@@ -98,44 +98,52 @@
               <!-- Adicione as opções aqui -->
             </select>
 
+           <div id="mes-ano-intervalo">
+          <div class="mes-ano-container">
             <label for="mes-ano">Mês/Ano:</label>
             <input type="text" id="mes-ano" placeholder="00/0000">
-
+          </div>
+          <div class="intervalo-container">
             <label for="intervalo">Intervalo de Leitura:</label>
             <input type="text" id="intervalo" placeholder="00/00/0000 - 00/00/0000">
+          </div>
+        </div> 
 
-            <label for="leitura-anterior">Leitura Anterior (m³):</label>
+            <label for="leitura-anterior">Leitura Anterior (m³)</label>
             <input type="number" id="leitura-anterior">
 
-            <label for="leitura-atual">Leitura Atual (m³):</label>
+            <label for="leitura-atual">Leitura Atual (m³)</label>
             <input type="number" id="leitura-atual">
 
             <div class="consumo-diferenca">
-              <strong>Quantidade Consumida:</strong>
-              <span id="diferenca" style="color: red;">0 m³</span>
+              <strong>Quantidade Consumida</strong>
+              <hr class="linha-horizontal">
+              <span id="diferenca" style="color: red;">0</span>
             </div>
           </div>
 
           <!-- Container Direito -->
-          <div class="container-right">
-            <h2>Valores da Conta</h2>
-            <label for="valor-conta">Valor da Conta (R$):</label>
-            <input type="text" id="valor-conta" value="0,00">
+          <div class="container-right font-weight-bold">
+            <label for="valor-conta">Valor da Conta (R$)</label>
+            <input type="text" id="valor-conta" value="">
 
-            <label for="descontos">Descontos ou Abatimentos (R$):</label>
-            <input type="text" id="descontos" value="0,00">
+            <label for="descontos">Descontos ou Abatimentos (R$)</label>
+            <input type="text" id="descontos" value="">
 
-            <label for="acrescimos">Acréscimos ou Juros (R$):</label>
-            <input type="text" id="acrescimos" value="0,00">
+            <label for="acrescimos">Acréscimos ou Juros (R$)</label>
+            <input type="text" id="acrescimos" value="">
 
-            <div class="valor-esgoto">
-              <strong>Valor de Esgoto:</strong>
-              <span id="valor-esgoto" style="color: green;">R$ 0,00</span>
-            </div>
-
-            <div class="valor-total">
-              <strong>Valor Total:</strong>
-              <span id="valor-total" style="color: blue;">R$ 0,00</span>
+            <div class="valores-container">
+              <div class="valor-esgoto">
+                <strong>Valor de Esgoto</strong>
+                <hr class="linha-horizontal2">
+                <span id="valor-esgoto" style="color: green;">R$ 0,00</span>
+              </div>
+              <div class="valor-total">
+                <strong>Valor Total</strong>
+                <hr class="linha-horizontal2">
+                <span id="valor-total" style="color: blue;">R$ 0,00</span>
+              </div>
             </div>
           </div>
         </div>

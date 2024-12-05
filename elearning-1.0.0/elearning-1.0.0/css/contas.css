@@ -159,6 +159,7 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
 }
 
 .container-left h2,
@@ -191,17 +192,31 @@ select {
 
 /* Specific styling for container-left */
 .consumo-diferenca {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #333;
+  text-align: left; /* Centraliza o conteúdo */
+  margin-top: 20px; /* Espaçamento superior */
+}
+
+.consumo-diferenca strong {
+  display: block; /* Garante que o título ocupe uma linha separada */
+  font-size: 24px; /* Tamanho do texto do título */
+  margin-bottom: 5px; /* Espaço entre o título e a linha */
+}
+
+.linha-horizontal {
+  border: 0; /* Remove bordas adicionais */
+  height: 1px; /* Define a espessura da linha */
+  background-color: #ccc; /* Cor da linha */
+  width: 100%; /* Faz a linha ocupar toda a largura disponível */
+  margin: 5px 0; /* Espaço acima e abaixo da linha */
+}
+
+#diferenca {
+  display: block; /* Garante que o valor fique em uma linha separada */
+  font-size: 28px; /* Tamanho do texto da diferença */
 }
 
 /* Specific styling for container-right */
-.container-right .valor-esgoto,
-.container-right .valor-total {
-  margin-top: 10px;
-  font-size: 16px;
-}
+
 
 .container-right .valor-esgoto strong,
 .container-right .valor-total strong {
@@ -219,6 +234,38 @@ select {
 
 #valor-total {
   color: blue;
+}
+
+.valores-container {
+  display: flex;
+  justify-content: space-between; /* Distribui os elementos horizontalmente */
+  align-items: flex-start; /* Alinha os elementos ao topo */
+  margin-top: 20px; /* Espaçamento superior */
+}
+
+.valor-esgoto, .valor-total {
+  flex: 1; /* Define que ambos os elementos podem crescer igualmente */
+  text-align: left; /* Alinha os textos à esquerda */
+  padding: 0 10px; /* Adiciona espaço interno */
+  font-size: 25px;
+}
+
+.valor-total {
+  text-align: right; /* Alinha o valor total à direita */
+}
+
+.linha-horizontal2 {
+  border: 0; /* Remove bordas extras */
+  height: 1px; /* Define a espessura da linha */
+  background-color: #ccc; /* Cor da linha */
+  margin: 5px 0; /* Espaço entre o título e o valor */
+}
+
+#valor-esgoto, #valor-total {
+  display: block; /* Mantém os valores em uma linha separada */
+  margin-top: 5px; /* Espaçamento entre a linha e o valor */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: bold; /* Destaca os valores */
 }
 
   
@@ -346,4 +393,34 @@ select {
   padding: 10px; /* Adiciona espaço interno */
   }
   
+  #mes-ano-intervalo {
+    display: flex;
+    gap: 10px; /* Espaço entre os inputs */
+    align-items: flex-start; /* Alinha ao topo */
+  }
   
+  .mes-ano-container {
+    flex: 1; /* Define tamanho flexível */
+    max-width: 35%; /* Limita o tamanho para ser menor */
+  }
+  
+  .intervalo-container {
+    flex: 2; /* Define tamanho maior que o Mês/Ano */
+  }
+  
+  #mes-ano,
+  #intervalo {
+    width: 100%; /* Preenche o espaço do container */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  label[for="mes-ano-intervalo"] {
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+    color: #555;
+  }
