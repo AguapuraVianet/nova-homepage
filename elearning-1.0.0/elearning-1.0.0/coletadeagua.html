@@ -96,9 +96,9 @@
           <!-- Primeiro container com Nome da Unidade, Medidor, Data e Hora da coleta -->
           <div class="left-container">
             <h2>Informações da Coleta</h2>
-            <div class="unidades"> <!-- Contêiner com posição relativa -->
-              <label for="unidade">Unidade:</label>
-              <select id="unidade">
+            <div class="unidade"> <!-- Contêiner com posição relativa -->
+              <label for="unidade_id">Unidade:</label>
+              <select id="unidade_id">
                 <option value="" disabled selected>Selecione uma unidade</option>
                 <option value="Administração">Administração</option>
                 <option value="Arquitetura">Arquitetura</option>
@@ -189,17 +189,17 @@
               </select>
           </div>
         
-            <label for="medidor">Medidor:</label>
-            <input type="text" id="medidor" name="medidor" placeholder="Digite o medidor">
+            <label for="numero_medidor">Medidor:</label>
+            <input type="text" id="numero_medidor" name="numero_medidor" placeholder="Digite o medidor">
             <!-- Grupo de Data e Hora, lado a lado -->
             <div class="date-time-group">
               <div>
-                <label for="data-coleta">Data da Coleta:</label>
+                <label for=" data_coleta">Data da Coleta:</label>
                 <input type="date" id="data-coleta" name="data-coleta">
               </div>
               <div>
-                <label for="hora-coleta">Hora da Coleta:</label>
-                <input type="time" id="hora-coleta" name="hora-coleta">
+                <label for="hora_coleta">Hora da Coleta:</label>
+                <input type="time" id="hora_coleta" name="hora_coleta">
               </div>
             </div>
           </div>
@@ -233,5 +233,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
     <!-- Custom JS -->
     <script src="js/coletadeagua.js"></script>
+    <script>
+      document.getElementById('save-btn').addEventListener('click', function () { 
+        // Coletar os dados do formulário
+        const unidadeId = document.getElementById('unidade_id').value;
+        const numeroMedidor = document.getElementById('numero_medidor').value;
+        const dataColeta = document.getElementById('data_coleta').value;
+        const horaColeta = document.getElementById('hora_coleta').value;
+        const resumo1 = document.getElementById('resumo1').value;
+        const resumo2 = document.getElementById('resumo2').value;
+    
+        // Validar os campos obrigatórios
+        if (!unidadeId || !numeroMedidor || !dataColeta || !horaColeta || !resumo1 || !resumo2) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+    
+        // Criar o objeto com os dados
+        const formData = {
+            unidade_id: unidadeId,
+            numero_medidor: numeroMedidor,
+            data_coleta: dataColeta,
+            hora_coleta: horaColeta,
+            leitura_medidor: resumo1+resumo2
+        };
+    
+        // Enviar os dados para o backend
+        fetch('http://localhost:3008/registroagua', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message); // Exibe uma mensagem de sucesso ou erro
+            if (data.success) {
+                // Limpar o formulário após o sucesso
+                document.getElementById('unidade_id').value = '';
+                document.getElementById('numero_medidor').value = '';
+                document.getElementById('data_coleta').value = '';
+                document.getElementById('hora_coleta').value = '';
+                document.getElementById('resumo1').value = '';
+                document.getElementById('resumo2').value = '';
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao registrar a coleta.');
+        });
+      });
+    </script>
+    
   </body>
 </html>
