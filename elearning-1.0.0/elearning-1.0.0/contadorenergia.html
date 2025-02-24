@@ -229,51 +229,55 @@
     <!-- Custom JS -->
     <script src="js/coletaenergia.js"></script>
     <script>
-      document.getElementById('save-btn').addEventListener('click', function () { 
-        // Coletar os dados do formulário
-        const unidadeId = document.getElementById('unidade_id').value;
-        const numeroMedidor = document.getElementById('numero_medidor').value;
-        const dataColeta = document.getElementById('data_coleta').value;
-        const horaColeta = document.getElementById('hora_coleta').value;
-        const resumo1 = document.getElementById('resumo1').value;
-    
-        // Validar os campos obrigatórios
+      document.getElementById('save-btn').addEventListener('click', async function () { 
+          // Coletar os dados do formulário
+          const unidadeId = document.getElementById('unidade_id').value;
+          const numeroMedidor = document.getElementById('numero_medidor').value;
+          const dataColeta = document.getElementById('data_coleta').value;
+          const horaColeta = document.getElementById('hora_coleta').value;
+          const resumo1 = document.getElementById('resumo1').value;
+
+          // Validar os campos obrigatórios
         if (!unidadeId || !numeroMedidor || !dataColeta || !horaColeta || !resumo1) {
-            alert('Por favor, preencha todos os campos obrigatórios.');
-            return;
-        }
-    
-        // Criar o objeto com os dados
+              alert('Por favor, preencha todos os campos obrigatórios.');
+              return;
+          }
+
+          // Criar o objeto com os dados
         const formData = {
-            unidade_id: unidadeId,
-            numero_medidor: numeroMedidor,
-            data_coleta: dataColeta,
-            hora_coleta: horaColeta,
-            leitura_medidor: resumo1
-        };
-    
-        // Enviar os dados para o backend
-        fetch('http://localhost:3007/coletadorenergia', {
-            method: 'POST',
-            headers: {
+              unidade_id: unidadeId,
+              numero_medidor: numeroMedidor,
+              data_coleta: dataColeta,
+              hora_coleta: horaColeta,
+              leitura_medidor: resumo1
+          };
+
+          // Enviar os dados para o backend
+        try {
+            // Envia os dados para a API
+            const response = await fetch('http://localhost:3007/coletadorenergia', {
+              method: 'POST',
+              headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                unidade_id: 'Administração',
-                numero_medidor: '12345',
-                data_coleta: '2023-10-01',
-                hora_coleta: '12:00',
-                leitura_medidor: '1000'
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('dados-api').innerText = JSON.stringify(data);
-        })
-        .catch(error => {
+              },
+              body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            // Exibe a mensagem de sucesso ou erro
+          if (response.ok) {
+              document.getElementById('message').textContent = result.message;
+              document.getElementById('message').style.color = 'green';
+          } else {
+              document.getElementById('message').textContent = result.message || 'Erro ao registrar leitura';
+              document.getElementById('message').style.color = 'red';
+            }
+          } catch (error) {
             console.error('Erro:', error);
-            document.getElementById('dados-api').innerText = 'Erro ao carregar dados';
-        });
+            document.getElementById('message').textContent = 'Erro ao conectar com o servidor';
+            document.getElementById('message').style.color = 'red';
+        }
     });
     </script>
   </body>
