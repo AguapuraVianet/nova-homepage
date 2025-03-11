@@ -46,7 +46,6 @@
 </div>
 <!-- Spinner End -->
 
-
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="home.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -96,7 +95,7 @@
         <div class="row">
             <div class="col-lg-1" style="margin-top: 34px; margin-left: 100px;">
                 <h5>Período</h5>
-                <div class="date-filter-container" style="max-height: 300px; overflow-y: auto; font-size: 8px;">
+                <div class="date-filter-container" style="max-height: 300px; overflow-y: auto; overflow-x: hidden; font-size: 8px;">
                     <div class="date-filter">
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2024.2')">2024.2</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2024.1')">2024.1</button>
@@ -119,7 +118,7 @@
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2015.2')">2015.2</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2015.1')">2015.1</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2014.2')">2014.2</button>
-                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2014.1')">2022.1</button>
+                        <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2014.1')">2014.1</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2013.2')">2013.2</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2013.1')">2013.1</button>
                         <button class="btn btn-link" style="font-size: 14px; margin-left: -5px;" onclick="filterArticles('2012.2')">2012.2</button>
@@ -305,65 +304,85 @@
 
     <script>
         const articles = [
-            { title: "Artigo 1", author: "fulano", date: "15 de Março de 2024", semester: "2024.2" },
-            { title: "Artigo 2", author: "Ciclano", date: "22 de Julho de 2024", semester: "2024.2" },
-            { title: "Artigo 3", author: "Beltrana", date: "05 de Novembro de 2023", semester: "2023.2" },
-            { title: "Artigo 4", author: "Beltrane", date: "12 de Janeiro de 2023", semester: "2023.1" },
-            { title: "Artigo 5", author: "Beltrani", date: "30 de Maio de 2022", semester: "2022.1" },
-            { title: "Artigo 6", author: "Beltrano", date: "15 de Março de 2003", semester: "2003.1" },
-            { title: "Artigo 7", author: "Beltranu", date: "22 de Julho de 2007", semester: "2007.2" },
-            { title: "Artigo 8", author: "Beltreno", date: "05 de Novembro de 2016", semester: "2016.2" },
-            { title: "Artigo 9", author: "Beltrão", date: "12 de Janeiro de 2022", semester: "2022.1" },
-            { title: "Artigo 10", author: "Betano", date: "30 de Maio de 2021", semester: "2021.1" },
-            // Adicione mais artigos conforme necessário
-        ];
+    { title: "Artigo 1", author: "fulano", date: "15 de Março de 2024", semester: "2024.2" },
+    { title: "Artigo 2", author: "Ciclano", date: "22 de Julho de 2024", semester: "2024.2" },
+    { title: "Artigo 3", author: "Beltrana", date: "05 de Novembro de 2023", semester: "2023.2" },
+    { title: "Artigo 4", author: "Beltrane", date: "12 de Janeiro de 2023", semester: "2023.1" },
+    { title: "Artigo 5", author: "Beltrani", date: "30 de Maio de 2022", semester: "2022.1" },
+    { title: "Artigo 6", author: "Beltrano", date: "15 de Março de 2003", semester: "2003.1" },
+    { title: "Artigo 7", author: "Beltranu", date: "22 de Julho de 2007", semester: "2007.2" },
+    { title: "Artigo 8", author: "Beltreno", date: "05 de Novembro de 2016", semester: "2016.2" },
+    { title: "Artigo 9", author: "Beltrão", date: "12 de Janeiro de 2022", semester: "2022.1" },
+    { title: "Artigo 10", author: "Betano", date: "30 de Maio de 2021", semester: "2021.1" },
+    // Adicione mais artigos conforme necessário
+];
 
-        function filterArticles(semester) {
-            const filteredArticles = articles.filter(article => article.semester === semester);
-            displayArticles(filteredArticles);
+let selectedButton = null; // Armazena o botão atualmente selecionado
+
+function filterArticles(semester) {
+    const button = document.querySelector(`button[onclick="filterArticles('${semester}')"]`);
+
+    if (selectedButton === button) {
+        // Se o botão já estiver selecionado, desmarque-o
+        button.classList.remove('btn-selected');
+        selectedButton = null;
+        displayArticles(articles); // Exibe todos os artigos
+    } else {
+        // Se outro botão estiver selecionado, desmarque-o
+        if (selectedButton) {
+            selectedButton.classList.remove('btn-selected');
         }
+        // Marque o novo botão como selecionado
+        button.classList.add('btn-selected');
+        selectedButton = button;
 
-        document.getElementById("searchButton").addEventListener("click", function () {
-            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-            
-            // Filtrar os artigos por título ou autor
-            const filteredArticles = articles.filter(article => 
-                article.title.toLowerCase().includes(searchTerm) || 
-                article.author.toLowerCase().includes(searchTerm)
-            );
+        // Filtra os artigos pelo período selecionado
+        const filteredArticles = articles.filter(article => article.semester === semester);
+        displayArticles(filteredArticles);
+    }
+}
 
-            // Exibir os artigos filtrados
-            displayArticles(filteredArticles);
-        });
+document.getElementById("searchButton").addEventListener("click", function () {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
 
-        function displayArticles(articlesToDisplay) {
-            const articleListContainer = document.getElementById("articleListContainer");
-            articleListContainer.innerHTML = ""; // Limpa a lista atual
-            articlesToDisplay.forEach(article => {
-                const articleItem = document.createElement("div");
-                articleItem.classList.add("article-item");
+    // Filtrar os artigos por título ou autor
+    const filteredArticles = articles.filter(article =>
+        article.title.toLowerCase().includes(searchTerm) ||
+        article.author.toLowerCase().includes(searchTerm)
+    );
 
-                const articleTitle = document.createElement("h5");
-                articleTitle.textContent = article.title;
+    // Exibir os artigos filtrados
+    displayArticles(filteredArticles);
+});
 
-                const articleAuthor = document.createElement("p");
-                articleAuthor.classList.add("article-author");
-                articleAuthor.textContent = article.author || "Autor Desconhecido"; // Autor adicionado aqui
+function displayArticles(articlesToDisplay) {
+    const articleListContainer = document.getElementById("articleListContainer");
+    articleListContainer.innerHTML = ""; // Limpa a lista atual
+    articlesToDisplay.forEach(article => {
+        const articleItem = document.createElement("div");
+        articleItem.classList.add("article-item");
 
-                const articleDate = document.createElement("p");
-                articleDate.classList.add("article-date");
-                articleDate.textContent = article.date;
+        const articleTitle = document.createElement("h5");
+        articleTitle.textContent = article.title;
 
-                articleItem.appendChild(articleTitle);
-                articleItem.appendChild(articleAuthor); // Adiciona o autor ao item
-                articleItem.appendChild(articleDate);
+        const articleAuthor = document.createElement("p");
+        articleAuthor.classList.add("article-author");
+        articleAuthor.textContent = article.author || "Autor Desconhecido"; // Autor adicionado aqui
 
-                articleListContainer.appendChild(articleItem);
-            });
-        }
+        const articleDate = document.createElement("p");
+        articleDate.classList.add("article-date");
+        articleDate.textContent = article.date;
 
-        // Inicializar a lista de artigos ao carregar a página
-        displayArticles(articles);
+        articleItem.appendChild(articleTitle);
+        articleItem.appendChild(articleAuthor); // Adiciona o autor ao item
+        articleItem.appendChild(articleDate);
+
+        articleListContainer.appendChild(articleItem);
+    });
+}
+
+// Inicializar a lista de artigos ao carregar a página
+displayArticles(articles);
     </script>
 
     <!-- Template Javascript -->

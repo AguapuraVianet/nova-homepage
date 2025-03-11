@@ -520,3 +520,50 @@ button {
 #cancel-btn:hover {
   background-color: #ff6e50;
 }
+
+  /* Estilo para o contêiner da Unidade */
+  .unidade {
+    margin-bottom: 1rem; /* Espaçamento entre os elementos */
+  }
+  
+  /* Estilo para o campo de seleção da Unidade */
+  #unidade_id {
+    width: 100%; /* Ocupa 100% da largura do contêiner pai */
+    padding: 0.5rem; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+  }
+  
+  /* Estilo para o campo de texto do Medidor */
+  #numero_medidor {
+    width: 100%; /* Ocupa 100% da largura do contêiner pai */
+    padding: 0.5rem; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+  }
+  
+  /* Estilo para os grupos de Data e Hora */
+  .date-time-group {
+    display: flex;
+    gap: 1rem; /* Espaçamento entre os elementos */
+    margin-bottom: 1rem; /* Espaçamento abaixo do grupo */
+  }
+  
+  .date-time-group div {
+    flex: 1; /* Divide o espaço igualmente entre os elementos */
+  }
+  
+  /* Estilo para os campos de Data e Hora */
+  #data_coleta,
+  #hora_coleta {
+    width: 100%; /* Ocupa 100% da largura do contêiner pai */
+    padding: 0.5rem; /* Espaçamento interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+  }

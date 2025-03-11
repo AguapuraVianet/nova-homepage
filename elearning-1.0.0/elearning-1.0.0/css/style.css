@@ -21,6 +21,10 @@
     z-index: 99;
 }
 
+.btn-selected {
+    background-color: #ACC5D9; /* Cor de fundo quando selecionado */
+    color: white; /* Cor do texto quando selecionado */
+}
 
 /*** Spinner ***/
 #spinner {
