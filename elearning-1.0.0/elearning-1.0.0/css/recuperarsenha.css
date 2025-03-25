@@ -1,0 +1,77 @@
+body {
+    background-color: #f8f9fa;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-signin .btn {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #0056b3;
+    border: none;
+    transition: all 0.3s;
+}
+
+.form-signin .btn:hover {
+    background-color: rgba(0, 123, 255, 0.25);
+}
+
+.remember-text {
+    color: #6c757d;
+    margin-top: 15px;
+}
+
+.remember-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.remember-text a:hover {
+    text-decoration: underline;
+}
+
+.text-center img {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.form-signin .email-input {
+    background-color: #F2F2F2;
+}

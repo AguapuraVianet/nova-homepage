@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recuperação de Senha</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/recuperarsenha.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <form class="form-signin" method="POST" action="">
+                    <div class="text-center mb-4">
+                        <img src="img/logo1.png" alt="Logo da Aguapura" height="72">
+                        <h2 class="h3 mb-3 font-weight-normal">Recuperação de Senha</h2>
+                        <p>Digite seu e-mail para receber o link de recuperação</p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="inputEmail" class="sr-only">E-mail</label>
+                        <input type="email" id="inputEmail" class="form-control email-input" name="email" placeholder="Digite seu e-mail" required autofocus>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" type="submit" name="SendRecupSenha">Recuperar Senha</button>
+                    
+                    <div class="text-center mt-3">
+                        <p class="remember-text">Lembrou? <a href="login.html">Clique aqui</a> para fazer login</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
