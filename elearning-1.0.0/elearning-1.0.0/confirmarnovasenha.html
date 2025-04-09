@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
+</head>
+<body>
+<div class="container" style="background-color: #F1F5F9; max-width: 100%;">
+    <div class="wrapper fadeInDown" style="background-color: #F1F5F9;" >
+        <section class="ftco-section">
+            <div class="container" >
+                <div class="row justify-content-center">
+                </div>
+                <div class="row justify-content-center align-items-center" style="min-height: 75vh;">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="login-wrap p-4 p-md-5" style="background-color: #ffffff;">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <img src="img/logo1.png" alt="Logo da Aguapura">
+                            </div>
+                            <h3 class="text-center mb-4">Cadastrar nova senha</h3>
+                            <form action="#" class="login-form">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" name="senha" class="form-control rounded-left" id="newPassword" placeholder="Nova senha" required>
+                                        <span class="input-group-text toggle-password" toggle="#newPassword">
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" name="confirmSenha" class="form-control rounded-left" id="confirmPassword" placeholder="Confirmar nova senha" required>
+                                        <span class="input-group-text toggle-password" toggle="#confirmPassword">
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group d-md-flex">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Entrar</button>
+                                </div>
+                            </form>
+                            <div id="feedback" class="text-danger" style="display: none; font-size: 14px; margin-top: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Mostrar/esconder senha para ambos os campos
+            $(".toggle-password").click(function() {
+                var target = $(this).attr("toggle");
+                var input = $(target);
+                var icon = $(this).find("i");
+                
+                if (input.attr("type") === "password") {
+                    input.attr("type", "text");
+                    icon.removeClass("fa-eye").addClass("fa-eye-slash");
+                } else {
+                    input.attr("type", "password");
+                    icon.removeClass("fa-eye-slash").addClass("fa-eye");
+                }
+            });
+
+            // Preencher campo de e-mail se armazenado no localStorage
+            const storedEmail = localStorage.getItem('email');
+            if (storedEmail) {
+                $('input[name="email"]').val(storedEmail);
+                $('input[type="checkbox"]').prop('checked', true); // Marca o checkbox
+            }
+    
+            // Preencher campo de e-mail a partir da URL
+            function getEmailFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('email');
+            }
+    
+            const emailFromURL = getEmailFromURL();
+            if (emailFromURL) {
+                $('input[name="email"]').val(emailFromURL); // Preenche o campo de e-mail
+            }
+    
+            // Envio do formulário com "Lembre-se de mim" e redirecionamento
+            $('form').on('submit', async function(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Verifica se as senhas coincidem
+                if (data.senha !== data.confirmSenha) {
+                    $('#feedback').text('As senhas não coincidem!');
+                    $('#feedback').show();
+                    return;
+                }
+                
+                // Cria os links do menu
+                const links = [
+                    { href: "http://127.0.0.1:5501/dadosagua.html", text: "Dados Água" },
+                    { href: "http://127.0.0.1:5501/dadosenergia.html", text: "Dados Energia" },
+                    { href: "http://127.0.0.1:5501/financas.html", text: "Finanças" },
+                    { href: "http://127.0.0.1:5501/unidades.html", text: "Unidades" },
+                    { href: "http://127.0.0.1:5501/equipamentos.html", text: "Equipamentos" },
+                    { href: "http://127.0.0.1:5501/dadosaguaAdmCadastro.html", text: "Cadastro de Unidades" },
+                    { href: "http://127.0.0.1:5501/adicaofotos.html", text: "Adicionar Fotos" },
+                    { href: "http://127.0.0.1:5501/mudancanivel.html", text: "Mudança de Nível" }
+                ];
+
+                // Verifica se o campo de e-mail foi preenchido
+                // Armazena ou remove o e-mail do localStorage
+                if ($('input[type="checkbox"]').is(':checked')) {
+                    localStorage.setItem('email', data.email);
+                } else {
+                    localStorage.removeItem('email');
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3004/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        // Redirecionamento conforme o nível de acesso
+                        switch (result.nivel) {
+                            case 1:
+                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para usuários
+                                break;
+                            case 2:
+                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para editores
+                                break;
+                            case 3:
+                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para administradores
+                                break;
+                            default:
+                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página padrão
+                        }
+                    } else {
+                        $('#feedback').text(result.message);  // Mostra a mensagem de erro
+                        $('#feedback').show();  // Torna o feedback visível
+                    }
+                } catch (error) {
+                    console.error('Erro ao realizar login:', error);
+                    $('#feedback').text('Erro ao realizar login.'); // Mensagem de erro genérica
+                    $('#feedback').show();  // Torna o feedback visível
+                }
+            });
+
+        });
+        
+        // Função para controlar a visibilidade dos links conforme o nível de acesso
+        function controlarMenu() {
+            const nivel = localStorage.getItem('nivel'); // Recupera o nível de acesso do usuário
+
+            // Verificar e mostrar/ocultar os links com base no nível de acesso
+            if (nivel === '1') {
+                // Exibe links para nível 1
+                document.getElementById("Dados Agua").style.display = 'block';
+                document.getElementById('menu-dados-agua').style.display = 'block';
+                document.getElementById('menu-dados-energia').style.display = 'block';
+                document.getElementById('menu-financas').style.display = 'block';
+
+                // Oculta links para níveis superiores
+                document.getElementById('Dados Energia').style.display = 'none';
+                document.getElementById('menu-equipamentos').style.display = 'none';
+                document.getElementById('menu-cadastro-unidades').style.display = 'none';
+                document.getElementById('menu-adicao-fotos').style.display = 'none';
+                document.getElementById('menu-mudanca-nivel').style.display = 'none';
+            } else if (nivel === '2') {
+                // Exibe links para nível 2
+                document.getElementById('menu-inicial').style.display = 'block';
+                document.getElementById('menu-dados-agua').style.display = 'block';
+                document.getElementById('menu-dados-energia').style.display = 'block';
+                document.getElementById('menu-financas').style.display = 'block';
+                document.getElementById('menu-unidades').style.display = 'block';
+                document.getElementById('menu-equipamentos').style.display = 'block';
+
+                // Oculta links para níveis superiores
+                document.getElementById('menu-cadastro-unidades').style.display = 'none';
+                document.getElementById('menu-adicao-fotos').style.display = 'none';
+                document.getElementById('menu-mudanca-nivel').style.display = 'none';
+            } else if (nivel === '3') {
+                // Exibe todos os links para nível 3
+                document.getElementById("Dados Agua").style.display = 'block';
+                document.getElementById('menu-dados-agua').style.display = 'block';
+                document.getElementById('menu-dados-energia').style.display = 'block';
+                document.getElementById('menu-financas').style.display = 'block';
+                document.getElementById('menu-unidades').style.display = 'block';
+                document.getElementById('menu-equipamentos').style.display = 'block';
+                document.getElementById("Cadastro de Unidades").style.display = 'block';
+                document.getElementById('menu-adicao-fotos').style.display = 'block';
+                document.getElementById('menu-mudanca-nivel').style.display = 'block';
+
+                document.getElementById('Dados Energia').style.display = 'none';
+            }
+        }
+
+    // Chama a função de controle do menu ao carregar a página
+    $(document).ready(controlarMenu);
+    </script>
+
+     <script>
+       
+       // Função para obter parâmetros da URL
+        function getEmailFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('email');
+        }
+
+        const email = getEmailFromURL();
+        if (email) {
+            $('input[name="email"]').val(email); // Preenche o campo de e-mail
+        }
+    </script>
+    
+</div>
+</body>
+</html>
