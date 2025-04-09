@@ -560,3 +560,10 @@
     padding: 10px; /* Adiciona um pouco de padding, se desejado */
 }
 
+.article-link {
+    color: #0d6efd; /* Cor do link */
+    transition: all 0.3s;
+}
+.article-link:hover {
+    color: #0a58ca; /* Cor ao passar o mouse */
+}
