@@ -4,37 +4,163 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recuperação de Senha</title>
+    <title>Recuperação de Senha | Aguapura</title>
     <link rel="icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/recuperarsenha.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7581A7;
+            --secondary-color: #445188;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: var(--light-color);
+            color: #445188;
+            text-align: center;
+            padding: 20px;
+            border-bottom: none;
+        }
+        
+        .card-body {
+            padding: 30px;
+            background-color: white;
+        }
+        
+        .logo {
+            max-height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider-text {
+            padding: 0 10px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .remember-text {
+            color: #6c757d;
+        }
+        
+        .remember-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .remember-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .input-icon input {
+            padding-left: 40px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <form class="form-signin" method="POST" action="">
-                    <div class="text-center mb-4">
-                        <img src="img/logo1.png" alt="Logo da Aguapura" height="72">
-                        <h2 class="h3 mb-3 font-weight-normal">Recuperação de Senha</h2>
-                        <p>Digite seu e-mail para receber o link de recuperação</p>
+            <div class="col-md-7 col-lg-5">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="img/logo1.png" alt="Logo da Aguapura" class="logo">
+                        <h2 class="h4 mb-0">Recuperação de Senha</h2>
                     </div>
+                    <div class="card-body">
+                        <form class="form-signin" method="POST" action="">
+                            <p class="text-muted mb-4">Digite o e-mail associado à sua conta e enviaremos um link para redefinir sua senha.</p>
+                            
+                            <div class="form-group mb-4 input-icon">
+                                <input type="email" id="inputEmail" class="form-control email-input" name="email" placeholder="Digite seu e-mail" required autofocus>
+                            </div>
 
-                    <div class="form-group mb-3">
-                        <label for="inputEmail" class="sr-only">E-mail</label>
-                        <input type="email" id="inputEmail" class="form-control email-input" name="email" placeholder="Digite seu e-mail" required autofocus>
+                            <button class="btn btn-primary btn-block w-100 mb-3" type="submit" name="SendRecupSenha">
+                                <i class="fas fa-paper-plane me-2"></i> Enviar Link de Recuperação
+                            </button>
+                            
+                            <div class="divider">
+                                <span class="divider-text">OU</span>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <p class="remember-text">Lembrou sua senha? <a href="login.html">Faça login aqui</a></p>
+                            </div>
+                        </form>
                     </div>
-
-                    <button class="btn btn-primary btn-block" type="submit" name="SendRecupSenha">Recuperar Senha</button>
-                    
-                    <div class="text-center mt-3">
-                        <p class="remember-text">Lembrou? <a href="login.html">Clique aqui</a> para fazer login</p>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
