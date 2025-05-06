@@ -279,298 +279,299 @@
 <script src="js/main.js"></script>
 
 <script>
-// Banco de dados de artigos
-const articles = [
-    { 
-        title: "I-250 - PADRÕES DE CONSUMO DE ÁGUA E ENERGIA ELÉTRICA EM HABITAÇÕES DE INTERESSE SOCIAL DE SALVADOR, BAHIA", 
-        author: "Ana Paula Arruda de Almeida Garcia", 
-        date: "20 de Março de 2024", 
-        semester: "2015.2",
-        pdf: "Documentos/Artigos/ARTIGO ANA PAULA I-250.pdf"
-    },
-    { 
-        title: "MONITORAMENTO DO CONSUMO DE ÁGUA EM PRÉDIOS UNIVERSITÁRIOS: METODOLOGIA E RESULTADOS", 
-        author: "Sandira Lívia Moraes FONSECA, Luciano Matos QUEIROZ, Maria do Socorro GONÇALVES, Asher KIPERSTOK   ", 
-        date: "22 de Julho de 2024", 
-        semester: "2015.2",
-        pdf: "pdfs/artigo2.pdf"
-    },
-    { 
-        title: "POSSIBILIDADES DO USO DE ÁGUA DE CHUVA EM PRÉDIO PÚBLICO DO ESTADO DA BAHIA", 
-        author: "Antonio Santos Sánchez, Vicky Ramon Britto, Samara Fernanda da Silva, Thales Alves Cardoso, Asher Kiperstok", 
-        date: "05 de Novembro de 2023", 
-        semester: "2015.2",
-        pdf: "pdfs/artigo3.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "AVALIAÇÃO DO POTENCIAL DE APLICAÇÃO DA FERRAMENTA HFMEA COMO ELEMENTO PARAPROMOÇÃO DE UMA GESTÃO INTEGRADA EM HEMOCENTRO", 
-        author: "KALILA CALIL BARRETO COUTO", 
-        date: "00 de 00 de 2019", 
-        semester: "2019.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "Water conservation as a tool to support sustainable practices in a Brazilian public university", 
-        author: "Maerbal Marinho, Maria do Socorro Gonçalves, Asher Kiperstok", 
-        date: "24 de Junho de 2013", 
-        semester: "2013.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "TEC BAHIA - REVISTA BAIANA DE TECNOLOGIA", 
-        author: "Diversos", 
-        date: "00 de Janeiro de 2008", 
-        semester: "2008.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "Sustentabilidade Ambiental: Produção e Consumo", 
-        author: "Asher Kiperstok", 
-        date: "00 de 00 de 2006", 
-        semester: "2006.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "A gestão de oferta e demanda para pensar o futuro energético brasileiro", 
-        author: "Asher Kiperstok", 
-        date: "00 de 00 de 2013", 
-        semester: "2013.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "BAHIA ANÁLISE E DADOS", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "00 de Junho de 2011", 
-        semester: "2011.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "REVISTA MUITO", 
-        author: "Asher Kiperstok", 
-        date: "13 de Março de 2011", 
-        semester: "2011.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "Idéias Inovadoras em Gestão Universitária", 
-        author: "PRODEP – Pró-Reitoria de Desenvolvimento de Pessoas", 
-        date: "00 de Outubro de 2011", 
-        semester: "2011.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "PROPOSIÇÃO DE METODOLOGIA DE CARATERIZAÇÃO DO CONSUMO INTRADOMICILIAR DE ÁGUA POR EQUIPAMENTO", 
-        author: "Gabriella Laura P.Botelho, Vivian Carla Alves, Ana Paula Garcia, Fred Augusto Anunciação Silva, Asher Kiperstok, Karla Oliveira Esquerre", 
-        date: "27 de Novembro de 2011", 
-        semester: "2011.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "VI-025 – PROGRAMA DE USO RACIONAL DA ÁGUA EM UMA UNIVERSIDADE: METODOLOGIA E RESULTADOS", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "20 de Setembro de 2023", 
-        semester: "2009.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "O USO RACIONAL DA ÁGUA EM AEROPORTOS – O ESTUDO DE CASO NOS SANITÁRIOS DO AEROPORTO INTERNACIONAL DE SALVADOR/BA", 
-        author: "Maria Thaís Menezes Freire, Asher Kiperstok, Ricardo de Araújo Kalid, George Juliano Santos de Amorim", 
-        date: "11 de Julho de 2010", 
-        semester: "2010.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "Rational Consumption of Water in Administrative Public Buildings: The Experience of the Bahia Administrative Center, Brazi", 
-        author: "Samara Fernanda da Silva, Vicky Britto Camila Azevedo, Asher Kiperstok", 
-        date: "25 de Agosto de 2014", 
-        semester: "2014.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "MONITORAMENTO DO CONSUMO DE ÁGUA EM PRÉDIOS UNIVERSITÁRIOS: METODOLOGIA E RESULTADOS", 
-        author: "Sandira Lívia Moraes FONSECA, Asher Kiperstok, Luciano Matos QUEIROZ, Maria do Socorro GONÇALVES", 
-        date: "16 de Novembro de 2009", 
-        semester: "2009.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "Water conservation as a tool to support sustainable practices in a Brazilian public university", 
-        author: "Maerbal Marinho, Asher Kiperstok,  Maria do Socorro Gonçalves", 
-        date: "12 de Julho de 2013", 
-        semester: "2013.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "GESTÃO AMBIENTAL NA UFBA SOB A PERSPECTIVA DOS EIXOS TEMÁTICOS DA A3P", 
-        author: "ANDRÉIA LÉ DIAS ", 
-        date: "00/00/0000", 
-        semester: "2014.1",
-        pdf: "pdfs/artigo5.pdf"
-    },
-    { 
-        title: "CARACTERIZAÇÃO PRELIMINAR DE CONSUMO DE ÁGUA EM PRÉDIOS PÚBLICOS ADMINISTRATIVOS ", 
-        author: "Letícia Moura de C. Santana, Asher Kiperstok", 
-        date: "12 de Julho de 2013", 
-        semester: "2013.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "CARACTERIZAÇÃO E PERFIL DE CONSUMO DE ÁGUA DE UM SANITÁRIO MASCULINO DA EPUFBA", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Julho de 2013", 
-        semester: "2013.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "ALTERNATIVAS PARA A REDUÇÃO DE CONSUMO DE ÁGUA EM SANITÁRIOS FEMININOS DE PRÉDIOS PÚBLICOS", 
-        author: "Luiza de Andrade Berndt, Asher Kiperstok, Pricila Cal Oliveira, Vivien Luciane Viaro", 
-        date: "12 de Julho de 2013", 
-        semester: "2013.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "A INFLUÊNCIA DO DESIGN DOS SANITÁRIOS PÚBLICOS NO COMPORTAMENTO DOS USUÁRIOS", 
-        author: "Kelly Fontoura, Asher Kiperstok, Marion Cunha Dias, Eduardo Cohim", 
-        date: "25 de Setembro de 2009", 
-        semester: "2009.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "AVALIAÇÃO DO POTENCIAL DE REÚSO DE ÁGUA EM EQUIPAMENTO DE ANÁLISES CLÍNICAS", 
-        author: "Solange Nunes, Marina Ilha, Luis Guilherme B. Celso, Aldo Roggers Jr", 
-        date: "23 de Agosto de 2006", 
-        semester: "2006.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-086 – PROGRAMA DE RACIONALIZAÇÃO DO CONSUMO DE ÁGUA EM PRÉDIOS PÚBLICOS DO ESTADO DA BAHIA", 
-        author: "Samara Fernanda da Silva, Asher Kiperstok, Vicky Britto, Carolina Rodeiro", 
-        date: "29 de Dezembro de 2013", 
-        semester: "2013.2",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "ANÁLISE DO PERFIL DE ABASTECIMENTO DE ÁGUA EM EDIFICAÇÕES ESCOLARES PÚBLICAS", 
-        author: "Orestes M. Gonçalves, Marina S. de O. Ilha, Luciana P. Pedroso, Eliza F. Montali, Fernando Henrique Gasparini", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    { 
-        title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
-        author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
-        date: "12 de Janeiro de 2023", 
-        semester: "2015.1",
-        pdf: "pdfs/artigo4.pdf"
-    },
-    // Adicione mais artigos conforme necessário
-];
-
-let selectedButton = null;
-
-function filterArticles(semester) {
-    const button = document.querySelector(`button[onclick="filterArticles('${semester}')"]`);
+    // Banco de dados de artigos
+    const articles = [
+        { 
+            title: "I-250 - PADRÕES DE CONSUMO DE ÁGUA E ENERGIA ELÉTRICA EM HABITAÇÕES DE INTERESSE SOCIAL DE SALVADOR, BAHIA", 
+            author: "Ana Paula Arruda de Almeida Garcia", 
+            date: "20 de Março de 2024", 
+            semester: "2015.2",
+            pdf: "elearning-1.0.0/Documentos/Artigos/1.pdf"
+        },
+        { 
+            title: "MONITORAMENTO DO CONSUMO DE ÁGUA EM PRÉDIOS UNIVERSITÁRIOS: METODOLOGIA E RESULTADOS", 
+            author: "Sandira Lívia Moraes FONSECA, Luciano Matos QUEIROZ, Maria do Socorro GONÇALVES, Asher KIPERSTOK   ", 
+            date: "22 de Julho de 2024", 
+            semester: "2015.2",
+            pdf: "pdfs/artigo2.pdf"
+        },
+        { 
+            title: "POSSIBILIDADES DO USO DE ÁGUA DE CHUVA EM PRÉDIO PÚBLICO DO ESTADO DA BAHIA", 
+            author: "Antonio Santos Sánchez, Vicky Ramon Britto, Samara Fernanda da Silva, Thales Alves Cardoso, Asher Kiperstok", 
+            date: "05 de Novembro de 2023", 
+            semester: "2015.2",
+            pdf: "pdfs/artigo3.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "AVALIAÇÃO DO POTENCIAL DE APLICAÇÃO DA FERRAMENTA HFMEA COMO ELEMENTO PARAPROMOÇÃO DE UMA GESTÃO INTEGRADA EM HEMOCENTRO", 
+            author: "KALILA CALIL BARRETO COUTO", 
+            date: "00 de 00 de 2019", 
+            semester: "2019.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "Water conservation as a tool to support sustainable practices in a Brazilian public university", 
+            author: "Maerbal Marinho, Maria do Socorro Gonçalves, Asher Kiperstok", 
+            date: "24 de Junho de 2013", 
+            semester: "2013.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "TEC BAHIA - REVISTA BAIANA DE TECNOLOGIA", 
+            author: "Diversos", 
+            date: "00 de Janeiro de 2008", 
+            semester: "2008.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "Sustentabilidade Ambiental: Produção e Consumo", 
+            author: "Asher Kiperstok", 
+            date: "00 de 00 de 2006", 
+            semester: "2006.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "A gestão de oferta e demanda para pensar o futuro energético brasileiro", 
+            author: "Asher Kiperstok", 
+            date: "00 de 00 de 2013", 
+            semester: "2013.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "BAHIA ANÁLISE E DADOS", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "00 de Junho de 2011", 
+            semester: "2011.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "REVISTA MUITO", 
+            author: "Asher Kiperstok", 
+            date: "13 de Março de 2011", 
+            semester: "2011.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "Idéias Inovadoras em Gestão Universitária", 
+            author: "PRODEP – Pró-Reitoria de Desenvolvimento de Pessoas", 
+            date: "00 de Outubro de 2011", 
+            semester: "2011.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "PROPOSIÇÃO DE METODOLOGIA DE CARATERIZAÇÃO DO CONSUMO INTRADOMICILIAR DE ÁGUA POR EQUIPAMENTO", 
+            author: "Gabriella Laura P.Botelho, Vivian Carla Alves, Ana Paula Garcia, Fred Augusto Anunciação Silva, Asher Kiperstok, Karla Oliveira Esquerre", 
+            date: "27 de Novembro de 2011", 
+            semester: "2011.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "VI-025 – PROGRAMA DE USO RACIONAL DA ÁGUA EM UMA UNIVERSIDADE: METODOLOGIA E RESULTADOS", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "20 de Setembro de 2023", 
+            semester: "2009.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "O USO RACIONAL DA ÁGUA EM AEROPORTOS – O ESTUDO DE CASO NOS SANITÁRIOS DO AEROPORTO INTERNACIONAL DE SALVADOR/BA", 
+            author: "Maria Thaís Menezes Freire, Asher Kiperstok, Ricardo de Araújo Kalid, George Juliano Santos de Amorim", 
+            date: "11 de Julho de 2010", 
+            semester: "2010.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "Rational Consumption of Water in Administrative Public Buildings: The Experience of the Bahia Administrative Center, Brazi", 
+            author: "Samara Fernanda da Silva, Vicky Britto Camila Azevedo, Asher Kiperstok", 
+            date: "25 de Agosto de 2014", 
+            semester: "2014.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "MONITORAMENTO DO CONSUMO DE ÁGUA EM PRÉDIOS UNIVERSITÁRIOS: METODOLOGIA E RESULTADOS", 
+            author: "Sandira Lívia Moraes FONSECA, Asher Kiperstok, Luciano Matos QUEIROZ, Maria do Socorro GONÇALVES", 
+            date: "16 de Novembro de 2009", 
+            semester: "2009.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "Water conservation as a tool to support sustainable practices in a Brazilian public university", 
+            author: "Maerbal Marinho, Asher Kiperstok,  Maria do Socorro Gonçalves", 
+            date: "12 de Julho de 2013", 
+            semester: "2013.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "GESTÃO AMBIENTAL NA UFBA SOB A PERSPECTIVA DOS EIXOS TEMÁTICOS DA A3P", 
+            author: "ANDRÉIA LÉ DIAS ", 
+            date: "00/00/0000", 
+            semester: "2014.1",
+            pdf: "pdfs/artigo5.pdf"
+        },
+        { 
+            title: "CARACTERIZAÇÃO PRELIMINAR DE CONSUMO DE ÁGUA EM PRÉDIOS PÚBLICOS ADMINISTRATIVOS ", 
+            author: "Letícia Moura de C. Santana, Asher Kiperstok", 
+            date: "12 de Julho de 2013", 
+            semester: "2013.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "CARACTERIZAÇÃO E PERFIL DE CONSUMO DE ÁGUA DE UM SANITÁRIO MASCULINO DA EPUFBA", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Julho de 2013", 
+            semester: "2013.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "ALTERNATIVAS PARA A REDUÇÃO DE CONSUMO DE ÁGUA EM SANITÁRIOS FEMININOS DE PRÉDIOS PÚBLICOS", 
+            author: "Luiza de Andrade Berndt, Asher Kiperstok, Pricila Cal Oliveira, Vivien Luciane Viaro", 
+            date: "12 de Julho de 2013", 
+            semester: "2013.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "A INFLUÊNCIA DO DESIGN DOS SANITÁRIOS PÚBLICOS NO COMPORTAMENTO DOS USUÁRIOS", 
+            author: "Kelly Fontoura, Asher Kiperstok, Marion Cunha Dias, Eduardo Cohim", 
+            date: "25 de Setembro de 2009", 
+            semester: "2009.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "AVALIAÇÃO DO POTENCIAL DE REÚSO DE ÁGUA EM EQUIPAMENTO DE ANÁLISES CLÍNICAS", 
+            author: "Solange Nunes, Marina Ilha, Luis Guilherme B. Celso, Aldo Roggers Jr", 
+            date: "23 de Agosto de 2006", 
+            semester: "2006.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-086 – PROGRAMA DE RACIONALIZAÇÃO DO CONSUMO DE ÁGUA EM PRÉDIOS PÚBLICOS DO ESTADO DA BAHIA", 
+            author: "Samara Fernanda da Silva, Asher Kiperstok, Vicky Britto, Carolina Rodeiro", 
+            date: "29 de Dezembro de 2013", 
+            semester: "2013.2",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "ANÁLISE DO PERFIL DE ABASTECIMENTO DE ÁGUA EM EDIFICAÇÕES ESCOLARES PÚBLICAS", 
+            author: "Orestes M. Gonçalves, Marina S. de O. Ilha, Luciana P. Pedroso, Eliza F. Montali, Fernando Henrique Gasparini", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+        { 
+            title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE ÁGUA – DESTILADORES", 
+            author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
+            date: "12 de Janeiro de 2023", 
+            semester: "2015.1",
+            pdf: "pdfs/artigo4.pdf"
+        },
+// Adicione mais artigos conforme necessário
+        // ... (mantenha todos os outros artigos do seu array original)
+    ];
     
-    if (selectedButton === button) {
-        button.classList.remove('btn-selected');
-        selectedButton = null;
-        displayArticles(articles);
-    } else {
-        if (selectedButton) selectedButton.classList.remove('btn-selected');
-        button.classList.add('btn-selected');
-        selectedButton = button;
+    let selectedButton = null;
+    
+    function filterArticles(semester) {
+        const button = document.querySelector(`button[onclick="filterArticles('${semester}')"]`);
         
-        const filteredArticles = articles.filter(article => article.semester === semester);
+        if (selectedButton === button) {
+            button.classList.remove('btn-selected');
+            selectedButton = null;
+            displayArticles(articles);
+        } else {
+            if (selectedButton) selectedButton.classList.remove('btn-selected');
+            button.classList.add('btn-selected');
+            selectedButton = button;
+            
+            const filteredArticles = articles.filter(article => article.semester === semester);
+            displayArticles(filteredArticles);
+        }
+    }
+    
+    function displayArticles(articlesToDisplay) {
+        const articleListContainer = document.getElementById("articleListContainer");
+        articleListContainer.innerHTML = "";
+        
+        if (articlesToDisplay.length === 0) {
+            articleListContainer.innerHTML = '<div class="text-center py-5"><p>Nenhum artigo encontrado</p></div>';
+            return;
+        }
+        
+        articlesToDisplay.forEach(article => {
+            const articleItem = document.createElement("div");
+            articleItem.classList.add("article-item");
+    
+            articleItem.innerHTML = `
+                <h5>${article.title}</h5>
+                <p class="article-author">${article.author || "Autor Desconhecido"}</p>
+                <p class="article-date">${article.date}</p>
+                ${article.pdf ? `
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <a href="${article.pdf}" class="btn btn-sm btn-primary" download>
+                        <i class="fa fa-download"></i> Baixar PDF
+                    </a>
+                    <a href="${article.pdf}" class="btn btn-sm btn-outline-primary" target="_blank">
+                        <i class="fa fa-eye"></i> Visualizar
+                    </a>
+                </div>
+                ` : '<p class="text-muted">PDF não disponível</p>'}
+            `;
+            
+            articleListContainer.appendChild(articleItem);
+        });
+    }
+    
+    // Event listeners
+    document.getElementById("searchButton").addEventListener("click", searchArticles);
+    document.getElementById("searchInput").addEventListener("keyup", function(event) {
+        if (event.key === "Enter") searchArticles();
+    });
+    
+    function searchArticles() {
+        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        const filteredArticles = articles.filter(article =>
+            article.title.toLowerCase().includes(searchTerm) ||
+            (article.author && article.author.toLowerCase().includes(searchTerm))
+        );
         displayArticles(filteredArticles);
     }
-}
-
-function displayArticles(articlesToDisplay) {
-    const articleListContainer = document.getElementById("articleListContainer");
-    articleListContainer.innerHTML = "";
     
-    if (articlesToDisplay.length === 0) {
-        articleListContainer.innerHTML = '<div class="text-center py-5"><p>Nenhum artigo encontrado</p></div>';
-        return;
-    }
-    
-    articlesToDisplay.forEach(article => {
-        const articleItem = document.createElement("div");
-        articleItem.classList.add("article-item");
-
-        articleItem.innerHTML = `
-            <h5>${article.title}</h5>
-            <p class="article-author">${article.author || "Autor Desconhecido"}</p>
-            <p class="article-date">${article.date}</p>
-            ${article.pdf ? `
-            <div class="d-flex justify-content-between align-items-center mt-2">
-                <a href="${article.pdf}" class="btn btn-sm btn-primary" download>
-                    <i class="fa fa-download"></i> Baixar PDF
-                </a>
-                <a href="${article.pdf}" class="btn btn-sm btn-outline-primary" target="_blank">
-                    <i class="fa fa-eye"></i> Visualizar
-                </a>
-            </div>
-            ` : ''}
-        `;
-        
-        articleListContainer.appendChild(articleItem);
-    });
-}
-
-// Event listeners
-document.getElementById("searchButton").addEventListener("click", searchArticles);
-document.getElementById("searchInput").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") searchArticles();
-});
-
-function searchArticles() {
-    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-    const filteredArticles = articles.filter(article =>
-        article.title.toLowerCase().includes(searchTerm) ||
-        (article.author && article.author.toLowerCase().includes(searchTerm))
-    );
-    displayArticles(filteredArticles);
-}
-
-// Inicializar a lista de artigos
-displayArticles(articles);
-</script>
-
+    // Inicializar a lista de artigos
+    displayArticles(articles);
+    </script>
 </body>
 </html>
+
