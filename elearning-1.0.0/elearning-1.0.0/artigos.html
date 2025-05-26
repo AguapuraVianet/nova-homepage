@@ -55,16 +55,56 @@
         }
         
         .date-filter-container {
+            width: 100%;
             max-height: 300px;
             overflow-y: auto;
             overflow-x: hidden;
+            margin: 0 auto;
+            padding: 0 15px;  
+        }
+
+        .date-filter-container {
+             padding-left: 0 !important; /* Remove o padding esquerdo */
+             margin-left: -8px; /* Puxa um pouco mais para a esquerda */
         }
         
-        .date-filter button {
-            font-size: 14px;
-            margin-left: -5px;
-            text-align: left;
-            width: 100%;
+        .date-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+        }
+         
+        .date-filter .btn-link {
+            margin: 0; /* Remove margens padrão */
+            padding: 4px 8px; /* Botões mais compactos */
+        }
+        
+        /* Para telas pequenas - horizontal com scroll */
+        @media (max-width: 992px) {
+            .date-filter-container {
+                width: 100%;
+                max-width: 100%; /* Garante que não tenha limite artificial */
+                margin: 0; /* Remove margens automáticas que centralizam */
+                padding: 0; /* Remove padding que reduz espaço útil */
+                overflow-x: auto; /* Permite scroll horizontal se necessário */
+                overflow-y: hidden; /* Remove scroll vertical */
+                margin-bottom: 25px;
+                margin-left: 20px;
+            }
+
+            .date-filter {
+                flex-wrap: nowrap;
+                overflow-x: auto; /* Scroll interno */
+                padding: 1px 1px; /* Espaço apenas para os botões não colarem nas bordas */
+                -webkit-overflow-scrolling: touch;
+                width: max-content; /* Força o container a ser tão largo quanto os botões */
+                min-width: 100%; /* Garante que ele pelo menos ocupe 100% da tela */
+            }
+
+            .date-filter .btn-link {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
         }
     </style>
 </head>
@@ -285,28 +325,28 @@
             title: "I-250 - PADR&Otilde;ES DE CONSUMO DE &Aacute;GUA E ENERGIA EL&Eacute;TRICA EM HABITA&Ccedil;&Otilde;ES DE INTERESSE SOCIAL DE SALVADOR, BAHIA", 
             author: "Ana Paula Arruda de Almeida Garcia", 
             date: "20 de Mar&ccedil;o de 2024", 
-            semester: "2015.2",
+            semester: "2024.2",
             pdf: "elearning-1.0.0/Documentos/Artigos/1.pdf"
         },
         { 
             title: "MONITORAMENTO DO CONSUMO DE &Aacute;GUA EM PR&Eacute;DIOS UNIVERSIT&Aacute;RIOS: METODOLOGIA E RESULTADOS", 
             author: "Sandira L&iacute;via Moraes FONSECA, Luciano Matos QUEIROZ, Maria do Socorro GON&Ccedil;ALVES, Asher KIPERSTOK   ", 
             date: "22 de Julho de 2024", 
-            semester: "2015.2",
+            semester: "2024.2",
             pdf: "pdfs/artigo2.pdf"
         },
         { 
             title: "POSSIBILIDADES DO USO DE &Aacute;GUA DE CHUVA EM PR&Eacute;DIO P&Uacute;BLICO DO ESTADO DA BAHIA", 
             author: "Antonio Santos S&aacute;nchez, Vicky Ramon Britto, Samara Fernanda da Silva, Thales Alves Cardoso, Asher Kiperstok", 
             date: "05 de Novembro de 2023", 
-            semester: "2015.2",
+            semester: "2023.2",
             pdf: "pdfs/artigo3.pdf"
         },
         { 
             title: "I-046 - ESTUDO DOS EQUIPAMENTOS CONSUMIDORES DE &Aacute;GUA &ndash; DESTILADORES", 
             author: "Alessandra Keiko Nakagawa, Asher Kiperstok, Karla Patricia Oliveira-Esquerre", 
             date: "12 de Janeiro de 2023", 
-            semester: "2015.1",
+            semester: "2023.1",
             pdf: "pdfs/artigo4.pdf"
         },
         { 
