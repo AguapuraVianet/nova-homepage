@@ -54,167 +54,173 @@
         </section>
     </div>
 </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        // Constantes da API
+        const API_BASE_URL = 'http://127.0.0.1:8000/api/usuarios';
+        
+        // Objeto com mensagens de erro personalizadas
+        const ERROR_MESSAGES = {
+            NETWORK_ERROR: "Erro de conexão. Verifique sua internet e tente novamente.",
+            SERVER_ERROR: "Servidor indisponível. Tente novamente mais tarde.",
+            INVALID_CREDENTIALS: "E-mail ou senha incorretos. Verifique seus dados.",
+            INVALID_DATA: "Por favor, preencha todos os campos corretamente.",
+            UNKNOWN_ERROR: "Erro desconhecido. Por favor, contate o suporte."
+        };
+
         $(document).ready(function() {
             // Mostrar/esconder senha
             $("#togglePassword").click(function() {
-                var passwordField = $("#password");
-                var passwordFieldType = passwordField.attr("type");
-                if (passwordFieldType === "password") {
-                    passwordField.attr("type", "text");
-                    $(this).removeClass("fa-eye").addClass("fa-eye-slash");
-                } else {
-                    passwordField.attr("type", "password");
-                    $(this).removeClass("fa-eye-slash").addClass("fa-eye");
-                }
+                const passwordField = $("#password");
+                const passwordFieldType = passwordField.attr("type");
+                passwordField.attr("type", passwordFieldType === "password" ? "text" : "password");
+                $(this).toggleClass("fa-eye fa-eye-slash");
             });
-    
-            // Preencher campo de e-mail se armazenado no localStorage
-            const storedEmail = localStorage.getItem('email');
-            if (storedEmail) {
-                $('input[name="email"]').val(storedEmail);
-                $('input[type="checkbox"]').prop('checked', true); // Marca o checkbox
-            }
-    
-            // Preencher campo de e-mail a partir da URL
-            function getEmailFromURL() {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get('email');
-            }
-    
-            const emailFromURL = getEmailFromURL();
-            if (emailFromURL) {
-                $('input[name="email"]').val(emailFromURL); // Preenche o campo de e-mail
-            }
-    
-            // Envio do formulário com "Lembre-se de mim" e redirecionamento
-            $('form').on('submit', async function(e) {
-                e.preventDefault();
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData.entries());
-                
-                // Cria os links do menu
-                const links = [
-                    { href: "http://127.0.0.1:5501/dadosagua.html", text: "Dados Água" },
-                    { href: "http://127.0.0.1:5501/dadosenergia.html", text: "Dados Energia" },
-                    { href: "http://127.0.0.1:5501/financas.html", text: "Finanças" },
-                    { href: "http://127.0.0.1:5501/unidades.html", text: "Unidades" },
-                    { href: "http://127.0.0.1:5501/equipamentos.html", text: "Equipamentos" },
-                    { href: "http://127.0.0.1:5501/dadosaguaAdmCadastro.html", text: "Cadastro de Unidades" },
-                    { href: "http://127.0.0.1:5501/adicaofotos.html", text: "Adicionar Fotos" },
-                    { href: "http://127.0.0.1:5501/mudancanivel.html", text: "Mudança de Nível" }
-                ];
 
-                // Verifica se o campo de e-mail foi preenchido
-                // Armazena ou remove o e-mail do localStorage
-                if ($('input[type="checkbox"]').is(':checked')) {
-                    localStorage.setItem('email', data.email);
-                } else {
-                    localStorage.removeItem('email');
+            // Preencher e-mail salvo
+            const storedEmail = localStorage.getItem('rememberedEmail');
+            if (storedEmail) {
+                $("#email").val(storedEmail);
+                $("#rememberMe").prop("checked", true);
+            }
+
+            // Login com JWT
+            $("#loginForm").on("submit", async function(e) {
+                e.preventDefault();
+                
+                const email = $("#email").val().trim();
+                const password = $("#password").val();
+                const rememberMe = $("#rememberMe").is(":checked");
+
+                // Resetar mensagens de erro
+                $("#email").removeClass("is-invalid");
+                $("#password").removeClass("is-invalid");
+                $("#feedback").removeClass("alert-danger").hide();
+
+                // Validação básica
+                if (!email || !password) {
+                    showError(ERROR_MESSAGES.INVALID_DATA);
+                    if (!email) $("#email").addClass("is-invalid");
+                    if (!password) $("#password").addClass("is-invalid");
+                    return;
                 }
+
+                // Validação de formato de e-mail
+                if (!validateEmail(email)) {
+                    showError("Por favor, insira um e-mail válido.");
+                    $("#email").addClass("is-invalid");
+                    return;
+                }
+
+                // Feedback visual
+                const submitBtn = $("button[type='submit']");
+                submitBtn.prop("disabled", true).html('<i class="fa fa-spinner fa-spin"></i> Entrando...');
 
                 try {
-                    const response = await fetch('http://localhost:3004/login', {
+                    // Autenticação
+                    const response = await fetch(`${API_BASE_URL}/login`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
                     });
 
-                    const result = await response.json();
-                    if (response.ok) {
-                        // Redirecionamento conforme o nível de acesso
-                        switch (result.nivel) {
-                            case 1:
-                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para usuários
-                                break;
-                            case 2:
-                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para editores
-                                break;
-                            case 3:
-                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página para administradores
-                                break;
-                            default:
-                                window.location.href = 'http://127.0.0.1:5501/dadosagua.html'; // Página padrão
+                    // Tratamento de erros HTTP
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => null);
+                        
+                        if (response.status === 401 || response.status === 403) {
+                            showError(ERROR_MESSAGES.INVALID_CREDENTIALS);
+                            $("#email").addClass("is-invalid");
+                            $("#password").addClass("is-invalid");
+                        } 
+                        else if (response.status >= 500) {
+                            showError(ERROR_MESSAGES.SERVER_ERROR);
                         }
-                    } else {
-                        $('#feedback').text(result.message);  // Mostra a mensagem de erro
-                        $('#feedback').show();  // Torna o feedback visível
+                        else {
+                            showError(errorData?.message || ERROR_MESSAGES.UNKNOWN_ERROR);
+                        }
+                        return;
                     }
+
+                    const { token, user } = await response.json();
+                    
+                    // Armazenar token e dados do usuário
+                    localStorage.setItem('jwtToken', token);
+                    localStorage.setItem('userData', JSON.stringify(user));
+                    
+                    // Configurar token para requisições futuras
+                    $.ajaxSetup({
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        }
+                    });
+
+                    // Armazenar e-mail se marcado
+                    if (rememberMe) {
+                        localStorage.setItem('rememberedEmail', email);
+                    } else {
+                        localStorage.removeItem('rememberedEmail');
+                    }
+
+                    // Redirecionar com base no perfil
+                    const targetPage = user.roles.includes('ROLE_ADMIN') ? 
+                        'admin/dashboard.html' : 
+                        'user/dashboard.html';
+                    
+                    window.location.href = targetPage;
+
                 } catch (error) {
-                    console.error('Erro ao realizar login:', error);
-                    $('#feedback').text('Erro ao realizar login.'); // Mensagem de erro genérica
-                    $('#feedback').show();  // Torna o feedback visível
+                    console.error("Erro no login:", error);
+                    
+                    if (error.message.includes("Failed to fetch")) {
+                        showError(ERROR_MESSAGES.NETWORK_ERROR);
+                    } else {
+                        showError(ERROR_MESSAGES.UNKNOWN_ERROR);
+                    }
+                } finally {
+                    submitBtn.prop("disabled", false).text('Entrar');
                 }
             });
 
-        });
-        
-        // Função para controlar a visibilidade dos links conforme o nível de acesso
-        function controlarMenu() {
-            const nivel = localStorage.getItem('nivel'); // Recupera o nível de acesso do usuário
-
-            // Verificar e mostrar/ocultar os links com base no nível de acesso
-            if (nivel === '1') {
-                // Exibe links para nível 1
-                document.getElementById("Dados Agua").style.display = 'block';
-                document.getElementById('menu-dados-agua').style.display = 'block';
-                document.getElementById('menu-dados-energia').style.display = 'block';
-                document.getElementById('menu-financas').style.display = 'block';
-
-                // Oculta links para níveis superiores
-                document.getElementById('Dados Energia').style.display = 'none';
-                document.getElementById('menu-equipamentos').style.display = 'none';
-                document.getElementById('menu-cadastro-unidades').style.display = 'none';
-                document.getElementById('menu-adicao-fotos').style.display = 'none';
-                document.getElementById('menu-mudanca-nivel').style.display = 'none';
-            } else if (nivel === '2') {
-                // Exibe links para nível 2
-                document.getElementById('menu-inicial').style.display = 'block';
-                document.getElementById('menu-dados-agua').style.display = 'block';
-                document.getElementById('menu-dados-energia').style.display = 'block';
-                document.getElementById('menu-financas').style.display = 'block';
-                document.getElementById('menu-unidades').style.display = 'block';
-                document.getElementById('menu-equipamentos').style.display = 'block';
-
-                // Oculta links para níveis superiores
-                document.getElementById('menu-cadastro-unidades').style.display = 'none';
-                document.getElementById('menu-adicao-fotos').style.display = 'none';
-                document.getElementById('menu-mudanca-nivel').style.display = 'none';
-            } else if (nivel === '3') {
-                // Exibe todos os links para nível 3
-                document.getElementById("Dados Agua").style.display = 'block';
-                document.getElementById('menu-dados-agua').style.display = 'block';
-                document.getElementById('menu-dados-energia').style.display = 'block';
-                document.getElementById('menu-financas').style.display = 'block';
-                document.getElementById('menu-unidades').style.display = 'block';
-                document.getElementById('menu-equipamentos').style.display = 'block';
-                document.getElementById("Cadastro de Unidades").style.display = 'block';
-                document.getElementById('menu-adicao-fotos').style.display = 'block';
-                document.getElementById('menu-mudanca-nivel').style.display = 'block';
-
-                document.getElementById('Dados Energia').style.display = 'none';
-            }
-        }
-
-    // Chama a função de controle do menu ao carregar a página
-    $(document).ready(controlarMenu);
-    </script>
-
-     <script>
-       
-       // Função para obter parâmetros da URL
-        function getEmailFromURL() {
+            // Obter e-mail da URL
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('email');
+            const emailFromUrl = urlParams.get('email');
+            if (emailFromUrl) {
+                $("#email").val(emailFromUrl);
+            }
+        });
+
+        // Função para mostrar erros
+        function showError(message) {
+            const feedback = $("#feedback");
+            feedback.html(`<i class="fa fa-exclamation-circle"></i> ${message}`);
+            feedback.addClass("alert alert-danger").show();
         }
 
-        const email = getEmailFromURL();
-        if (email) {
-            $('input[name="email"]').val(email); // Preenche o campo de e-mail
+        // Função para validar e-mail
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Função para verificar autenticação em outras páginas
+        function checkAuth() {
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
         }
     </script>
-    
-</div>
+
+
 </body>
 </html>
