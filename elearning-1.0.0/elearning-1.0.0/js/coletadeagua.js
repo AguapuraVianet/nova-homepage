@@ -64,26 +64,6 @@ const requiredFields = [
   document.querySelector('input[name="resumo2"]')   // Substituir pelo seletor correto para o segundo campo do segundo container
 ];
 
-// Função para verificar se todos os campos estão preenchidos
-function checkFields() {
-  let allFilled = true;
-
-  requiredFields.forEach(field => {
-    if (!field || field.value.trim() === '') {
-      allFilled = false;
-    }
-  });
-
-  // Habilitar/desabilitar o botão de salvar
-  saveButton.disabled = !allFilled;
-}
-
-// Adicionar eventos de input a todos os campos obrigatórios
-requiredFields.forEach(field => {
-  if (field) {
-    field.addEventListener('input', checkFields);
-  }
-});
 
 // Função para o botão de cancelar (opcional, pode adicionar funcionalidade conforme a necessidade)
 document.getElementById('cancel-btn').addEventListener('click', function() {
@@ -96,18 +76,22 @@ document.getElementById('cancel-btn').addEventListener('click', function() {
   console.log('Cancelado');
 });
 
+
 function checkFields() {
   let allFilled = true;
 
   requiredFields.forEach(field => {
-    const errorMsg = field.nextElementSibling; // Supondo que tenha um elemento para mensagem
+    const errorMsg = field.nextElementSibling;
     if (!field || field.value.trim() === '') {
       allFilled = false;
-      errorMsg.style.display = 'block'; // Exibir mensagem de erro
-    } else {
-      errorMsg.style.display = 'none'; // Ocultar mensagem de erro
+      if (errorMsg && errorMsg.classList.contains('error-msg')) {
+        errorMsg.style.display = 'block';
+      }
+    } else if (errorMsg && errorMsg.classList.contains('error-msg')) {
+      errorMsg.style.display = 'none';
     }
   });
 
   saveButton.disabled = !allFilled;
+  return allFilled;
 }
