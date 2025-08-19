@@ -8,12 +8,26 @@
     <link rel="stylesheet" type="text/css" href="css/style.login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .field-icon {
+            float: right;
+            margin-right: 10px;
+            margin-top: -28px;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .spinner-border {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="background-color: #F1F5F9; max-width: 100%;">
-    <div class="wrapper fadeInDown" style="background-color: #F1F5F9;" >
+    <div class="wrapper fadeInDown" style="background-color: #F1F5F9;">
         <section class="ftco-section">
-            <div class="container" >
+            <div class="container">
                 <div class="row justify-content-center">
                 </div>
                 <div class="row justify-content-center align-items-center" style="min-height: 75vh;">
@@ -23,18 +37,18 @@
                                 <img src="img/logo1.png" alt="Logo da Aguapura">
                             </div>
                             <h3 class="text-center mb-4">Login</h3>
-                            <form action="#" class="login-form">
+                            <form id="loginForm" class="login-form">
                                 <div class="form-group">
-                                    <input type="text" name="email" class="form-control rounded-left" placeholder="E-mail" required>
+                                    <input type="email" id="email" class="form-control rounded-left" placeholder="E-mail" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="senha" class="form-control rounded-left" id="password" placeholder="Senha" required>
+                                    <input type="password" id="password" class="form-control rounded-left" placeholder="Senha" required>
                                     <span id="togglePassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-50">
                                         <label class="checkbox-wrap checkbox-primary">Lembre-se de mim
-                                            <input type="checkbox" checked>
+                                            <input type="checkbox" id="rememberMe">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -46,7 +60,7 @@
                                     <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Entrar</button>
                                 </div>
                             </form>
-                            <div id="feedback" class="text-danger" style="display: none; font-size: 14px; margin-top: 10px;"></div>
+                            <div id="feedback" class="text-danger mt-3" style="display: none;"></div>
                         </div>
                     </div>
                 </div>
@@ -55,171 +69,113 @@
     </div>
 </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        // Constantes da API
-        const API_BASE_URL = 'http://127.0.0.1:8000/api/usuarios';
+<script>
+$(document).ready(function() {
+    // Configurações
+    const API_URL = 'https://localhost:8000/api/usuarios/login';
+    const REDIRECT_URL = 'https://127.0.0.1:5501/dadosagua.html';
+
+    // Mostrar/ocultar senha
+    $('#togglePassword').click(function() {
+        const input = $('#password');
+        const icon = $(this);
+        if (input.attr('type') === 'password') {
+            input.attr('type', 'text');
+            icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            input.attr('type', 'password');
+            icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    });
+
+    // Preencher e-mail salvo se "Lembrar-me" estava marcado
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    if (rememberedEmail) {
+        $('#email').val(rememberedEmail);
+        $('#rememberMe').prop('checked', true);
+    }
+
+    // Validação de e-mail
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    // Manipulador de login
+    $('#loginForm').submit(function(e) {
+        e.preventDefault();
         
-        // Objeto com mensagens de erro personalizadas
-        const ERROR_MESSAGES = {
-            NETWORK_ERROR: "Erro de conexão. Verifique sua internet e tente novamente.",
-            SERVER_ERROR: "Servidor indisponível. Tente novamente mais tarde.",
-            INVALID_CREDENTIALS: "E-mail ou senha incorretos. Verifique seus dados.",
-            INVALID_DATA: "Por favor, preencha todos os campos corretamente.",
-            UNKNOWN_ERROR: "Erro desconhecido. Por favor, contate o suporte."
-        };
-
-        $(document).ready(function() {
-            // Mostrar/esconder senha
-            $("#togglePassword").click(function() {
-                const passwordField = $("#password");
-                const passwordFieldType = passwordField.attr("type");
-                passwordField.attr("type", passwordFieldType === "password" ? "text" : "password");
-                $(this).toggleClass("fa-eye fa-eye-slash");
-            });
-
-            // Preencher e-mail salvo
-            const storedEmail = localStorage.getItem('rememberedEmail');
-            if (storedEmail) {
-                $("#email").val(storedEmail);
-                $("#rememberMe").prop("checked", true);
-            }
-
-            // Login com JWT
-            $("#loginForm").on("submit", async function(e) {
-                e.preventDefault();
+        // Resetar feedback
+        $('#feedback').hide().text('');
+        
+        // Obter valores
+        const email = $('#email').val().trim();
+        const password = $('#password').val();
+        const rememberMe = $('#rememberMe').is(':checked');
+        
+        // Validação
+        if (!email || !password) {
+            showError('Por favor, preencha todos os campos');
+            return;
+        }
+        
+        if (!validateEmail(email)) {
+            showError('Por favor, insira um e-mail válido');
+            return;
+        }
+        
+        // Configurar loading
+        const btn = $(this).find('button[type="submit"]');
+        btn.prop('disabled', true);
+        btn.html('<span class="spinner-border spinner-border-sm" role="status"></span> Entrando...');
+        
+        // Fazer requisição
+        $.ajax({
+            url: API_URL,
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            success: function(response) {
+                // Armazenar token
+                localStorage.setItem('jwtToken', response.token);
                 
-                const email = $("#email").val().trim();
-                const password = $("#password").val();
-                const rememberMe = $("#rememberMe").is(":checked");
-
-                // Resetar mensagens de erro
-                $("#email").removeClass("is-invalid");
-                $("#password").removeClass("is-invalid");
-                $("#feedback").removeClass("alert-danger").hide();
-
-                // Validação básica
-                if (!email || !password) {
-                    showError(ERROR_MESSAGES.INVALID_DATA);
-                    if (!email) $("#email").addClass("is-invalid");
-                    if (!password) $("#password").addClass("is-invalid");
-                    return;
+                // Lembrar e-mail se selecionado
+                if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
                 }
-
-                // Validação de formato de e-mail
-                if (!validateEmail(email)) {
-                    showError("Por favor, insira um e-mail válido.");
-                    $("#email").addClass("is-invalid");
-                    return;
+                
+                // Redirecionar
+                window.location.href = REDIRECT_URL;
+            },
+            error: function(xhr) {
+                let errorMessage = 'Erro ao fazer login';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                } else if (xhr.status === 0) {
+                    errorMessage = 'Erro de conexão. ';
+                } else if (xhr.status === 401) {
+                    errorMessage = 'E-mail ou senha incorretos';
                 }
-
-                // Feedback visual
-                const submitBtn = $("button[type='submit']");
-                submitBtn.prop("disabled", true).html('<i class="fa fa-spinner fa-spin"></i> Entrando...');
-
-                try {
-                    // Autenticação
-                    const response = await fetch(`${API_BASE_URL}/login`, {
-                        method: 'POST',
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            password: password
-                        })
-                    });
-
-                    // Tratamento de erros HTTP
-                    if (!response.ok) {
-                        const errorData = await response.json().catch(() => null);
-                        
-                        if (response.status === 401 || response.status === 403) {
-                            showError(ERROR_MESSAGES.INVALID_CREDENTIALS);
-                            $("#email").addClass("is-invalid");
-                            $("#password").addClass("is-invalid");
-                        } 
-                        else if (response.status >= 500) {
-                            showError(ERROR_MESSAGES.SERVER_ERROR);
-                        }
-                        else {
-                            showError(errorData?.message || ERROR_MESSAGES.UNKNOWN_ERROR);
-                        }
-                        return;
-                    }
-
-                    const { token, user } = await response.json();
-                    
-                    // Armazenar token e dados do usuário
-                    localStorage.setItem('jwtToken', token);
-                    localStorage.setItem('userData', JSON.stringify(user));
-                    
-                    // Configurar token para requisições futuras
-                    $.ajaxSetup({
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        }
-                    });
-
-                    // Armazenar e-mail se marcado
-                    if (rememberMe) {
-                        localStorage.setItem('rememberedEmail', email);
-                    } else {
-                        localStorage.removeItem('rememberedEmail');
-                    }
-
-                    // Redirecionar com base no perfil
-                    const targetPage = user.roles.includes('ROLE_ADMIN') ? 
-                        'admin/dashboard.html' : 
-                        'user/dashboard.html';
-                    
-                    window.location.href = targetPage;
-
-                } catch (error) {
-                    console.error("Erro no login:", error);
-                    
-                    if (error.message.includes("Failed to fetch")) {
-                        showError(ERROR_MESSAGES.NETWORK_ERROR);
-                    } else {
-                        showError(ERROR_MESSAGES.UNKNOWN_ERROR);
-                    }
-                } finally {
-                    submitBtn.prop("disabled", false).text('Entrar');
-                }
-            });
-
-            // Obter e-mail da URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const emailFromUrl = urlParams.get('email');
-            if (emailFromUrl) {
-                $("#email").val(emailFromUrl);
+                showError(errorMessage);
+            },
+            complete: function() {
+                btn.prop('disabled', false);
+                btn.text('Entrar');
             }
         });
-
-        // Função para mostrar erros
-        function showError(message) {
-            const feedback = $("#feedback");
-            feedback.html(`<i class="fa fa-exclamation-circle"></i> ${message}`);
-            feedback.addClass("alert alert-danger").show();
-        }
-
-        // Função para validar e-mail
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        // Função para verificar autenticação em outras páginas
-        function checkAuth() {
-            const token = localStorage.getItem('jwtToken');
-            if (!token) {
-                window.location.href = 'login.html';
-                return false;
-            }
-            return true;
-        }
-    </script>
-
+    });
+    
+    function showError(message) {
+        const feedback = $('#feedback');
+        feedback.text(message).fadeIn();
+    }
+});
+</script>
 </body>
 </html>
