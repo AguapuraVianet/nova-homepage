@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Aguapura Vianet - Registro Energia</title>
     <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="img\favicon.png"/>
 
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -280,5 +281,51 @@
         }
     });
     </script>
+    <script>
+        // Função para limitar o número de caracteres no Resumo1
+        function limitarResumo1() {
+            const resumo1 = document.getElementById('resumo1');
+            
+            if (resumo1) {
+                // Limitar a 5 caracteres
+                resumo1.addEventListener('input', function() {
+                    if (this.value.length > 5) {
+                        this.value = this.value.slice(0, 5);
+                    }
+                });
+                
+                // Prevenir colar texto longo
+                resumo1.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+                    this.value = pastedText.slice(0, 5);
+                });
+            }
+        }
+
+        // Chamar a função quando o documento estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            limitarResumo1();
+            
+            // Seu código existente abaixo
+            let sidebarOpen = false;
+            const sidebar = document.getElementById('sidebar');
+
+            function openSidebar() {
+                if (!sidebarOpen) {
+                    sidebar.classList.add('sidebar-responsive');
+                    sidebarOpen = true;
+                }
+            }
+
+            function closeSidebar() {
+                if (sidebarOpen) {
+                    sidebar.classList.remove('sidebar-responsive');
+                    sidebarOpen = false;
+                }
+            }
+        });
+    </script>
+
   </body>
 </html>

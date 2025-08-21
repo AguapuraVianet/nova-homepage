@@ -200,6 +200,7 @@ select {
   display: block; /* Garante que o título ocupe uma linha separada */
   font-size: 24px; /* Tamanho do texto do título */
   margin-bottom: 5px; /* Espaço entre o título e a linha */
+  color: #333;
 }
 
 .linha-horizontal {
@@ -219,7 +220,7 @@ select {
 
 
 .container-right .valor-esgoto strong,
-.container-right .valor-total strong {
+.container-right .valor-total strong{
   color: #333;
 }
 

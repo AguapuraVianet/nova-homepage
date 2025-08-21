@@ -29,7 +29,6 @@ function atualizarUnidade(unidade) {
   document.getElementById('data-list').style.display = 'none';
 }
 
-
 // Para garantir que a lista é atualizada quando um item é selecionado
 function filterData() {
   const query = document.querySelector('.search-input').value.toLowerCase();
@@ -50,7 +49,6 @@ function filterData() {
   document.getElementById('data-list').style.display = hasResults ? 'block' : 'none';
 }
 
-
 // Selecionar o botão de salvar
 const saveButton = document.getElementById('save-btn');
 
@@ -60,12 +58,47 @@ const requiredFields = [
   document.querySelector('input[name="data-coleta"]'),  // Substituir pelo seletor correto para "Data da Coleta"
   document.querySelector('input[name="medidor"]'),  // Substituir pelo seletor correto para "Medidor"
   document.querySelector('input[name="hora-coleta"]'),  // Substituir pelo seletor correto para "Horário da Coleta"
-  document.querySelector('input[name="resumo1"]'),  // Substituir pelo seletor correto para o primeiro campo do segundo container
-  document.querySelector('input[name="resumo2"]')   // Substituir pelo seletor correto para o segundo campo do segundo container
+  document.querySelector('textarea[name="resumo1"]'),  // Alterado para textarea
+  document.querySelector('textarea[name="resumo2"]')   // Alterado para textarea
 ];
 
+// Função para limitar caracteres nos campos de resumo
+function limitarCaracteres() {
+  const resumo1 = document.getElementById('resumo1');
+  const resumo2 = document.getElementById('resumo2');
+  
+  // Limitar Resumo1 a 4 caracteres
+  if (resumo1) {
+    resumo1.addEventListener('input', function() {
+      if (this.value.length > 4) {
+        this.value = this.value.slice(0, 4);
+      }
+    });
+    
+    resumo1.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+      this.value = pastedText.slice(0, 4);
+    });
+  }
+  
+  // Limitar Resumo2 a 2 caracteres
+  if (resumo2) {
+    resumo2.addEventListener('input', function() {
+      if (this.value.length > 2) {
+        this.value = this.value.slice(0, 2);
+      }
+    });
+    
+    resumo2.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+      this.value = pastedText.slice(0, 2);
+    });
+  }
+}
 
-// Função para o botão de cancelar (opcional, pode adicionar funcionalidade conforme a necessidade)
+// Função para o botão de cancelar
 document.getElementById('cancel-btn').addEventListener('click', function() {
   requiredFields.forEach(field => {
     if (field) {
@@ -75,7 +108,6 @@ document.getElementById('cancel-btn').addEventListener('click', function() {
   saveButton.disabled = true; // Desabilita o botão de salvar
   console.log('Cancelado');
 });
-
 
 function checkFields() {
   let allFilled = true;
@@ -95,3 +127,8 @@ function checkFields() {
   saveButton.disabled = !allFilled;
   return allFilled;
 }
+
+// Inicializar a limitação de caracteres quando o documento estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+  limitarCaracteres();
+});

@@ -427,29 +427,22 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 
 #resumo1 {
   width: 100px; /* Aumente a largura conforme necessário */
-  height: 42px; /* Reduza a altura conforme desejado */
+  height: 45px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
 }
 
-#resumo2 {
-  width: 50px; /* Aumente a largura conforme necessário */
-  height: 42px; /* Reduza a altura conforme desejado */
-  overflow: hidden; /* Remove a barra de rolagem interna */
-  border-color: #0C0204;
-}
 
 #resumo2 {
   width: 66px; /* Aumente a largura conforme necessário */
-  height: 42px; /* Reduza a altura conforme desejado */
+  height: 45px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
   border-color: #F70000;
 }
 
-
 textarea {
   width: 100%;
   padding: 10%;
-  font-size: 30px; /* Tamanho menor para os textos */
+  font-size: 25px; /* Tamanho menor para os textos */
   border-radius: 4px;
   box-sizing: border-box;
   resize: none; /* Impede o redimensionamento manual */
