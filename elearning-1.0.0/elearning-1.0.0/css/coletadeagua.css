@@ -426,7 +426,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 }
 
 #resumo1 {
-  width: 106px; /* Aumente a largura conforme necessário */
+  width: 100px; /* Aumente a largura conforme necessário */
   height: 42px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
 }
@@ -440,7 +440,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, te
 
 #resumo2 {
   width: 66px; /* Aumente a largura conforme necessário */
-  height: 44px; /* Reduza a altura conforme desejado */
+  height: 42px; /* Reduza a altura conforme desejado */
   overflow: hidden; /* Remove a barra de rolagem interna */
   border-color: #F70000;
 }
