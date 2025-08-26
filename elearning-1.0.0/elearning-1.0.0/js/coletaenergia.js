@@ -111,3 +111,72 @@ function checkFields() {
 
   saveButton.disabled = !allFilled;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1; // Janeiro é 0
+  const currentValue = `${currentYear}-${currentMonth.toString().padStart(2, '0')}`;
+            
+  const select = document.getElementById('month-year');
+  const optionToSelect = select.querySelector(`option[value="${currentValue}"]`);
+            
+  if (optionToSelect) {
+    optionToSelect.selected = true;
+  }
+            
+  // Adicionar evento de change para atualizar os dados
+  select.addEventListener('change', function() {
+      const selectedValue = this.value;
+      console.log('Período selecionado:', selectedValue);
+      // Aqui você pode adicionar a lógica para atualizar os dados do dashboard
+      // atualizarDashboard(selectedValue);
+  });
+});
+
+// Função para gerar as opções de mês/ano de 2004 até 2024
+  function generateMonthYearOptions() {
+    const select = document.getElementById('month-year');
+    const months = [
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+            
+    // Limpar opções existentes
+    select.innerHTML = '';
+            
+    // Gerar opções de 2004 até 2024
+    for (let year = 2004; year <= 2024; year++) {
+        for (let month = 0; month < 12; month++) {
+            const option = document.createElement('option');
+            const monthValue = (month + 1).toString().padStart(2, '0');
+            option.value = `${year}-${monthValue}`;
+            option.textContent = `${months[month]}/${year}`;
+            select.appendChild(option);
+        }
+    }
+            
+    // Selecionar o mês/ano atual por padrão
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1;
+    const currentValue = `${currentYear}-${currentMonth.toString().padStart(2, '0')}`;
+            
+    const optionToSelect = select.querySelector(`option[value="${currentValue}"]`);
+    if (optionToSelect) {
+        optionToSelect.selected = true;
+    }
+}
+        
+// Adicionar evento de change para atualizar os dados
+document.addEventListener('DOMContentLoaded', function() {
+    generateMonthYearOptions();
+            
+    const select = document.getElementById('month-year');
+    select.addEventListener('change', function() {
+        const selectedValue = this.value;
+        console.log('Período selecionado:', selectedValue);
+        // Aqui você pode adicionar a lógica para atualizar os dados do dashboard
+        // atualizarDashboard(selectedValue);
+    });
+})

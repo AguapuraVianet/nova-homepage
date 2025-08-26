@@ -132,3 +132,25 @@ function checkFields() {
 document.addEventListener('DOMContentLoaded', function() {
   limitarCaracteres();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1; // Janeiro é 0
+  const currentValue = `${currentYear}-${currentMonth.toString().padStart(2, '0')}`;
+            
+  const select = document.getElementById('month-year');
+  const optionToSelect = select.querySelector(`option[value="${currentValue}"]`);
+            
+  if (optionToSelect) {
+    optionToSelect.selected = true;
+  }
+            
+  // Adicionar evento de change para atualizar os dados
+  select.addEventListener('change', function() {
+      const selectedValue = this.value;
+      console.log('Período selecionado:', selectedValue);
+      // Aqui você pode adicionar a lógica para atualizar os dados do dashboard
+      // atualizarDashboard(selectedValue);
+  });
+});

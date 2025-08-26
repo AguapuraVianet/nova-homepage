@@ -36,8 +36,8 @@ body {
     color: #000000;
   }
 
-  .text-newgreen {
-    color: #cc3c;
+  .text-yellow {
+    color: #FFFF08;
   }
   
   .font-weight-bold {
@@ -201,7 +201,7 @@ body {
   }
   
   .card:first-child {
-    border-left: 7px solid #367952;
+    border-left: 7px solid #cc3c43;
   }
   
   .card:nth-child(2) {
@@ -213,11 +213,36 @@ body {
   }
   
   .card:nth-child(4) {
-    border-left: 7px solid #cc3c43;
+    border-left: 7px solid #367952;
   }
 
-  .card:nth-child(5) {
-    border-left: 7px solid #cc3c;
+  /* NOVOS ESTILOS PARA DOBRAR A LARGURA DO QUARTO CARD */
+  /* Para telas grandes (acima de 1200px) */
+  @media (min-width: 992px) {
+    .main-cards {
+      grid-template-columns: 1fr 1fr 1fr 2fr; /* Quarto card com o dobro da largura */
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 992px) {
+    .main-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .card:nth-child(4) {
+      grid-column: span 2; /* Quarto card ocupa duas colunas */
+    }
+  }
+  
+  /* Para telas pequenas (até 767px) */
+  @media (max-width: 576px) {
+    .main-cards {
+      grid-template-columns: 1fr;
+    }
+    
+    .card:nth-child(4) {
+      /* Em telas pequenas, todos os cards ficam empilhados verticalmente */
+    }
   }
   
   .card > span {
@@ -519,3 +544,70 @@ body {
   padding: 10px; /* Adiciona espaço interno */
 }
 
+/* Estilos para o seletor de Mês/Ano */
+        .period-selector {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            background-color: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .period-selector label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: #2d3748;
+            white-space: nowrap;
+        }
+        
+        .period-selector select {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            background-color: white;
+            color: #4a5568;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .period-selector select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+        
+        /* Ajuste no layout do main-title */
+        .main-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .main-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .title-section {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .period-selector {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
