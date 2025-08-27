@@ -70,11 +70,12 @@
     </div>
 </div>
 
+<script src="js/auth.js"></script>
 <script>
 $(document).ready(function() {
     // Configurações
-    const API_URL = 'https://localhost:8000/api/usuarios/login';
-    const REDIRECT_URL = 'https://127.0.0.1:5501/dadosagua.html';
+    const API_URL = 'https://localhost:8000/api/sysuser/login';
+    const REDIRECT_URL = 'http://127.0.0.1:5501/dadosagua.html';
     
     // Mostrar/ocultar senha
     $('#togglePassword').click(function() {
@@ -143,6 +144,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Armazenar token
                 localStorage.setItem('jwtToken', response.token);
+                localStorage.setItem('userData', JSON.stringify(response.user));
                 
                 // Lembrar e-mail se selecionado
                 if (rememberMe) {
@@ -151,9 +153,11 @@ $(document).ready(function() {
                     localStorage.removeItem('rememberedEmail');
                 }
                 
-                // Redirecionar
-                window.location.href = REDIRECT_URL;
+                // ✅ SOLUÇÃO: Passar token via URL e localStorage
+                const tokenParam = encodeURIComponent(response.token);
+                window.location.href = REDIRECT_URL + '?token=' + tokenParam;
             },
+
             error: function(xhr) {
                 let errorMessage = 'Erro ao fazer login';
                 if (xhr.responseJSON && xhr.responseJSON.message) {
