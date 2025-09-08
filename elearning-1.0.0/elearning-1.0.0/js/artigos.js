@@ -169,7 +169,7 @@ const articles = [
         pdf: "Documentos/Artigos/Artigo-Caracterização Preliminar de Consumo Agua-I COBESA-2010-ok.pdf"
     },
     {
-        title: "Water conservation as a tool to support sustainable practices in aBrazilian public university",
+        title: "Water conservation as a tool to support sustainable practices in a Brazilian public university",
         author: "Maerbal Marinho, Maria do Socorro Gon&ccedil;alves, Asher Kiperstok",
         date: "15 de Maio de 2012",
         semester: "2012.1",
