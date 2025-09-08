@@ -72,10 +72,15 @@
 
 <script src="js/auth.js"></script>
 <script>
+// ✅ VERIFICAÇÃO INICIAL - Se já está logado, redireciona
+if (localStorage.getItem('jwtToken')) {
+    window.location.href = 'http://127.0.0.1:5501/dadosagua.html';
+}
+
 $(document).ready(function() {
     // Configurações
     const API_URL = 'https://localhost:8000/api/sysuser/login';
-    const REDIRECT_URL = 'http://127.0.0.1:5501/dadosagua.html';
+    const REDIRECT_URL = 'http://127.0.0.1:5501/dadosagua.html'; // ✅ Use HTTP para desenvolvimento
     
     // Mostrar/ocultar senha
     $('#togglePassword').click(function() {
@@ -153,17 +158,25 @@ $(document).ready(function() {
                     localStorage.removeItem('rememberedEmail');
                 }
                 
-                // ✅ SOLUÇÃO: Passar token via URL e localStorage
-                const tokenParam = encodeURIComponent(response.token);
-                window.location.href = REDIRECT_URL + '?token=' + tokenParam;
+                // ✅ Configurar automaticamente o header para futuras requisições
+                $.ajaxSetup({
+                    beforeSend: function(xhr) {
+                        const token = localStorage.getItem('jwtToken');
+                        if (token) {
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                        }
+                    }
+                });
+                
+                // Redirecionar
+                window.location.href = REDIRECT_URL;
             },
-
             error: function(xhr) {
                 let errorMessage = 'Erro ao fazer login';
                 if (xhr.responseJSON && xhr.responseJSON.message) {
                     errorMessage = xhr.responseJSON.message;
                 } else if (xhr.status === 0) {
-                    errorMessage = 'Erro de conexão. ';
+                    errorMessage = 'Erro de conexão. Verifique se o servidor está rodando.';
                 } else if (xhr.status === 401) {
                     errorMessage = 'E-mail ou senha incorretos';
                 }
@@ -181,6 +194,11 @@ $(document).ready(function() {
         feedback.text(message).fadeIn();
     }
 });
+</script>
+<script>
+if (localStorage.getItem('jwtToken')) {
+    window.location.href = 'dadosagua.html';
+}
 </script>
 </body>
 </html>
