@@ -302,7 +302,23 @@
 
     </div>
 
+    
     <script src="js/auth.js"></script>
+    <script>
+    if (!localStorage.getItem('jwtToken')) {
+        window.location.href = 'login.html';
+    }
+
+    // Configurar AJAX para esta página também
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            const token = localStorage.getItem('jwtToken');
+            if (token) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            }
+        }
+    });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
     <!-- Custom JS -->
     <script src="js/novodashboard.js"></script>

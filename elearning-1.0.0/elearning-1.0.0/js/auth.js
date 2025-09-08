@@ -1,69 +1,56 @@
 // js/auth.js
 class AuthManager {
     static init() {
-        this.setupAjaxHeaders();
-        this.checkToken();
-    }
-
-    static setupAjaxHeaders() {
-        // Configurar jQuery
-        $.ajaxSetup({
-            beforeSend: function(xhr) {
-                const token = AuthManager.getToken();
-                if (token) {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                }
-            }
-        });
-
-        // Configurar Fetch API também
-        const originalFetch = window.fetch;
-        window.fetch = function(...args) {
-            const token = AuthManager.getToken();
-            if (token && args[1]) {
-                args[1].headers = {
-                    ...args[1].headers,
-                    'Authorization': 'Bearer ' + token
-                };
-            }
-            return originalFetch.apply(this, args);
-        };
-    }
-
-    static getToken() {
-        // Primeiro tenta pegar da URL (redirecionamento)
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlToken = urlParams.get('token');
-        
-        if (urlToken) {
-            localStorage.setItem('jwtToken', urlToken);
-            // Limpar URL para não expor o token
-            window.history.replaceState({}, document.title, window.location.pathname);
-            return urlToken;
+        // Só executa verificações em páginas PROTEGIDAS
+        if (this.isProtectedPage()) {
+            this.checkLogin();
         }
-
-        // Se não tem na URL, pega do localStorage
-        return localStorage.getItem('jwtToken');
+        
+        // Configura headers para todas as requisições AJAX
+        this.setupAjaxHeaders();
     }
 
-    static checkToken() {
-        const token = this.getToken();
-        if (!token) {
+    static isProtectedPage() {
+        // Lista de páginas que REQUEREM login
+        const protectedPages = ['dadosagua.html', 'contadorenergia.html', 'dadosenergia.html', 'dadosaguaAdmDocumentos.html', 'contas.html', 'dadosaguaAdmCadastro.html',];
+        return protectedPages.some(page => window.location.pathname.includes(page));
+    }
+
+    static checkLogin() {
+        // Só redireciona se NÃO estiver logado e estiver em página protegida
+        if (!this.isLoggedIn()) {
             window.location.href = 'login.html';
             return false;
         }
         return true;
     }
 
+    static isLoggedIn() {
+        return !!localStorage.getItem('jwtToken');
+    }
+
+    static setupAjaxHeaders() {
+        // Configura automaticamente o token em todas as requisições
+        $.ajaxSetup({
+            beforeSend: function(xhr) {
+                const token = localStorage.getItem('jwtToken');
+                if (token) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                }
+            }
+        });
+    }
+
     static logout() {
         localStorage.removeItem('jwtToken');
         localStorage.removeItem('userData');
-        localStorage.removeItem('rememberedEmail');
         window.location.href = 'login.html';
     }
 }
 
-// Inicializar automaticamente
-document.addEventListener('DOMContentLoaded', function() {
-    AuthManager.init();
-});
+// Inicializa apenas se for uma página protegida
+if (AuthManager.isProtectedPage()) {
+    document.addEventListener('DOMContentLoaded', function() {
+        AuthManager.init();
+    });
+}

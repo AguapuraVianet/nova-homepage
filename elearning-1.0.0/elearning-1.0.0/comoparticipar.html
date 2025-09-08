@@ -104,23 +104,29 @@
                     Preencha este pr&eacute;-cadastro que voc&ecirc; receber&aacute;, assim que poss&iacute;vel um login/senha para ter acesso ao sistema.</p>
             </div>
             <div class="col-lg-7 col-md-10 wow fadeInUp" data-wow-delay="0.5s">
-                <form id="contactForm" method="POST" action="http://127.0.0.1:3005/send-email">
+                <form action="https://formsubmit.co/aguapuraufba@gmail.com" method="POST">
+                    <!-- Campos ocultos para configuração -->
+                    <input type="hidden" name="_subject" value="Novo cadastro - Programa Aguapura">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="http://seusite.com/obrigado.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
                     <div class="row g-3">
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" name="name" required placeholder="Your Name">
-                                <label for="name">Nome do respons&aacute;vel</label>
+                                <input type="text" class="form-control" id="name" name="name" required placeholder="Seu nome">
+                                <label for="name">Nome do responsável</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="subject" name="subject" required placeholder="Subject">
-                                <label for="subject">Nome da unidade</label>
+                                <input type="text" class="form-control" id="unidade" name="unidade" required placeholder="Unidade">
+                                <label for="unidade">Nome da unidade</label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" name="email" required placeholder="Your Email">
+                                <input type="email" class="form-control" id="email" name="email" required placeholder="Seu E-mail">
                                 <label for="email">E-mail</label>
                             </div>
                         </div>
@@ -145,7 +151,7 @@
                         <div class="col-12">
                             <div class="form-floating">
                                 <textarea class="form-control" required placeholder="Deixe uma mensagem aqui" id="message" name="message" style="height: 150px"></textarea>
-                                <label for="message">Motivo da participa&ccedil;&atilde;o</label>
+                                <label for="message">Motivo da participação</label>
                             </div>
                         </div>
                         <div class="col-12">
@@ -239,34 +245,64 @@
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/waypoints/waypoints.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        
-        fetch('http://127.0.0.1:3005/send-email', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao enviar e-mail.');
-            }
-            return response.text();
-        })
-        .then(data => {
-            swal("Sucesso!", data, "success"); 
-        })
-        .catch(error => {
-            swal("Erro!", error.message, "error"); 
-        });
-    });
+    // Inicialize o EmailJS com seu User ID
+            (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "ZrlGUz4PMH7Ojsmub", 
+            });
+        })();
 </script>
-
 <script src="js/main.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Mostrar loading
+    const btn = this.querySelector('button[type="submit"]');
+    btn.value = 'Enviando...';
+    const originalText = btn.innerHTML;
+    const serviceID = 'default_service';
+    const templateID = 'template_6d48q7t';
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Enviando...';
+    btn.disabled = true;
+    
+
+    // Coletar dados do formulário
+    const formData = {
+        name: document.getElementById('name').value,
+        unidade: document.getElementById('unidade').value,
+        email: document.getElementById('email').value,
+        telefone: document.getElementById('telefone').value,
+        estado: document.getElementById('estado').value,
+        cidade: document.getElementById('cidade').value,
+        message: document.getElementById('message').value,
+        date: new Date().toLocaleString('pt-BR')
+    };
+    
+    // Enviar via EmailJS
+    emailjs.send("service_vx4pjml", "template_6d48q7t")
+        .then(function(response) {
+            swal("Sucesso!", "Formulário enviado com sucesso! Entraremos em contato em breve.", "success");
+            document.getElementById('contactForm').reset();
+        })
+        .catch(function(error) {
+            swal("Erro!", "Houve um problema ao enviar o formulário. Tente novamente.", "error");
+            console.error('Erro EmailJS:', error);
+        })
+        .finally(function() {
+            // Restaurar botão
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+});
+
+</script>
 </body>
 
 </html>

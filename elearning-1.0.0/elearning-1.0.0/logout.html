@@ -5,10 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="img\favicon.png"/>
+    <link rel="shortcut icon" href="img/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="css/style.login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="https://aguapuravianet.com.br/assets/images/logos/favicon.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .btn-logout {
+            margin: 10px;
+            min-width: 120px;
+        }
+        .logout-container {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="background-color: #F1F5F9; max-width: 100%;">
@@ -18,12 +29,16 @@
                 <div class="row justify-content-center align-items-center" style="min-height: 75vh;">
                     <div class="col-md-6 col-lg-5">
                         <div class="login-wrap p-4 p-md-5" style="background-color: #ffffff;">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <img src="img/logo1.png" alt="Logo da Aguapura">
+                            </div>
                             <h3 class="text-center mb-4">Logout</h3>
                             <p class="text-center mb-4">Você tem certeza que deseja sair?</p>
                             <div class="form-group text-center">
-                                <button id="confirmLogout" class="btn btn-primary  submit p-3 px-5">Sim</button>
-                                <button id="cancelLogout" class="btn btn-secondary  submit p-3 px-5" style="margin-top: 6px;">Cancelar</button>
+                                <button id="confirmLogout" class="btn btn-primary btn-logout submit px-3 px-5">Sim, Sair</button>
+                                <button id="cancelLogout" class="btn btn-secondary btn-logout submit px-3 px-5">Cancelar</button>
                             </div>
+                            <div id="logoutMessage" class="text-center mt-3" style="display: none;"></div>
                         </div>
                     </div>
                 </div>
@@ -33,18 +48,63 @@
 </div>
 
 <script>
-    document.getElementById('confirmLogout').addEventListener('click', function() {
-        // Limpa os dados de login (localStorage ou cookies)
-        localStorage.removeItem('email');
-        // Redireciona para a página de login
-        window.location.href = 'http://127.0.0.1:5501/login.html';
+$(document).ready(function() {
+    const API_URL = 'http://localhost:8000'; // URL do seu backend
+
+    // Botão Confirmar Logout
+    $('#confirmLogout').click(function() {
+        const btn = $(this);
+        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Saindo...');
+        
+        // 1. Chamar API de logout no backend (opcional)
+        $.ajax({
+            url: API_URL + '/api/logout',
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')
+            },
+            success: function() {
+                completeLogout();
+            },
+            error: function() {
+                // Mesmo se a API falhar, faz logout local
+                completeLogout();
+            }
+        });
     });
 
-    document.getElementById('cancelLogout').addEventListener('click', function() {
-        // Redireciona de volta para a página anterior ou para o painel principal
-        window.history.back(); // Volta para a página anterior
+    // Botão Cancelar
+    $('#cancelLogout').click(function() {
+        window.location.href = 'dadosagua.html'; // Volta para o dashboard
     });
+
+    function completeLogout() {
+        // 2. Limpar todos os dados de autenticação
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('rememberedEmail');
+        
+        // 3. Limpar cookies relacionados (se houver)
+        document.cookie.split(';').forEach(function(cookie) {
+            if (cookie.trim().startsWith('auth_')) {
+                document.cookie = cookie + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            }
+        });
+        
+        // 4. Feedback visual
+        $('#logoutMessage').html('<div class="alert alert-success">✅ Logout realizado com sucesso!</div>').show();
+        
+        // 5. Redirecionar após breve delay
+        setTimeout(function() {
+            window.location.href = 'http://127.0.0.1:5501/login.html';
+        }, 1500);
+    }
+
+    // Verificar se usuário está logado
+    if (!localStorage.getItem('jwtToken')) {
+        window.location.href = 'login.html'; // Redireciona se não estiver logado
+    }
+});
 </script>
-
 </body>
 </html>
