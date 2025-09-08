@@ -128,29 +128,50 @@ function checkFields() {
   return allFilled;
 }
 
-// Inicializar a limitação de caracteres quando o documento estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   limitarCaracteres();
-});
+  checkFields(); // Para o botão já iniciar no estado correto
 
-document.addEventListener('DOMContentLoaded', function() {
+  // Setar mês atual no dropdown
   const now = new Date();
   const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1; // Janeiro é 0
+  const currentMonth = now.getMonth() + 1;
   const currentValue = `${currentYear}-${currentMonth.toString().padStart(2, '0')}`;
-            
+
   const select = document.getElementById('month-year');
-  const optionToSelect = select.querySelector(`option[value="${currentValue}"]`);
-            
-  if (optionToSelect) {
-    optionToSelect.selected = true;
-  }
-            
-  // Adicionar evento de change para atualizar os dados
-  select.addEventListener('change', function() {
-      const selectedValue = this.value;
-      console.log('Período selecionado:', selectedValue);
-      // Aqui você pode adicionar a lógica para atualizar os dados do dashboard
-      // atualizarDashboard(selectedValue);
+  const optionToSelect = select?.querySelector(`option[value="${currentValue}"]`);
+  if (optionToSelect) optionToSelect.selected = true;
+
+  // Evento de mudança
+  select?.addEventListener('change', function () {
+    console.log('Período selecionado:', this.value);
   });
+
+  // Adiciona listeners para verificar os campos
+  requiredFields.forEach(field => {
+    if (field) field.addEventListener('input', checkFields);
+  });
+});
+
+function mostrarMensagemSucesso() {
+  const div = document.createElement('div');
+  div.textContent = 'Dados salvos com sucesso!';
+  div.style.position = 'fixed';
+  div.style.bottom = '20px';
+  div.style.right = '20px';
+  div.style.padding = '10px 20px';
+  div.style.backgroundColor = '#3575DD';
+  div.style.color = '#fff';
+  div.style.borderRadius = '5px';
+  div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+  document.body.appendChild(div);
+
+  setTimeout(() => div.remove(), 3000);
+}
+
+resumo1.addEventListener('paste', e => e.preventDefault());
+resumo2.addEventListener('paste', e => e.preventDefault());
+
+document.getElementById('numero_medidor').addEventListener('input', function () {
+  this.value = this.value.replace(/\D/g, ''); // Remove tudo que não for número
 });

@@ -145,11 +145,6 @@
           </li>
           <li class="sidebar-list-item font-weight-bold">
             <a href="#">
-                <span class="material-icons-outlined">home_work</span> Unidades
-            </a>
-          </li>
-          <li class="sidebar-list-item font-weight-bold">
-            <a href="#">
                 <span class="material-icons-outlined">build</span> Equipamentos
             </a>
           </li>
@@ -323,7 +318,7 @@
     <!-- Custom JS -->
     <script src="js/novodashboard.js"></script>
         <script>
-        // Função para gerar as opções de mês/ano de 2004 até 2024
+        // Função para gerar as opções de mês/ano de 2025 até 2004 (ordem invertida)
         function generateMonthYearOptions() {
             const select = document.getElementById('month-year');
             const months = [
@@ -334,8 +329,8 @@
             // Limpar opções existentes
             select.innerHTML = '';
             
-            // Gerar opções de 2004 até 2024
-            for (let year = 2004; year <= 2025; year++) {
+            // Gerar opções de 2025 até 2004 (ordem invertida)
+            for (let year = 2025; year >= 2004; year--) {
                 for (let month = 0; month < 12; month++) {
                     const option = document.createElement('option');
                     const monthValue = (month + 1).toString().padStart(2, '0');
@@ -354,6 +349,7 @@
             const optionToSelect = select.querySelector(`option[value="${currentValue}"]`);
             if (optionToSelect) {
                 optionToSelect.selected = true;
+                document.getElementById('display-value').textContent = optionToSelect.textContent;
             }
         }
         
@@ -364,13 +360,15 @@
             const select = document.getElementById('month-year');
             select.addEventListener('change', function() {
                 const selectedValue = this.value;
+                const selectedText = this.options[this.selectedIndex].text;
                 console.log('Período selecionado:', selectedValue);
+                document.getElementById('display-value').textContent = selectedText;
+                
                 // Aqui você pode adicionar a lógica para atualizar os dados do dashboard
                 // atualizarDashboard(selectedValue);
             });
         });
-    </script>
-    
+      </script>
     <!--<script if (!localStorage.getItem('jwtToken')) {
     window.location.href = 'https://127.0.0.1:5501/login.html';}> Verifique se o token existe antes de carregar a página
     </script>-->

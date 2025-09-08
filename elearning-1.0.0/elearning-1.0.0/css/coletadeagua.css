@@ -330,7 +330,7 @@ margin: 0; /* Remove margens */
 .sidebar-footer {
 text-align: center; /* Centraliza o texto */
 font-size: 10px; /* Define o tamanho da fonte como miúdo */
-margin-top: 310px; /* Adiciona espaço acima, se necessário */
+margin-top: 400px; /* Adiciona espaço acima, se necessário */
 padding: 10px; /* Adiciona espaço interno */
 }
 
@@ -468,7 +468,7 @@ textarea:focus {
   }
 
   .date-time-group, .resumo-group {
-    gap: 10px;
+    gap: 1px;
   }
 
   .resumo-group {
