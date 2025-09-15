@@ -104,5 +104,75 @@
             }
         }
     });
+
+    // Smooth scrolling for anchor links
+    $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+            event.preventDefault();
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top
+            }, 1000);
+        }
+    });
+
+    // Contact form submission
+    $(document).ready(function() {
+        const form = $('#contactForm');
+        
+        if (form.length) {
+            form.on('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+
+                fetch('http://127.0.0.1:3006/send-contact', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar e-mail.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    if (typeof swal !== 'undefined') {
+                        swal("Sucesso!", data, "success");
+                    } else {
+                        alert("Sucesso! " + data);
+                    }
+                })
+                .catch(error => {
+                    if (typeof swal !== 'undefined') {
+                        swal("Erro!", error.message, "error");
+                    } else {
+                        alert("Erro! " + error.message);
+                    }
+                });
+            });
+        }
+    });
+
+    // Email redirect functionality
+    $(document).ready(function() {
+        const submitBtn = $('#submitBtn');
+        
+        if (submitBtn.length) {
+            submitBtn.on('click', function() {
+                const email = $('#emailInput').val(); // Captura o valor do e-mail
+        
+                // Redireciona para a página de login com o e-mail como parâmetro de URL
+                window.location.href = `http://127.0.0.1:5501/login.html?email=${encodeURIComponent(email)}`;
+            });
+        }
+    });
     
 })(jQuery);
+
+// Load SweetAlert only if not already loaded
+if (typeof swal === 'undefined') {
+    var sweetAlertScript = document.createElement('script');
+    sweetAlertScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js';
+    document.head.appendChild(sweetAlertScript);
+}
