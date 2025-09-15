@@ -278,18 +278,26 @@ const articles = [
 
 let selectedButton = null;
 
+
 function filterArticles(semester) {
-    const button = document.querySelector(`button[data-semester="${semester}"]`);
+    // Encontra o botão correspondente ao semestre
+    const buttons = document.querySelectorAll('.date-filter .btn-link');
+    const button = Array.from(buttons).find(btn => btn.textContent === semester);
+    
+    if (!button) return; // Proteção caso não encontre o botão
     
     if (selectedButton === button) {
+        // Se clicar no mesmo botão, remove a seleção
         button.classList.remove('btn-selected');
         selectedButton = null;
         displayArticles(articles);
     } else {
+        // Remove seleção anterior e seleciona o novo
         if (selectedButton) selectedButton.classList.remove('btn-selected');
         button.classList.add('btn-selected');
         selectedButton = button;
         
+        // Filtra os artigos
         const filteredArticles = articles.filter(article => article.semester === semester);
         displayArticles(filteredArticles);
     }
@@ -345,13 +353,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("searchButton").addEventListener("click", searchArticles);
     document.getElementById("searchInput").addEventListener("keyup", function(event) {
         if (event.key === "Enter") searchArticles();
-    });
-    
-    // Adicionar event listeners para os botões de filtro
-    document.querySelectorAll('.date-filter .btn-link').forEach(button => {
-        button.addEventListener('click', function() {
-            filterArticles(this.getAttribute('data-semester'));
-        });
     });
     
     // Inicializar a lista de artigos
